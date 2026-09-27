@@ -594,10 +594,10 @@ input[type="range"]{
       >
 
       <input
-        id="audioInput"
-        type="file"
-        accept="audio/*"
-        hidden
+      id="audioInput"
+      type="file"
+      accept=".mp3,.m4a,.wav,.aac,.caf,.ogg,.opus"
+      hidden
       >
 
       <div class="status-grid">
@@ -1124,12 +1124,10 @@ audioInput.addEventListener(
 
     if(!file) return;
 
-    if(!file.type.startsWith("audio/")){
-
-      setStatus("THAT IS NOT AUDIO 😭");
-
-      return;
-    }
+    if(
+      !file.type.startsWith("audio/") &&
+      !/\.(mp3|m4a|wav|aac|caf|ogg|opus)$/i.test(file.name)
+    ){
 
     stopPreview();
 
