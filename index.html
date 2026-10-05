@@ -6,9 +6,9 @@
 <meta name="theme-color" content="#7800ad">
 <title>JOHN BANANA — AUTO EDIT MAKER</title>
 
-<link rel="preconnect" href="[https://fonts.googleapis.com](https://fonts.googleapis.com)">
-<link rel="preconnect" href="[https://fonts.gstatic.com](https://fonts.gstatic.com)" crossorigin>
-<link href="[https://fonts.googleapis.com/css2?family=Bangers&family=DM+Mono:wght@400;500&family=Inter:wght@400;600;700;800;900&display=swap](https://fonts.googleapis.com/css2?family=Bangers&family=DM+Mono:wght@400;500&family=Inter:wght@400;600;700;800;900&display=swap)" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=DM+Mono:wght@400;500&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -172,6 +172,7 @@ input[type=file]{
   font-family:"DM Mono",monospace;
   font-size:11px;
   font-weight:500;
+  overflow:hidden;
 }
 
 .status strong{
@@ -180,6 +181,13 @@ input[type=file]{
   font-size:22px;
   letter-spacing:1px;
   margin-bottom:5px;
+}
+
+.status span{
+  display:block;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
 
 .status.ok{
@@ -325,6 +333,7 @@ input[type=range]{
   width:100%;
   height:100%;
   background:#111;
+  cursor:pointer;
 }
 
 .preview-meta{
@@ -412,166 +421,165 @@ input[type=range]{
 
 <div class="app">
 
-  <header>
-    <div class="logo">AUTO EDIT</div>
-    <div class="subtitle">
-      JOHN BANANA'S EXTREMELY SERIOUS<br>
-      BEAT-SYNCED EDIT MACHINE™
-    </div>
-  </header>
+<header>
+  <div class="logo">AUTO EDIT</div>
 
-  <div class="layout">
+  <div class="subtitle">
+    JOHN BANANA'S EXTREMELY SERIOUS<br>
+    BEAT-SYNCED EDIT MACHINE™
+  </div>
+</header>
 
-    <section class="panel">
+<div class="layout">
 
-      <div class="panel-title">1. FEED THE MACHINE</div>
+<section class="panel">
 
-      <div class="import-grid">
+  <div class="panel-title">1. FEED THE MACHINE</div>
 
-        <button class="import-btn photo" id="photoButton" type="button">
-          📸 IMPORT PHOTOS
-          <small>ADD ONE OR MORE PHOTOS</small>
-        </button>
+  <div class="import-grid">
 
-        <button class="import-btn video" id="videoButton" type="button">
-          🎥 IMPORT VIDEO
-          <small>ONE VIDEO CLIP</small>
-        </button>
+    <button class="import-btn photo" id="photoButton" type="button">
+      📸 IMPORT PHOTOS
+      <small>ADD ONE OR MORE PHOTOS</small>
+    </button>
 
-        <button class="import-btn audio" id="audioButton" type="button">
-          🔊 IMPORT AUDIO
-          <small>MP3 / M4A / WAV / AAC / ETC.</small>
-        </button>
+    <button class="import-btn video" id="videoButton" type="button">
+      🎥 IMPORT VIDEO
+      <small>ONE OR MORE VIDEO CLIPS</small>
+    </button>
 
-      </div>
-
-      <input
-        id="photoInput"
-        type="file"
-        accept="image/*"
-        multiple
-      >
-
-      <input
-        id="videoInput"
-        type="file"
-        accept="video/*,.mp4,.mov,.webm,.m4v"
-      >
-
-      <!-- IMPORTANT:
-           Do NOT use audio/* here.
-           iOS Safari has a WebKit bug where audio/* can make
-           perfectly valid audio files appear greyed out. -->
-      <input
-        id="audioInput"
-        type="file"
-        accept=".mp3,.m4a,.wav,.aac,.caf,.ogg,.opus"
-      >
-
-      <div class="status-grid">
-
-        <div class="status neutral" id="photoStatus">
-          <strong>PHOTOS</strong>
-          <span>NONE</span>
-        </div>
-
-        <div class="status neutral" id="videoStatus">
-          <strong>VIDEO</strong>
-          <span>NONE</span>
-        </div>
-
-        <div class="status neutral" id="audioStatus">
-          <strong>AUDIO</strong>
-          <span>NONE</span>
-        </div>
-
-      </div>
-
-      <div class="control">
-
-        <div class="control-row">
-          <div class="control-title">BEAT SENSITIVITY</div>
-          <div class="control-value" id="sensitivityValue">50%</div>
-        </div>
-
-        <input
-          id="sensitivity"
-          type="range"
-          min="0"
-          max="100"
-          value="50"
-        >
-
-        <div class="help">
-          Higher = MORE beats detected = MORE SHAKES.
-        </div>
-
-      </div>
-
-      <div class="actions">
-
-        <button
-          class="action"
-          id="generateButton"
-          type="button"
-          disabled
-        >
-          GENERATE EDIT
-        </button>
-
-        <button
-          class="action secondary"
-          id="exportButton"
-          type="button"
-          disabled
-        >
-          EXPORT WEBM
-        </button>
-
-      </div>
-
-      <div class="message" id="message">
-        IMPORT AUDIO + PHOTOS OR VIDEO TO BEGIN.
-      </div>
-
-      <div class="note">
-        💀 PHOTO MODE = AGGRESSIVE BEAT SHAKES.<br>
-        🎥 VIDEO MODE = SMOOTH PHYSICAL SHAKES.<br>
-        🔊 AUDIO IS REQUIRED.
-      </div>
-
-    </section>
-
-    <section class="panel preview-panel">
-
-      <div class="preview-head">
-        <div class="preview-title">9:16 PREVIEW</div>
-        <div class="badge" id="previewBadge">WAITING</div>
-      </div>
-
-      <div class="canvas-wrap">
-        <canvas id="preview" width="540" height="960"></canvas>
-      </div>
-
-      <div class="preview-meta">
-        <span id="timeLabel">00:00 / 00:00</span>
-        <span id="clipLabel">CLIP —</span>
-      </div>
-
-      <div class="progress">
-        <div id="progressBar"></div>
-      </div>
-
-    </section>
+    <button class="import-btn audio" id="audioButton" type="button">
+      🔊 IMPORT AUDIO
+      <small>MP3 / M4A / WAV / AAC / ETC.</small>
+    </button>
 
   </div>
+
+  <input
+    id="photoInput"
+    type="file"
+    accept="image/*"
+    multiple
+  >
+
+  <input
+    id="videoInput"
+    type="file"
+    accept="video/*,.mp4,.mov,.webm,.m4v"
+    multiple
+  >
+
+  <input
+    id="audioInput"
+    type="file"
+    accept=".mp3,.m4a,.wav,.aac,.caf,.ogg,.opus"
+  >
+
+  <div class="status-grid">
+
+    <div class="status neutral" id="photoStatus">
+      <strong>PHOTOS</strong>
+      <span>NONE</span>
+    </div>
+
+    <div class="status neutral" id="videoStatus">
+      <strong>VIDEO</strong>
+      <span>NONE</span>
+    </div>
+
+    <div class="status neutral" id="audioStatus">
+      <strong>AUDIO</strong>
+      <span>NONE</span>
+    </div>
+
+  </div>
+
+  <div class="control">
+
+    <div class="control-row">
+      <div class="control-title">BEAT SENSITIVITY</div>
+      <div class="control-value" id="sensitivityValue">50%</div>
+    </div>
+
+    <input
+      id="sensitivity"
+      type="range"
+      min="0"
+      max="100"
+      value="50"
+    >
+
+    <div class="help">
+      Higher = MORE beats detected = MORE SHAKES.
+    </div>
+
+  </div>
+
+  <div class="actions">
+
+    <button
+      class="action"
+      id="generateButton"
+      type="button"
+      disabled
+    >
+      GENERATE EDIT
+    </button>
+
+    <button
+      class="action secondary"
+      id="exportButton"
+      type="button"
+      disabled
+    >
+      EXPORT WEBM
+    </button>
+
+  </div>
+
+  <div class="message" id="message">
+    IMPORT AUDIO + PHOTOS OR VIDEO TO BEGIN.
+  </div>
+
+  <div class="note">
+    💀 PHOTO MODE = AGGRESSIVE BEAT SHAKES.<br>
+    🎥 VIDEO MODE = SMOOTH PHYSICAL SHAKES.<br>
+    🔊 AUDIO IS REQUIRED.<br>
+    🎬 VIDEOS ALWAYS PLAY BEFORE PHOTOS.
+  </div>
+
+</section>
+
+<section class="panel preview-panel">
+
+  <div class="preview-head">
+    <div class="preview-title">9:16 PREVIEW</div>
+    <div class="badge" id="previewBadge">WAITING</div>
+  </div>
+
+  <div class="canvas-wrap">
+    <canvas id="preview" width="540" height="960"></canvas>
+  </div>
+
+  <div class="preview-meta">
+    <span id="timeLabel">00:00 / 00:00</span>
+    <span id="clipLabel">CLIP —</span>
+  </div>
+
+  <div class="progress">
+    <div id="progressBar"></div>
+  </div>
+
+</section>
+
+</div>
 </div>
 
 <script>
 "use strict";
 
 /* =========================================================
-   STATE
+STATE
 ========================================================= */
 
 const state = {
@@ -588,7 +596,28 @@ const state = {
   audioGraphConnected: false,
 
   beats: [],
+
+  /*
+    Every sequence item now has:
+      type
+      source
+      start
+      end
+      sourceIndex
+
+    Timeline is:
+
+      VIDEO 1
+      VIDEO 2
+      VIDEO 3
+      PHOTO 1
+      PHOTO 2
+      PHOTO 3
+      ...
+  */
   sequence: [],
+
+  totalDuration: 0,
 
   generated: false,
   generating: false,
@@ -601,43 +630,77 @@ const state = {
 
   mediaRecorder: null,
   exportStream: null,
-  exportChunks: []
+  exportChunks: [],
+
+  audioEndWallTime: null
 };
 
 /* =========================================================
-   ELEMENTS
+ELEMENTS
 ========================================================= */
 
-const photoButton = document.getElementById("photoButton");
-const videoButton = document.getElementById("videoButton");
-const audioButton = document.getElementById("audioButton");
+const photoButton =
+  document.getElementById("photoButton");
 
-const photoInput = document.getElementById("photoInput");
-const videoInput = document.getElementById("videoInput");
-const audioInput = document.getElementById("audioInput");
+const videoButton =
+  document.getElementById("videoButton");
 
-const photoStatus = document.getElementById("photoStatus");
-const videoStatus = document.getElementById("videoStatus");
-const audioStatus = document.getElementById("audioStatus");
+const audioButton =
+  document.getElementById("audioButton");
 
-const sensitivity = document.getElementById("sensitivity");
-const sensitivityValue = document.getElementById("sensitivityValue");
+const photoInput =
+  document.getElementById("photoInput");
 
-const generateButton = document.getElementById("generateButton");
-const exportButton = document.getElementById("exportButton");
+const videoInput =
+  document.getElementById("videoInput");
 
-const message = document.getElementById("message");
+const audioInput =
+  document.getElementById("audioInput");
 
-const canvas = document.getElementById("preview");
-const ctx = canvas.getContext("2d");
+const photoStatus =
+  document.getElementById("photoStatus");
 
-const progressBar = document.getElementById("progressBar");
-const timeLabel = document.getElementById("timeLabel");
-const clipLabel = document.getElementById("clipLabel");
-const previewBadge = document.getElementById("previewBadge");
+const videoStatus =
+  document.getElementById("videoStatus");
+
+const audioStatus =
+  document.getElementById("audioStatus");
+
+const sensitivity =
+  document.getElementById("sensitivity");
+
+const sensitivityValue =
+  document.getElementById("sensitivityValue");
+
+const generateButton =
+  document.getElementById("generateButton");
+
+const exportButton =
+  document.getElementById("exportButton");
+
+const message =
+  document.getElementById("message");
+
+const canvas =
+  document.getElementById("preview");
+
+const ctx =
+  canvas.getContext("2d");
+
+const progressBar =
+  document.getElementById("progressBar");
+
+const timeLabel =
+  document.getElementById("timeLabel");
+
+const clipLabel =
+  document.getElementById("clipLabel");
+
+const previewBadge =
+  document.getElementById("previewBadge");
 
 /* =========================================================
-   BUTTONS
+BUTTONS
 ========================================================= */
 
 photoButton.addEventListener("click", () => {
@@ -653,7 +716,7 @@ audioButton.addEventListener("click", () => {
 });
 
 /* =========================================================
-   HELPERS
+HELPERS
 ========================================================= */
 
 function setStatus(text){
@@ -661,55 +724,95 @@ function setStatus(text){
 }
 
 function formatTime(seconds){
-  if(!Number.isFinite(seconds)) seconds = 0;
 
-  const mins = Math.floor(seconds / 60);
-  const secs = Math.floor(seconds % 60);
+  if(!Number.isFinite(seconds)){
+    seconds = 0;
+  }
 
-  return String(mins).padStart(2,"0") + ":" +
-         String(secs).padStart(2,"0");
+  const mins =
+    Math.floor(seconds / 60);
+
+  const secs =
+    Math.floor(seconds % 60);
+
+  return (
+    String(mins).padStart(2,"0") +
+    ":" +
+    String(secs).padStart(2,"0")
+  );
 }
 
 function clamp(value,min,max){
-  return Math.max(min,Math.min(max,value));
+  return Math.max(
+    min,
+    Math.min(max,value)
+  );
+}
+
+function wait(ms){
+  return new Promise(resolve =>
+    setTimeout(resolve,ms)
+  );
 }
 
 /* =========================================================
-   UI
+UI
 ========================================================= */
 
 function canGenerate(){
+
   return Boolean(
     state.audioFile &&
-    (state.photos.length > 0 || state.videos.length > 0)
+    (
+      state.photos.length > 0 ||
+      state.videos.length > 0
+    )
   );
 }
 
 function updateUI(){
 
   photoStatus.className =
-    "status " + (state.photos.length ? "ok" : "neutral");
+    "status " +
+    (
+      state.photos.length
+        ? "ok"
+        : "neutral"
+    );
 
   videoStatus.className =
-    "status " + (state.videos.length ? "ok" : "neutral");
+    "status " +
+    (
+      state.videos.length
+        ? "ok"
+        : "neutral"
+    );
 
   audioStatus.className =
-    "status " + (state.audioFile ? "ok" : "neutral");
+    "status " +
+    (
+      state.audioFile
+        ? "ok"
+        : "neutral"
+    );
 
-  photoStatus.querySelector("span").textContent =
-    state.photos.length
-      ? state.photos.length + " LOADED"
-      : "NONE";
+  photoStatus.querySelector("span")
+    .textContent =
+      state.photos.length
+        ? state.photos.length + " LOADED"
+        : "NONE";
 
-  videoStatus.querySelector("span").textContent =
-    state.videos.length
-      ? state.videos.length + " LOADED"
-      : "NONE";
+  videoStatus.querySelector("span")
+    .textContent =
+      state.videos.length
+        ? state.videos.length + " LOADED"
+        : "NONE";
 
-  audioStatus.querySelector("span").textContent =
-    state.audioFile
-      ? state.audioFile.name
-      : "NONE";
+  audioStatus.querySelector("span")
+    .textContent =
+      state.audioFile
+        ? state.audioFile.name
+        : "NONE";
 
   generateButton.disabled =
     !canGenerate() ||
@@ -723,263 +826,408 @@ function updateUI(){
 }
 
 /* =========================================================
-   SENSITIVITY
+SENSITIVITY
 ========================================================= */
 
-sensitivity.addEventListener("input", () => {
+sensitivity.addEventListener("input",() => {
+
   sensitivityValue.textContent =
     sensitivity.value + "%";
 });
 
 /* =========================================================
-   PHOTO IMPORT
+PHOTO IMPORT
 ========================================================= */
 
-photoInput.addEventListener("change", async () => {
+photoInput.addEventListener(
+  "change",
+  async () => {
 
-  const files = Array.from(photoInput.files || []);
+    const files =
+      Array.from(
+        photoInput.files || []
+      );
 
-  if(!files.length) return;
-
-  stopPreview();
-
-  state.photos.forEach(item => {
-    if(item.url){
-      URL.revokeObjectURL(item.url);
-    }
-  });
-
-  state.photos = [];
-
-  setStatus("LOADING PHOTOS...");
-
-  for(const file of files){
-
-    if(!file.type.startsWith("image/")){
-      continue;
+    if(!files.length){
+      return;
     }
 
-    const url = URL.createObjectURL(file);
+    stopPreview();
 
-    const img = new Image();
+    state.photos.forEach(item => {
 
-    img.src = url;
+      if(item.url){
+        URL.revokeObjectURL(
+          item.url
+        );
+      }
+    });
 
-    try{
-      await img.decode();
-    }catch{
-      await new Promise(resolve => {
-        img.onload = resolve;
-        img.onerror = resolve;
+    state.photos = [];
+
+    setStatus(
+      "LOADING PHOTOS..."
+    );
+
+    for(const file of files){
+
+      if(!file.type.startsWith("image/")){
+        continue;
+      }
+
+      const url =
+        URL.createObjectURL(file);
+
+      const img =
+        new Image();
+
+      img.src = url;
+
+      try{
+        await img.decode();
+      }catch{
+
+        await new Promise(resolve => {
+
+          img.onload = resolve;
+          img.onerror = resolve;
+
+        });
+      }
+
+      state.photos.push({
+        type:"photo",
+        file,
+        url,
+        image:img
       });
     }
 
-    state.photos.push({
-      type:"photo",
-      file,
-      url,
-      image:img
-    });
-  }
+    state.generated = false;
+    state.sequence = [];
 
-  state.generated = false;
-  updateUI();
-
-  if(state.photos.length){
-    setStatus(
-      state.photos.length +
-      " PHOTO" +
-      (state.photos.length === 1 ? "" : "S") +
-      " LOADED. NOW ADD AUDIO."
-    );
-  }else{
-    setStatus("NO VALID PHOTOS FOUND 😭");
-  }
-
-  drawIdle();
-});
-
-/* =========================================================
-   VIDEO IMPORT
-========================================================= */
-
-videoInput.addEventListener("change", async () => {
-
-  const file = videoInput.files?.[0];
-
-  if(!file) return;
-
-  stopPreview();
-
-  state.videos.forEach(item => {
-    if(item.url){
-      URL.revokeObjectURL(item.url);
-    }
-  });
-
-  state.videos = [];
-
-  if(
-    !file.type.startsWith("video/") &&
-    !/.(mp4|mov|webm|m4v)$/i.test(file.name)
-  ){
-    setStatus("THAT IS NOT VIDEO 😭");
-    return;
-  }
-
-  setStatus("LOADING VIDEO...");
-
-  const url = URL.createObjectURL(file);
-
-  const video = document.createElement("video");
-
-  video.src = url;
-  video.preload = "auto";
-  video.playsInline = true;
-  video.muted = true;
-
-  await new Promise(resolve => {
-
-    const done = () => {
-      video.removeEventListener("loadedmetadata",done);
-      resolve();
-    };
-
-    video.addEventListener("loadedmetadata",done);
-    video.addEventListener("error",done);
-
-  });
-
-  if(!Number.isFinite(video.duration) || video.duration <= 0){
-
-    URL.revokeObjectURL(url);
-
-    setStatus("COULD NOT READ THAT VIDEO 😭");
     updateUI();
-    return;
-  }
 
-  state.videos.push({
-    type:"video",
-    file,
-    url,
-    video,
-    duration:video.duration
-  });
-
-  state.generated = false;
-
-  updateUI();
-
-  setStatus("VIDEO LOADED. NOW ADD AUDIO.");
-
-  drawIdle();
-});
-
-/* =========================================================
-   AUDIO IMPORT
-   IMPORTANT IOS FIX
-========================================================= */
-
-audioInput.addEventListener("change", async () => {
-
-  const file = audioInput.files?.[0];
-
-  if(!file) return;
-
-  /*
-    DO NOT ONLY DO:
-
-      file.type.startsWith("audio/")
-
-    iOS Safari has a WebKit file-picker bug involving
-    accept="audio/*".
-
-    We therefore accept known audio extensions too.
-  */
-
-  const audioExtensions =
-    /.(mp3|m4a|wav|aac|caf|ogg|opus)$/i;
-
-  if(
-    !file.type.startsWith("audio/") &&
-    !audioExtensions.test(file.name)
-  ){
-    setStatus("THAT IS NOT AUDIO 😭");
-    return;
-  }
-
-  stopPreview();
-
-  if(state.audioURL){
-    URL.revokeObjectURL(state.audioURL);
-  }
-
-  state.audioFile = file;
-  state.audioURL = URL.createObjectURL(file);
-
-  state.audio = new Audio();
-
-  state.audio.src = state.audioURL;
-  state.audio.preload = "auto";
-  state.audio.playsInline = true;
-
-  state.audio.addEventListener(
-    "loadedmetadata",
-    () => {
-
-      state.generated = false;
-
-      updateUI();
+    if(state.photos.length){
 
       setStatus(
-        "AUDIO LOADED: " +
-        file.name +
-        " · " +
-        formatTime(state.audio.duration)
+        state.photos.length +
+        " PHOTO" +
+        (
+          state.photos.length === 1
+            ? ""
+            : "S"
+        ) +
+        " LOADED. NOW ADD AUDIO."
       );
 
-      drawIdle();
-
-    },
-    {once:true}
-  );
-
-  state.audio.addEventListener("error", () => {
-
-    setStatus(
-      "BROWSER COULD NOT DECODE THAT AUDIO 😭"
-    );
-
-    state.audioFile = null;
-    updateUI();
-
-  });
-
-  state.audio.addEventListener("ended", () => {
-
-    if(state.exporting){
-      finishExport();
     }else{
-      stopPreview();
+
+      setStatus(
+        "NO VALID PHOTOS FOUND 😭"
+      );
     }
 
-  });
-
-  state.audio.load();
-
-  updateUI();
-
-  setStatus("LOADING AUDIO...");
-});
+    drawIdle();
+  }
+);
 
 /* =========================================================
-   AUDIO GRAPH
+VIDEO IMPORT
+========================================================= */
+
+videoInput.addEventListener(
+  "change",
+  async () => {
+
+    const files =
+      Array.from(
+        videoInput.files || []
+      );
+
+    if(!files.length){
+      return;
+    }
+
+    stopPreview();
+
+    state.videos.forEach(item => {
+
+      if(item.url){
+        URL.revokeObjectURL(
+          item.url
+        );
+      }
+    });
+
+    state.videos = [];
+
+    setStatus(
+      "LOADING VIDEOS..."
+    );
+
+    for(const file of files){
+
+      if(
+        !file.type.startsWith("video/") &&
+        !/\.(mp4|mov|webm|m4v)$/i.test(
+          file.name
+        )
+      ){
+        continue;
+      }
+
+      const url =
+        URL.createObjectURL(file);
+
+      const video =
+        document.createElement("video");
+
+      video.src = url;
+      video.preload = "auto";
+      video.playsInline = true;
+      video.muted = true;
+      video.loop = false;
+
+      /*
+        This is important.
+
+        We wait for metadata before storing
+        the clip, so duration is real.
+      */
+
+      await new Promise(resolve => {
+
+        let finished = false;
+
+        const done = () => {
+
+          if(finished){
+            return;
+          }
+
+          finished = true;
+
+          video.removeEventListener(
+            "loadedmetadata",
+            done
+          );
+
+          video.removeEventListener(
+            "error",
+            done
+          );
+
+          resolve();
+        };
+
+        video.addEventListener(
+          "loadedmetadata",
+          done
+        );
+
+        video.addEventListener(
+          "error",
+          done
+        );
+
+        video.load();
+      });
+
+      if(
+        !Number.isFinite(video.duration) ||
+        video.duration <= 0
+      ){
+
+        URL.revokeObjectURL(url);
+        continue;
+      }
+
+      /*
+        Force the video element to be ready
+        for drawing to canvas.
+
+        Do NOT play it here.
+        Playback is controlled by the timeline.
+      */
+
+      try{
+        video.currentTime = 0;
+      }catch{}
+
+      state.videos.push({
+        type:"video",
+        file,
+        url,
+        video,
+        duration:video.duration
+      });
+    }
+
+    state.generated = false;
+    state.sequence = [];
+
+    updateUI();
+
+    if(state.videos.length){
+
+      const total =
+        state.videos.reduce(
+          (sum,item) =>
+            sum + item.duration,
+          0
+        );
+
+      setStatus(
+        state.videos.length +
+        " VIDEO" +
+        (
+          state.videos.length === 1
+            ? ""
+            : "S"
+        ) +
+        " LOADED · " +
+        formatTime(total) +
+        " TOTAL"
+      );
+
+    }else{
+
+      setStatus(
+        "COULD NOT READ THOSE VIDEOS 😭"
+      );
+    }
+
+    drawIdle();
+  }
+);
+
+/* =========================================================
+AUDIO IMPORT
+========================================================= */
+
+audioInput.addEventListener(
+  "change",
+  async () => {
+
+    const file =
+      audioInput.files?.[0];
+
+    if(!file){
+      return;
+    }
+
+    const audioExtensions =
+      /\.(mp3|m4a|wav|aac|caf|ogg|opus)$/i;
+
+    if(
+      !file.type.startsWith("audio/") &&
+      !audioExtensions.test(file.name)
+    ){
+
+      setStatus(
+        "THAT IS NOT AUDIO 😭"
+      );
+
+      return;
+    }
+
+    stopPreview();
+
+    if(state.audioURL){
+
+      URL.revokeObjectURL(
+        state.audioURL
+      );
+    }
+
+    state.audioFile = file;
+
+    state.audioURL =
+      URL.createObjectURL(file);
+
+    state.audio =
+      new Audio();
+
+    state.audio.src =
+      state.audioURL;
+
+    state.audio.preload =
+      "auto";
+
+    state.audio.playsInline =
+      true;
+
+    state.audio.addEventListener(
+      "loadedmetadata",
+      () => {
+
+        state.generated = false;
+
+        updateUI();
+
+        setStatus(
+          "AUDIO LOADED: " +
+          file.name +
+          " · " +
+          formatTime(
+            state.audio.duration
+          )
+        );
+
+        drawIdle();
+      },
+      {once:true}
+    );
+
+    state.audio.addEventListener(
+      "error",
+      () => {
+
+        setStatus(
+          "BROWSER COULD NOT DECODE THAT AUDIO 😭"
+        );
+
+        state.audioFile = null;
+
+        updateUI();
+      }
+    );
+
+    state.audio.addEventListener(
+      "ended",
+      () => {
+
+        if(state.exporting){
+
+          finishExport();
+
+        }else{
+
+          stopPreview();
+        }
+      }
+    );
+
+    state.audio.load();
+
+    updateUI();
+
+    setStatus(
+      "LOADING AUDIO..."
+    );
+  }
+);
+
+/* =========================================================
+AUDIO GRAPH
 ========================================================= */
 
 function ensureAudioGraph(){
 
-  if(!state.audio) return false;
+  if(!state.audio){
+    return false;
+  }
 
   if(!state.audioContext){
 
@@ -998,15 +1246,17 @@ function ensureAudioGraph(){
   if(!state.audioSource){
 
     state.audioSource =
-      state.audioContext.createMediaElementSource(
-        state.audio
-      );
+      state.audioContext
+        .createMediaElementSource(
+          state.audio
+        );
   }
 
   if(!state.audioDestination){
 
     state.audioDestination =
-      state.audioContext.createMediaStreamDestination();
+      state.audioContext
+        .createMediaStreamDestination();
   }
 
   if(!state.audioGraphConnected){
@@ -1019,14 +1269,15 @@ function ensureAudioGraph(){
       state.audioContext.destination
     );
 
-    state.audioGraphConnected = true;
+    state.audioGraphConnected =
+      true;
   }
 
   return true;
 }
 
 /* =========================================================
-   BEAT DETECTION
+BEAT DETECTION
 ========================================================= */
 
 async function detectBeats(){
@@ -1064,47 +1315,72 @@ async function detectBeats(){
       await offline.close();
     }catch{}
 
-    console.warn("Beat detection failed:",error);
+    console.warn(
+      "Beat detection failed:",
+      error
+    );
 
     return [];
   }
 
-  const sampleRate = buffer.sampleRate;
-  const channelCount = buffer.numberOfChannels;
+  const sampleRate =
+    buffer.sampleRate;
 
-  const length = buffer.length;
+  const channelCount =
+    buffer.numberOfChannels;
 
-  const mono = new Float32Array(length);
+  const length =
+    buffer.length;
 
-  for(let ch=0;ch<channelCount;ch++){
+  const mono =
+    new Float32Array(length);
+
+  for(
+    let ch=0;
+    ch<channelCount;
+    ch++
+  ){
 
     const data =
       buffer.getChannelData(ch);
 
-    for(let i=0;i<length;i++){
-      mono[i] += data[i] / channelCount;
+    for(
+      let i=0;
+      i<length;
+      i++
+    ){
+
+      mono[i] +=
+        data[i] /
+        channelCount;
     }
   }
 
-  /*
-    25ms windows with 50% overlap.
-  */
-
   const windowSize =
-    Math.max(128,Math.floor(sampleRate * .025));
+    Math.max(
+      128,
+      Math.floor(
+        sampleRate * .025
+      )
+    );
 
   const hop =
-    Math.max(64,Math.floor(windowSize / 2));
+    Math.max(
+      64,
+      Math.floor(
+        windowSize / 2
+      )
+    );
 
   const energies = [];
 
   for(
     let start=0;
-    start+windowSize<mono.length;
-    start+=hop
+    start + windowSize < mono.length;
+    start += hop
   ){
 
-    let sum=0;
+    let sum = 0;
 
     for(
       let i=0;
@@ -1112,7 +1388,8 @@ async function detectBeats(){
       i++
     ){
 
-      const v = mono[start+i];
+      const v =
+        mono[start+i];
 
       sum += v*v;
     }
@@ -1126,22 +1403,31 @@ async function detectBeats(){
   }
 
   const sensitivityAmount =
-    Number(sensitivity.value)/100;
+    Number(sensitivity.value) / 100;
 
   const smooth = [];
 
-  for(let i=0;i<energies.length;i++){
+  for(
+    let i=0;
+    i<energies.length;
+    i++
+  ){
 
     let total=0;
     let count=0;
 
     for(
       let j=Math.max(0,i-2);
-      j<=Math.min(energies.length-1,i+2);
+      j<=Math.min(
+        energies.length-1,
+        i+2
+      );
       j++
     ){
 
-      total += energies[j].energy;
+      total +=
+        energies[j].energy;
+
       count++;
     }
 
@@ -1175,7 +1461,11 @@ async function detectBeats(){
 
   let lastBeat=-Infinity;
 
-  for(let i=3;i<smooth.length-3;i++){
+  for(
+    let i=3;
+    i<smooth.length-3;
+    i++
+  ){
 
     const current =
       smooth[i].energy;
@@ -1185,62 +1475,94 @@ async function detectBeats(){
 
     for(
       let j=Math.max(0,i-16);
-      j<=Math.min(smooth.length-1,i+16);
+      j<=Math.min(
+        smooth.length-1,
+        i+16
+      );
       j++
     ){
 
-      if(j===i) continue;
+      if(j===i){
+        continue;
+      }
 
-      localTotal += smooth[j].energy;
-      localValues.push(smooth[j].energy);
+      localTotal +=
+        smooth[j].energy;
+
+      localValues.push(
+        smooth[j].energy
+      );
     }
 
     const localAverage =
       localTotal /
-      Math.max(1,localValues.length);
+      Math.max(
+        1,
+        localValues.length
+      );
 
-    localValues.sort((a,b)=>a-b);
+    localValues.sort(
+      (a,b)=>a-b
+    );
 
     const median =
       localValues[
-        Math.floor(localValues.length/2)
-      ] || 0.00001;
+        Math.floor(
+          localValues.length/2
+        )
+      ] || .00001;
 
     const previous =
       smooth[i-1].energy;
 
     const rise =
       current /
-      Math.max(.00001,previous) - 1;
+      Math.max(
+        .00001,
+        previous
+      ) - 1;
 
     const averageRatio =
       current /
-      Math.max(.00001,localAverage);
+      Math.max(
+        .00001,
+        localAverage
+      );
 
     const medianRatio =
       current /
-      Math.max(.00001,median);
+      Math.max(
+        .00001,
+        median
+      );
 
     const isLocalMaximum =
-      current >= smooth[i-1].energy &&
-      current >= smooth[i+1].energy;
+      current >=
+        smooth[i-1].energy &&
+      current >=
+        smooth[i+1].energy;
 
     const strongEnough =
       (
-        averageRatio >= averageThreshold &&
-        medianRatio >= medianThreshold
+        averageRatio >=
+          averageThreshold &&
+        medianRatio >=
+          medianThreshold
       ) ||
       (
-        averageRatio >= transientAverageThreshold &&
-        rise >= riseThreshold
+        averageRatio >=
+          transientAverageThreshold &&
+        rise >=
+          riseThreshold
       );
 
-    const time=smooth[i].time;
+    const time =
+      smooth[i].time;
 
     if(
       isLocalMaximum &&
       strongEnough &&
-      time-lastBeat>=minGap
+      time-lastBeat >= minGap
     ){
 
       const strength =
@@ -1260,9 +1582,10 @@ async function detectBeats(){
         strength
       });
 
-      lastBeat=time;
+      lastBeat =
+        time;
 
-      if(beats.length>=900){
+      if(beats.length >= 900){
         break;
       }
     }
@@ -1272,12 +1595,7 @@ async function detectBeats(){
     await offline.close();
   }catch{}
 
-  /*
-    If detection produces nothing, use a sensible
-    fallback pulse.
-  */
-
-  if(beats.length<2){
+  if(beats.length < 2){
 
     const duration =
       buffer.duration;
@@ -1308,30 +1626,35 @@ async function detectBeats(){
 }
 
 /* =========================================================
-   SEQUENCE
+AVERAGE BEAT STRENGTH
 ========================================================= */
 
-function buildSequence(){
+function averageBeatStrength(){
 
-  const clips = [
-    ...state.photos,
-    ...state.videos
-  ];
-
-  if(!clips.length){
-    state.sequence=[];
-    return;
+  if(!state.beats.length){
+    return 1;
   }
 
-  state.sequence=[];
+  let total=0;
 
-  for(let i=0;i<state.beats.length;i++){
+  for(
+    const beat of state.beats
+  ){
 
-    state.sequence.push(
-      clips[i % clips.length]
+    total +=
+      beat.strength;
+  }
+
+  return total /
+    Math.max(
+      .01,
+      state.beats.length
     );
-  }
 }
+
+/* =========================================================
+BEAT HELPERS
+========================================================= */
 
 function findNearestBeat(time){
 
@@ -1340,60 +1663,19 @@ function findNearestBeat(time){
   }
 
   let low=0;
-  let high=state.beats.length-1;
+  let high=
+    state.beats.length-1;
 
   while(low<=high){
 
     const mid =
-      Math.floor((low+high)/2);
-
-    if(state.beats[mid].time < time){
-      low=mid+1;
-    }else{
-      high=mid-1;
-    }
-  }
-
-  const a =
-    state.beats[
-      clamp(high,0,state.beats.length-1)
-    ];
-
-  const b =
-    state.beats[
-      clamp(low,0,state.beats.length-1)
-    ];
-
-  if(!a) return b;
-  if(!b) return a;
-
-  return Math.abs(a.time-time) <
-    Math.abs(b.time-time)
-    ? a
-    : b;
-}
-
-function getClipAtTime(time){
-
-  if(!state.beats.length ||
-     !state.sequence.length){
-
-    return {
-      clip:null,
-      index:-1
-    };
-  }
-
-  let low=0;
-  let high=state.beats.length-1;
-
-  while(low<=high){
-
-    const mid =
-      Math.floor((low+high)/2);
+      Math.floor(
+        (low+high)/2
+      );
 
     if(
-      state.beats[mid].time <= time
+      state.beats[mid].time <
+      time
     ){
 
       low=mid+1;
@@ -1404,43 +1686,40 @@ function getClipAtTime(time){
     }
   }
 
-  const index =
-    clamp(
-      high,
-      0,
-      state.sequence.length-1
-    );
+  const a =
+    state.beats[
+      clamp(
+        high,
+        0,
+        state.beats.length-1
+      )
+    ];
 
-  return {
-    clip:state.sequence[index],
-    index
-  };
+  const b =
+    state.beats[
+      clamp(
+        low,
+        0,
+        state.beats.length-1
+      )
+    ];
+
+  if(!a) return b;
+  if(!b) return a;
+
+  return Math.abs(
+    a.time-time
+  ) <
+  Math.abs(
+    b.time-time
+  )
+    ? a
+    : b;
 }
 
 /* =========================================================
-   SHAKE
+SHAKE
 ========================================================= */
-
-/*
-  PHOTO MODE:
-  aggressive/random physical shakes.
-*/
-
-function averageBeatStrength(){
-
-  if(!state.beats.length){
-    return 1;
-  }
-
-  let total=0;
-
-  for(const beat of state.beats){
-    total += beat.strength;
-  }
-
-  return total /
-    Math.max(.01,state.beats.length);
-}
 
 function applyShake(time){
 
@@ -1454,11 +1733,13 @@ function applyShake(time){
   if(beat){
 
     const distance =
-      Math.abs(time-beat.time);
+      Math.abs(
+        time-beat.time
+      );
 
     const shakeWindow=.105;
 
-    if(distance<shakeWindow){
+    if(distance < shakeWindow){
 
       const average =
         averageBeatStrength();
@@ -1469,12 +1750,16 @@ function applyShake(time){
           Math.max(
             .45,
             beat.strength /
-            Math.max(.01,average)
+            Math.max(
+              .01,
+              average
+            )
           )
         );
 
       const falloff =
-        1-distance/shakeWindow;
+        1 -
+        distance/shakeWindow;
 
       const power =
         falloff*strength;
@@ -1503,12 +1788,9 @@ function applyShake(time){
   };
 }
 
-/*
-  VIDEO MODE:
-  smooth deterministic physical shake.
-  No flashing to black.
-  No aggressive random jitter.
-*/
+/* =========================================================
+VIDEO SHAKE
+========================================================= */
 
 function applyVideoShake(time){
 
@@ -1520,6 +1802,7 @@ function applyVideoShake(time){
   let rotation=0;
 
   if(!beat){
+
     return {
       shakeX,
       shakeY,
@@ -1554,7 +1837,10 @@ function applyVideoShake(time){
       Math.max(
         .45,
         beat.strength /
-        Math.max(.01,average)
+        Math.max(
+          .01,
+          average
+        )
       )
     );
 
@@ -1563,14 +1849,18 @@ function applyVideoShake(time){
   if(distance<0){
 
     power =
-      1-Math.abs(distance)/windowBefore;
+      1 -
+      Math.abs(distance) /
+      windowBefore;
 
     power *= .35;
 
   }else{
 
     power =
-      1-distance/windowAfter;
+      1 -
+      distance /
+      windowAfter;
 
     power =
       power*power;
@@ -1582,18 +1872,23 @@ function applyVideoShake(time){
     power;
 
   const phase =
-    beat.time*17.731;
+    beat.time *
+    17.731;
 
   shakeX =
     Math.sin(phase) *
     amount;
 
   shakeY =
-    Math.cos(phase*1.37) *
+    Math.cos(
+      phase*1.37
+    ) *
     amount*.65;
 
   rotation =
-    Math.sin(phase*.73) *
+    Math.sin(
+      phase*.73
+    ) *
     .012 *
     strength *
     power;
@@ -1606,12 +1901,13 @@ function applyVideoShake(time){
 }
 
 /* =========================================================
-   DRAWING
+DRAWING
 ========================================================= */
 
 function drawBackground(){
 
   ctx.fillStyle="#111";
+
   ctx.fillRect(
     0,
     0,
@@ -1620,17 +1916,37 @@ function drawBackground(){
   );
 }
 
-function drawCoverImage(img){
+/*
+  IMPORTANT:
 
-  if(!img || !img.width || !img.height){
+  This draws the source into the entire
+  9:16 canvas using COVER.
+
+  It intentionally crops the sides/top/bottom
+  rather than leaving black bars.
+*/
+
+function drawCoverImage(source){
+
+  if(!source){
     return;
   }
 
-  const cw=canvas.width;
-  const ch=canvas.height;
+  const cw =
+    canvas.width;
 
-  const iw=img.videoWidth || img.naturalWidth || img.width;
-  const ih=img.videoHeight || img.naturalHeight || img.height;
+  const ch =
+    canvas.height;
+
+  const iw =
+    source.videoWidth ||
+    source.naturalWidth ||
+    source.width;
+
+  const ih =
+    source.videoHeight ||
+    source.naturalHeight ||
+    source.height;
 
   if(!iw || !ih){
     return;
@@ -1642,14 +1958,20 @@ function drawCoverImage(img){
       ch/ih
     );
 
-  const dw=iw*scale;
-  const dh=ih*scale;
+  const dw =
+    iw*scale;
 
-  const x=(cw-dw)/2;
-  const y=(ch-dh)/2;
+  const dh =
+    ih*scale;
+
+  const x =
+    (cw-dw)/2;
+
+  const y =
+    (ch-dh)/2;
 
   ctx.drawImage(
-    img,
+    source,
     x,
     y,
     dw,
@@ -1664,7 +1986,10 @@ function drawIdle(){
   ctx.save();
 
   ctx.fillStyle="#ab04f9";
-  ctx.font="bold 58px Bangers, Impact, sans-serif";
+
+  ctx.font =
+    "bold 58px Bangers, Impact, sans-serif";
+
   ctx.textAlign="center";
   ctx.textBaseline="middle";
 
@@ -1675,7 +2000,9 @@ function drawIdle(){
   );
 
   ctx.fillStyle="#ffe600";
-  ctx.font="bold 31px Bangers, Impact, sans-serif";
+
+  ctx.font =
+    "bold 31px Bangers, Impact, sans-serif";
 
   ctx.fillText(
     "AUTO EDIT MAKER",
@@ -1687,18 +2014,689 @@ function drawIdle(){
 }
 
 /* =========================================================
-   RENDER FRAME
+BUILD REAL TIMELINE
 ========================================================= */
 
-function renderFrame(time){
+function buildTimeline(){
+
+  state.sequence=[];
+
+  let timeline=0;
+
+  /*
+    =====================================================
+    PHASE 1 — VIDEOS
+    =====================================================
+
+    Every imported video is played completely.
+
+    Example:
+
+      video 1: 0 → 4.2
+      video 2: 4.2 → 9.7
+      video 3: 9.7 → 12.1
+  */
+
+  for(
+    let i=0;
+    i<state.videos.length;
+    i++
+  ){
+
+    const item =
+      state.videos[i];
+
+    const duration =
+      Number(item.duration);
+
+    if(
+      !Number.isFinite(duration) ||
+      duration <= 0
+    ){
+      continue;
+    }
+
+    state.sequence.push({
+
+      type:"video",
+
+      source:item.video,
+
+      sourceIndex:i,
+
+      start:timeline,
+
+      end:
+        timeline +
+        duration,
+
+      duration
+    });
+
+    timeline += duration;
+  }
+
+  /*
+    =====================================================
+    PHASE 2 — PHOTOS
+    =====================================================
+
+    Photos start EXACTLY after the final video.
+
+    We use beats occurring after the video section
+    as the photo cuts.
+  */
+
+  const photoStart =
+    timeline;
+
+  const audioDuration =
+    state.audio?.duration || 0;
+
+  /*
+    If there are photos, calculate useful beat
+    boundaries after the video section.
+  */
+
+  const photoBeats =
+    state.beats.filter(
+      beat =>
+        beat.time >= photoStart &&
+        beat.time < audioDuration
+    );
+
+  if(state.photos.length){
+
+    /*
+      If there are detected beats after the videos,
+      each photo occupies a beat interval.
+
+      Otherwise split the remaining audio evenly.
+    */
+
+    if(photoBeats.length >= 2){
+
+      for(
+        let i=0;
+        i<state.photos.length;
+        i++
+      ){
+
+        const photo =
+          state.photos[i];
+
+        const startIndex =
+          i % photoBeats.length;
+
+        const nextIndex =
+          (
+            startIndex+1
+          ) % photoBeats.length;
+
+        const start =
+          photoBeats[
+            startIndex
+          ].time;
+
+        let end;
+
+        if(
+          startIndex <
+          photoBeats.length-1
+        ){
+
+          end =
+            photoBeats[
+              startIndex+1
+            ].time;
+
+        }else{
+
+          /*
+            Last detected beat:
+            give it one normal beat interval.
+          */
+
+          const previous =
+            photoBeats[
+              Math.max(
+                0,
+                photoBeats.length-2
+              )
+            ];
+
+          const current =
+            photoBeats[
+              startIndex
+            ];
+
+          const interval =
+            Math.max(
+              .18,
+              current.time -
+              previous.time
+            );
+
+          end =
+            Math.min(
+              audioDuration,
+              current.time +
+              interval
+            );
+        }
+
+        /*
+          If this photo is the first photo,
+          force its start to the actual end
+          of the videos.
+
+          This avoids any tiny gap.
+        */
+
+        const actualStart =
+          i===0
+            ? photoStart
+            : start;
+
+        if(end > actualStart){
+
+          state.sequence.push({
+
+            type:"photo",
+
+            source:photo,
+
+            sourceIndex:i,
+
+            start:actualStart,
+
+            end,
+
+            duration:
+              end-actualStart
+          });
+        }
+      }
+
+    }else{
+
+      /*
+        No useful post-video beats.
+
+        Split the remaining audio across photos.
+      */
+
+      const remaining =
+        Math.max(
+          0,
+          audioDuration -
+          photoStart
+        );
+
+      if(remaining > 0){
+
+        const perPhoto =
+          remaining /
+          state.photos.length;
+
+        for(
+          let i=0;
+          i<state.photos.length;
+          i++
+        ){
+
+          const start =
+            photoStart +
+            i*perPhoto;
+
+          const end =
+            Math.min(
+              audioDuration,
+              start+perPhoto
+            );
+
+          state.sequence.push({
+
+            type:"photo",
+
+            source:
+              state.photos[i],
+
+            sourceIndex:i,
+
+            start,
+            end,
+
+            duration:
+              end-start
+          });
+        }
+      }
+    }
+  }
+
+  /*
+    If the video sequence is longer than the music,
+    the videos still need to finish.
+
+    If photos exist after the videos but music has
+    already ended, they cannot meaningfully play,
+    so the edit ends with the final video.
+  */
+
+  state.totalDuration =
+    Math.max(
+      timeline,
+      audioDuration
+    );
+
+  /*
+    Remove zero/negative clips.
+  */
+
+  state.sequence =
+    state.sequence.filter(
+      clip =>
+        clip.end >
+        clip.start
+    );
+
+  /*
+    Safety: make sure the sequence is sorted.
+  */
+
+  state.sequence.sort(
+    (a,b) =>
+      a.start-b.start
+  );
+}
+
+/* =========================================================
+GET CLIP AT TIMELINE TIME
+========================================================= */
+
+function getClipAtTime(time){
+
+  if(!state.sequence.length){
+
+    return {
+      clip:null,
+      index:-1
+    };
+  }
+
+  /*
+    Special case:
+    before the first clip.
+  */
+
+  if(
+    time <
+    state.sequence[0].start
+  ){
+
+    return {
+      clip:null,
+      index:-1
+    };
+  }
+
+  let low=0;
+  let high=
+    state.sequence.length-1;
+
+  while(low<=high){
+
+    const mid =
+      Math.floor(
+        (low+high)/2
+      );
+
+    const clip =
+      state.sequence[mid];
+
+    if(
+      time >= clip.start &&
+      time < clip.end
+    ){
+
+      return {
+        clip,
+        index:mid
+      };
+    }
+
+    if(time < clip.start){
+
+      high=mid-1;
+
+    }else{
+
+      low=mid+1;
+    }
+  }
+
+  /*
+    If we're exactly at the end of one clip,
+    return the next clip.
+
+    This is important for:
+
+      VIDEO END → PHOTO START
+  */
+
+  if(
+    low <
+    state.sequence.length
+  ){
+
+    return {
+      clip:state.sequence[low],
+      index:low
+    };
+  }
+
+  /*
+    Past the sequence.
+  */
+
+  return {
+    clip:null,
+    index:-1
+  };
+}
+
+/* =========================================================
+PREPARE VIDEO
+========================================================= */
+
+async function prepareVideo(
+  clip,
+  shouldPlay
+){
+
+  if(
+    !clip ||
+    clip.type !== "video"
+  ){
+    return;
+  }
+
+  const video =
+    clip.source;
+
+  /*
+    Make absolutely sure the browser sees
+    this as a muted inline video.
+  */
+
+  video.muted=true;
+  video.defaultMuted=true;
+  video.playsInline=true;
+  video.loop=false;
+
+  /*
+    We only reset the video when entering a
+    completely new timeline clip.
+
+    We DO NOT seek every animation frame.
+  */
+
+  const localTime =
+    Math.max(
+      0,
+      state._timelineTime -
+      clip.start
+    );
+
+  try{
+
+    /*
+      Small seek only if we're substantially
+      away from where this clip should start.
+    */
+
+    if(
+      !Number.isFinite(
+        video.currentTime
+      ) ||
+      Math.abs(
+        video.currentTime -
+        localTime
+      ) > .12
+    ){
+
+      video.currentTime =
+        clamp(
+          localTime,
+          0,
+          Math.max(
+            0,
+            video.duration-.001
+          )
+        );
+    }
+
+  }catch{}
+
+  /*
+    Let the browser actually decode a frame.
+  */
+
+  if(video.readyState < 2){
+
+    await new Promise(resolve => {
+
+      let done=false;
+
+      const finish=()=>{
+
+        if(done){
+          return;
+        }
+
+        done=true;
+
+        video.removeEventListener(
+          "loadeddata",
+          finish
+        );
+
+        video.removeEventListener(
+          "canplay",
+          finish
+        );
+
+        video.removeEventListener(
+          "error",
+          finish
+        );
+
+        resolve();
+      };
+
+      video.addEventListener(
+        "loadeddata",
+        finish,
+        {once:true}
+      );
+
+      video.addEventListener(
+        "canplay",
+        finish,
+        {once:true}
+      );
+
+      video.addEventListener(
+        "error",
+        finish,
+        {once:true}
+      );
+
+    });
+  }
+
+  if(shouldPlay){
+
+    try{
+
+      await video.play();
+
+    }catch(error){
+
+      /*
+        Retry once on the next event loop.
+        Because the video is muted, this should
+        normally be allowed by the browser.
+      */
+
+      await wait(20);
+
+      try{
+        await video.play();
+      }catch{}
+    }
+  }
+}
+
+/* =========================================================
+STOP ALL VIDEOS
+========================================================= */
+
+function stopAllVideos(
+  exceptVideo=null
+){
+
+  for(
+    const item of state.videos
+  ){
+
+    if(
+      !item.video ||
+      item.video === exceptVideo
+    ){
+      continue;
+    }
+
+    try{
+      item.video.pause();
+    }catch{}
+  }
+}
+
+/* =========================================================
+ENTER CLIP
+========================================================= */
+
+async function enterClip(
+  clip,
+  index,
+  time,
+  shouldPlay
+){
+
+  /*
+    Already inside this exact clip.
+    Do not restart it.
+  */
+
+  if(
+    state.currentClipIndex === index
+  ){
+
+    if(
+      shouldPlay &&
+      clip?.type === "video" &&
+      clip.source.paused
+    ){
+
+      try{
+        await clip.source.play();
+      }catch{}
+    }
+
+    return;
+  }
+
+  /*
+    NEW CLIP.
+  */
+
+  state.currentClipIndex =
+    index;
+
+  if(!clip){
+
+    stopAllVideos();
+
+    return;
+  }
+
+  if(clip.type === "video"){
+
+    /*
+      Stop every other video.
+    */
+
+    stopAllVideos(
+      clip.source
+    );
+
+    /*
+      Set timeline time so prepareVideo()
+      knows exactly where it belongs.
+    */
+
+    state._timelineTime =
+      time;
+
+    /*
+      NEW video = reset to its own 0:00.
+    */
+
+    try{
+      clip.source.pause();
+    }catch{}
+
+    try{
+      clip.source.currentTime=0;
+    }catch{}
+
+    await prepareVideo(
+      clip,
+      shouldPlay
+    );
+
+  }else{
+
+    /*
+      PHOTO MODE:
+      absolutely no video should remain playing.
+    */
+
+    stopAllVideos();
+  }
+}
+
+/* =========================================================
+RENDER FRAME
+========================================================= */
+
+function renderFrame(
+  time
+){
 
   if(!state.audio){
+
     drawIdle();
+
     return;
   }
 
   const duration =
-    state.audio.duration || 0;
+    state.totalDuration ||
+    state.audio.duration ||
+    0;
 
   const result =
     getClipAtTime(time);
@@ -1709,22 +2707,33 @@ function renderFrame(time){
   const index =
     result.index;
 
-  state.currentClipIndex=index;
-
   drawBackground();
 
   if(clip){
 
     const shake =
       clip.type === "video"
-        ? applyVideoShake(time)
-        : applyShake(time);
+        ? applyVideoShake(
+            time
+          )
+        : applyShake(
+            time
+          );
 
     ctx.save();
 
+    /*
+      Your original physical movement.
+
+      Center of canvas first.
+    */
+
     ctx.translate(
-      canvas.width/2 + shake.shakeX,
-      canvas.height/2 + shake.shakeY
+      canvas.width/2 +
+        shake.shakeX,
+
+      canvas.height/2 +
+        shake.shakeY
     );
 
     ctx.rotate(
@@ -1732,39 +2741,55 @@ function renderFrame(time){
     );
 
     /*
-      Slight fixed safety scale.
-
-      This is NOT an animated zoom.
-      It simply prevents the physical shake
+      Safety scale prevents the shake
       from exposing black edges.
     */
 
-    ctx.scale(1.08,1.08);
+    ctx.scale(
+      1.08,
+      1.08
+    );
 
     ctx.translate(
       -canvas.width/2,
       -canvas.height/2
     );
 
-    if(clip.type==="photo"){
+    if(
+      clip.type === "photo"
+    ){
 
       drawCoverImage(
-        clip.image
+        clip.source.image
       );
 
-    }else if(clip.type==="video"){
+    }else{
+
+      /*
+        The video element itself is now
+        actually playing.
+
+        Canvas simply draws its current frame.
+      */
 
       if(
-        clip.video.readyState >= 2
+        clip.source.readyState >= 2
       ){
 
         drawCoverImage(
-          clip.video
+          clip.source
         );
 
       }else{
 
-        ctx.fillStyle="#222";
+        /*
+          Do not flash a giant black frame
+          just because one decode frame is late.
+
+          Keep the canvas background behind it.
+        */
+
+        ctx.fillStyle="#111";
 
         ctx.fillRect(
           0,
@@ -1780,7 +2805,11 @@ function renderFrame(time){
 
   const progress =
     duration
-      ? clamp(time/duration,0,1)
+      ? clamp(
+          time/duration,
+          0,
+          1
+        )
       : 0;
 
   progressBar.style.width =
@@ -1791,14 +2820,20 @@ function renderFrame(time){
     " / " +
     formatTime(duration);
 
-  clipLabel.textContent =
-    clip
-      ? (
-        clip.type === "video"
-          ? "VIDEO " + (index+1)
-          : "PHOTO " + (index+1)
-      )
-      : "CLIP —";
+  if(clip){
+
+    clipLabel.textContent =
+      clip.type === "video"
+        ? "VIDEO " +
+          (clip.sourceIndex+1)
+        : "PHOTO " +
+          (clip.sourceIndex+1);
+
+  }else{
+
+    clipLabel.textContent =
+      "CLIP —";
+  }
 
   previewBadge.textContent =
     state.playing
@@ -1807,82 +2842,163 @@ function renderFrame(time){
 }
 
 /* =========================================================
-   PLAYBACK LOOP
+CLOCK
 ========================================================= */
 
-function animationLoop(){
+function getPlaybackTime(){
+
+  if(!state.audio){
+    return 0;
+  }
+
+  /*
+    Normal case:
+    audio is the master clock.
+  */
+
+  if(
+    !state.audio.ended &&
+    Number.isFinite(
+      state.audio.currentTime
+    )
+  ){
+
+    return state.audio.currentTime;
+  }
+
+  /*
+    If videos extend beyond the audio,
+    continue the timeline using wall time.
+  */
+
+  if(
+    state.audio.ended &&
+    state.totalDuration >
+    state.audio.duration
+  ){
+
+    if(
+      state.audioEndWallTime === null
+    ){
+
+      state.audioEndWallTime =
+        performance.now();
+    }
+
+    return Math.min(
+      state.totalDuration,
+
+      state.audio.duration +
+      (
+        performance.now() -
+        state.audioEndWallTime
+      )/1000
+    );
+  }
+
+  return state.audio.currentTime || 0;
+}
+
+/* =========================================================
+PLAYBACK LOOP
+========================================================= */
+
+async function animationLoop(){
 
   if(!state.audio){
     return;
   }
 
   const time =
-    state.audio.currentTime || 0;
+    getPlaybackTime();
 
   const result =
     getClipAtTime(time);
 
+  state._timelineTime =
+    time;
+
+  /*
+    THIS is the critical fix.
+
+    We check for clip changes BEFORE
+    renderFrame modifies anything.
+
+    The old code effectively did:
+
+      renderFrame()
+        ↓
+      currentClipIndex = new index
+        ↓
+      playback sees same index
+        ↓
+      video.play() NEVER HAPPENS
+
+    Now the video receives its play()
+    correctly when entered.
+  */
+
   if(
     result.clip &&
-    result.clip.type==="video"
+    result.index !==
+      state.currentClipIndex
+  ){
+
+    await enterClip(
+      result.clip,
+      result.index,
+      time,
+      state.playing
+    );
+  }
+
+  /*
+    If we're already inside a video,
+    make sure it hasn't unexpectedly paused.
+
+    We do NOT seek it every frame.
+  */
+
+  if(
+    state.playing &&
+    result.clip &&
+    result.clip.type === "video"
   ){
 
     const video =
-      result.clip.video;
-
-    /*
-      Keep video aligned with the audio timeline.
-
-      The video is NOT the master clock.
-      The audio remains the master timeline.
-    */
-
-    const previous =
-      state.currentClipIndex;
-
-    if(previous!==result.index){
-
-      try{
-        video.pause();
-      }catch{}
-
-      try{
-        video.currentTime=0;
-      }catch{}
-
-      video.play().catch(()=>{});
-    }
-
-    const videoTime =
-      time -
-      (
-        state.beats[result.index]?.time || 0
-      );
-
-    if(
-      Number.isFinite(video.duration) &&
-      video.duration>0
-    ){
-
-      const desired =
-        videoTime %
-        video.duration;
-
-      if(
-        Math.abs(
-          video.currentTime-desired
-        )>.08
-      ){
-
-        try{
-          video.currentTime=desired;
-        }catch{}
-      }
-    }
+      result.clip.source;
 
     if(video.paused){
-      video.play().catch(()=>{});
+
+      try{
+        await video.play();
+      }catch{}
     }
+  }
+
+  /*
+    If we've reached the end of the timeline.
+  */
+
+  if(
+    time >=
+    state.totalDuration - .015
+  ){
+
+    renderFrame(
+      state.totalDuration
+    );
+
+    if(state.exporting){
+
+      finishExport();
+
+    }else{
+
+      stopPreview();
+    }
+
+    return;
   }
 
   renderFrame(time);
@@ -1897,7 +3013,7 @@ function animationLoop(){
 }
 
 /* =========================================================
-   STOP PREVIEW
+STOP PREVIEW
 ========================================================= */
 
 function stopPreview(){
@@ -1920,19 +3036,17 @@ function stopPreview(){
     }catch{}
   }
 
-  state.videos.forEach(item => {
+  stopAllVideos();
 
-    try{
-      item.video.pause();
-    }catch{}
+  state.audioEndWallTime =
+    null;
 
-  });
-
-  previewBadge.textContent="READY";
+  previewBadge.textContent =
+    "READY";
 }
 
 /* =========================================================
-   GENERATE
+GENERATE
 ========================================================= */
 
 generateButton.addEventListener(
@@ -1960,6 +3074,9 @@ generateButton.addEventListener(
 
       stopPreview();
 
+      state.currentClipIndex =
+        -1;
+
       state.beats =
         await detectBeats();
 
@@ -1970,22 +3087,42 @@ generateButton.addEventListener(
         );
       }
 
-      buildSequence();
+      /*
+        NEW REAL TIMELINE.
+      */
+
+      buildTimeline();
+
+      if(
+        !state.sequence.length
+      ){
+
+        throw new Error(
+          "Could not build timeline"
+        );
+      }
 
       state.generated=true;
 
       setStatus(
         "EDIT GENERATED · " +
         state.beats.length +
-        " BEATS DETECTED"
+        " BEATS DETECTED · " +
+        state.sequence.length +
+        " CLIPS"
       );
 
-      previewBadge.textContent="READY";
+      previewBadge.textContent =
+        "READY";
 
       if(state.audio){
 
         state.audio.currentTime=0;
       }
+
+      state.currentClipIndex=-1;
+
+      stopAllVideos();
 
       renderFrame(0);
 
@@ -2009,7 +3146,7 @@ generateButton.addEventListener(
 );
 
 /* =========================================================
-   PREVIEW START
+PREVIEW CLICK
 ========================================================= */
 
 canvas.addEventListener(
@@ -2020,6 +3157,7 @@ canvas.addEventListener(
       !state.generated ||
       !state.audio
     ){
+
       return;
     }
 
@@ -2043,19 +3181,37 @@ canvas.addEventListener(
         }
       }
 
-      state.playing=true;
-
-      previewBadge.textContent="PLAYING";
+      /*
+        Restart after finishing.
+      */
 
       if(
         state.audio.currentTime >=
-        state.audio.duration
+        state.totalDuration
       ){
 
         state.audio.currentTime=0;
+
+        state.audioEndWallTime =
+          null;
+
+        state.currentClipIndex=-1;
+
+        stopAllVideos();
       }
 
+      state.playing=true;
+
+      previewBadge.textContent =
+        "PLAYING";
+
       await state.audio.play();
+
+      /*
+        IMPORTANT:
+        animationLoop handles entering
+        the first video and calling play().
+      */
 
       animationLoop();
 
@@ -2073,7 +3229,7 @@ canvas.addEventListener(
 );
 
 /* =========================================================
-   EXPORT
+EXPORT MIME
 ========================================================= */
 
 function getSupportedMimeType(){
@@ -2084,11 +3240,15 @@ function getSupportedMimeType(){
     "video/webm"
   ];
 
-  for(const type of types){
+  for(
+    const type of types
+  ){
 
     if(
       window.MediaRecorder &&
-      MediaRecorder.isTypeSupported(type)
+      MediaRecorder.isTypeSupported(
+        type
+      )
     ){
 
       return type;
@@ -2098,12 +3258,17 @@ function getSupportedMimeType(){
   return "";
 }
 
+/* =========================================================
+START EXPORT
+========================================================= */
+
 async function startExport(){
 
   if(
     !state.generated ||
     !state.audio
   ){
+
     return;
   }
 
@@ -2169,7 +3334,10 @@ async function startExport(){
       canvasStream.getVideoTracks()[0];
 
     if(videoTrack){
-      combinedStream.addTrack(videoTrack);
+
+      combinedStream.addTrack(
+        videoTrack
+      );
     }
 
     const audioTrack =
@@ -2178,7 +3346,10 @@ async function startExport(){
         .getAudioTracks()[0];
 
     if(audioTrack){
-      combinedStream.addTrack(audioTrack);
+
+      combinedStream.addTrack(
+        audioTrack
+      );
     }
 
     state.exportStream =
@@ -2198,7 +3369,11 @@ async function startExport(){
     state.mediaRecorder.ondataavailable =
       event => {
 
-        if(event.data && event.data.size){
+        if(
+          event.data &&
+          event.data.size
+        ){
+
           state.exportChunks.push(
             event.data
           );
@@ -2211,7 +3386,9 @@ async function startExport(){
         const blob =
           new Blob(
             state.exportChunks,
-            {type:mime}
+            {
+              type:mime
+            }
           );
 
         const url =
@@ -2221,17 +3398,21 @@ async function startExport(){
           document.createElement("a");
 
         link.href=url;
-        link.download=
+
+        link.download =
           "john-banana-edit.webm";
 
-        document.body.appendChild(link);
+        document.body.appendChild(
+          link
+        );
 
         link.click();
 
         link.remove();
 
         setTimeout(
-          () => URL.revokeObjectURL(url),
+          () =>
+            URL.revokeObjectURL(url),
           2000
         );
 
@@ -2239,7 +3420,8 @@ async function startExport(){
 
         updateUI();
 
-        previewBadge.textContent="DONE";
+        previewBadge.textContent =
+          "DONE";
 
         setStatus(
           "EXPORT COMPLETE 🎬"
@@ -2247,6 +3429,10 @@ async function startExport(){
       };
 
     state.exporting=true;
+
+    state.currentClipIndex=-1;
+
+    state.audioEndWallTime=null;
 
     updateUI();
 
@@ -2256,13 +3442,17 @@ async function startExport(){
 
     state.audio.currentTime=0;
 
-    state.mediaRecorder.start(
-      250
-    );
+    stopAllVideos();
+
+    state.mediaRecorder.start(250);
 
     state.playing=true;
 
     await state.audio.play();
+
+    /*
+      Same timeline as preview.
+    */
 
     animationLoop();
 
@@ -2280,19 +3470,31 @@ async function startExport(){
   }
 }
 
+/* =========================================================
+FINISH EXPORT
+========================================================= */
+
 function finishExport(){
 
-  stopPreview();
+  state.playing=false;
 
   if(
     state.mediaRecorder &&
     state.mediaRecorder.state !==
-    "inactive"
+      "inactive"
   ){
 
-    state.mediaRecorder.stop();
+    try{
+      state.mediaRecorder.stop();
+    }catch{}
   }
+
+  stopAllVideos();
 }
+
+/* =========================================================
+EXPORT BUTTON
+========================================================= */
 
 exportButton.addEventListener(
   "click",
@@ -2307,7 +3509,7 @@ exportButton.addEventListener(
 );
 
 /* =========================================================
-   CLEANUP
+CLEANUP
 ========================================================= */
 
 window.addEventListener(
@@ -2319,39 +3521,49 @@ window.addEventListener(
     state.photos.forEach(item => {
 
       try{
-        URL.revokeObjectURL(item.url);
-      }catch{}
 
+        URL.revokeObjectURL(
+          item.url
+        );
+
+      }catch{}
     });
 
     state.videos.forEach(item => {
 
       try{
-        URL.revokeObjectURL(item.url);
-      }catch{}
 
+        URL.revokeObjectURL(
+          item.url
+        );
+
+      }catch{}
     });
 
     if(state.audioURL){
 
       try{
+
         URL.revokeObjectURL(
           state.audioURL
         );
+
       }catch{}
     }
 
     if(state.audioContext){
 
       try{
+
         state.audioContext.close();
+
       }catch{}
     }
   }
 );
 
 /* =========================================================
-   INITIAL STATE
+INITIAL STATE
 ========================================================= */
 
 updateUI();
@@ -2360,4 +3572,4 @@ drawIdle();
 </script>
 
 </body>
-</html> 
+</html>
