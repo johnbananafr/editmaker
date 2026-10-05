@@ -1,16 +1,13 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#7800ad">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>JOHN BANANA — AUTO EDIT MAKER</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bangers&family=DM+Mono:wght@400;500&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=DM+Mono:wght@400;500&family=Inter:wght@500;600;700;800;900&display=swap');
+
 :root{
   --purple:#ab04f9;
   --dark:#7800ad;
@@ -24,22 +21,20 @@
 
 *{
   box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
 }
 
 html,body{
   margin:0;
   min-height:100%;
-  background:
-    radial-gradient(circle at 20% 10%,rgba(171,4,249,.18),transparent 28%),
-    radial-gradient(circle at 80% 90%,rgba(217,108,255,.12),transparent 30%),
-    var(--cream);
-  color:var(--black);
-  font-family:Inter,Arial,sans-serif;
 }
 
 body{
-  padding:24px;
+  background:
+    radial-gradient(circle at 15% 10%,rgba(171,4,249,.15),transparent 25%),
+    radial-gradient(circle at 90% 80%,rgba(255,230,0,.08),transparent 25%),
+    var(--cream);
+  color:var(--black);
+  font-family:Inter,Arial,sans-serif;
 }
 
 button,
@@ -52,57 +47,69 @@ button{
 }
 
 .app{
-  width:min(1200px,100%);
-  margin:auto;
+  width:min(1200px,94vw);
+  margin:0 auto;
+  padding:32px 0 60px;
 }
 
 header{
   display:flex;
-  align-items:flex-end;
   justify-content:space-between;
+  align-items:flex-end;
   gap:20px;
-  margin-bottom:22px;
+  margin-bottom:28px;
 }
 
 .logo{
   font-family:Bangers,cursive;
-  font-size:clamp(48px,8vw,92px);
+  font-size:clamp(55px,9vw,100px);
   line-height:.8;
-  color:var(--purple);
   letter-spacing:2px;
-  text-shadow:
-    4px 4px 0 var(--black),
-    7px 7px 0 var(--yellow);
+  color:var(--purple);
+  -webkit-text-stroke:2px var(--black);
+  text-shadow:6px 6px 0 var(--yellow);
   transform:rotate(-2deg);
 }
 
 .subtitle{
+  margin-top:14px;
   font-family:"DM Mono",monospace;
   font-size:12px;
+  line-height:1.5;
   font-weight:500;
-  text-align:right;
-  max-width:340px;
+}
+
+.badge{
+  background:var(--black);
+  color:var(--yellow);
+  padding:10px 14px;
+  border:3px solid var(--black);
+  font-family:"DM Mono",monospace;
+  font-size:11px;
+  font-weight:700;
+  transform:rotate(2deg);
+  white-space:nowrap;
 }
 
 .layout{
   display:grid;
-  grid-template-columns:minmax(0,1fr) 390px;
-  gap:24px;
+  grid-template-columns:minmax(0,1fr) 430px;
+  gap:28px;
   align-items:start;
 }
 
 .panel{
-  background:white;
-  border:4px solid var(--black);
+  background:rgba(255,255,255,.6);
+  border:3px solid var(--black);
   box-shadow:8px 8px 0 var(--black);
-  padding:18px;
+  padding:20px;
 }
 
-.panel-title{
+.panel h2{
+  margin:0 0 16px;
   font-family:Bangers,cursive;
-  font-size:30px;
+  font-size:34px;
   letter-spacing:1px;
-  margin-bottom:14px;
 }
 
 .import-grid{
@@ -112,15 +119,13 @@ header{
 }
 
 .import-btn{
-  min-height:105px;
+  min-height:110px;
   border:3px solid var(--black);
-  background:var(--cream);
-  box-shadow:5px 5px 0 var(--black);
-  padding:14px;
+  background:white;
+  box-shadow:4px 4px 0 var(--black);
   font-family:Bangers,cursive;
-  font-size:24px;
-  line-height:.95;
-  transition:.12s transform,.12s box-shadow;
+  font-size:26px;
+  transition:.12s;
 }
 
 .import-btn:hover{
@@ -130,28 +135,26 @@ header{
 
 .import-btn:active{
   transform:translate(3px,3px);
-  box-shadow:2px 2px 0 var(--black);
+  box-shadow:1px 1px 0 var(--black);
 }
 
 .import-btn.photo{
-  background:#ffe9ff;
+  background:#fff;
 }
 
 .import-btn.video{
-  background:#e9ddff;
+  background:var(--light);
 }
 
 .import-btn.audio{
-  background:#fff2a8;
+  background:var(--yellow);
 }
 
 .import-btn small{
   display:block;
-  margin-top:9px;
   font-family:"DM Mono",monospace;
   font-size:9px;
-  line-height:1.2;
-  font-weight:500;
+  margin-top:7px;
 }
 
 input[type=file]{
@@ -159,86 +162,72 @@ input[type=file]{
 }
 
 .status-grid{
+  margin-top:18px;
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:10px;
-  margin-top:18px;
 }
 
 .status{
-  border:3px solid var(--black);
-  padding:12px;
-  background:#eee;
+  border:2px solid var(--black);
+  background:white;
+  padding:11px;
+  min-width:0;
+}
+
+.status-title{
   font-family:"DM Mono",monospace;
-  font-size:11px;
-  font-weight:500;
-  overflow:hidden;
+  font-size:9px;
+  font-weight:700;
+  text-transform:uppercase;
+  opacity:.65;
 }
 
-.status strong{
-  display:block;
-  font-family:Bangers,cursive;
-  font-size:22px;
-  letter-spacing:1px;
-  margin-bottom:5px;
-}
-
-.status span{
-  display:block;
+.status-value{
+  margin-top:5px;
+  font-size:13px;
+  font-weight:800;
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
 }
 
-.status.ok{
-  background:#caffd5;
-}
-
-.status.bad{
-  background:#ffd1d8;
-}
-
-.status.neutral{
-  background:#eee;
-}
-
-.control{
-  margin-top:18px;
-  border-top:3px dashed var(--black);
-  padding-top:18px;
-}
-
-.control-row{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+.controls{
+  margin-top:20px;
+  display:grid;
   gap:15px;
 }
 
-.control-title{
-  font-family:Bangers,cursive;
-  font-size:25px;
+.control-row{
+  border:2px solid var(--black);
+  background:white;
+  padding:14px;
+}
+
+.control-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:10px;
+}
+
+.control-name{
+  font-family:"DM Mono",monospace;
+  font-size:11px;
+  font-weight:700;
+  text-transform:uppercase;
 }
 
 .control-value{
-  font-family:"DM Mono",monospace;
-  font-weight:700;
-  background:var(--yellow);
-  border:2px solid var(--black);
-  padding:5px 8px;
+  font-family:Bangers,cursive;
+  font-size:23px;
+  color:var(--purple);
 }
 
 input[type=range]{
   width:100%;
-  margin-top:12px;
   accent-color:var(--purple);
-}
-
-.help{
-  margin-top:9px;
-  font-family:"DM Mono",monospace;
-  font-size:10px;
-  opacity:.7;
 }
 
 .actions{
@@ -249,168 +238,155 @@ input[type=range]{
 }
 
 .action{
-  border:4px solid var(--black);
   min-height:58px;
+  border:3px solid var(--black);
+  box-shadow:5px 5px 0 var(--black);
   font-family:Bangers,cursive;
-  font-size:27px;
+  font-size:28px;
   letter-spacing:1px;
+}
+
+.action.generate{
   background:var(--purple);
   color:white;
-  box-shadow:6px 6px 0 var(--black);
-  transition:.12s;
 }
 
-.action:hover:not(:disabled){
-  transform:translate(-2px,-2px);
-  box-shadow:8px 8px 0 var(--black);
-}
-
-.action:active:not(:disabled){
-  transform:translate(3px,3px);
-  box-shadow:2px 2px 0 var(--black);
-}
-
-.action.secondary{
+.action.export{
   background:var(--yellow);
-  color:var(--black);
 }
 
 .action:disabled{
+  opacity:.45;
   cursor:not-allowed;
-  opacity:.35;
-  filter:grayscale(1);
+  transform:none;
+  box-shadow:3px 3px 0 var(--black);
+}
+
+.action:not(:disabled):active{
+  transform:translate(3px,3px);
+  box-shadow:1px 1px 0 var(--black);
 }
 
 .message{
   margin-top:15px;
-  min-height:42px;
-  border:3px solid var(--black);
-  background:#f7f7f7;
-  padding:11px;
+  border:2px solid var(--black);
+  background:var(--black);
+  color:white;
+  padding:12px;
   font-family:"DM Mono",monospace;
   font-size:11px;
-  line-height:1.35;
+  line-height:1.5;
+  min-height:44px;
 }
 
 .preview-panel{
   position:sticky;
-  top:18px;
+  top:20px;
 }
 
-.preview-head{
+.preview-wrap{
   display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:12px;
+  justify-content:center;
 }
 
-.preview-title{
-  font-family:Bangers,cursive;
-  font-size:29px;
-}
-
-.badge{
-  border:2px solid var(--black);
-  background:var(--yellow);
-  padding:5px 8px;
-  font-family:"DM Mono",monospace;
-  font-size:9px;
-  font-weight:700;
-}
-
-.canvas-wrap{
-  width:min(100%,330px);
-  margin:auto;
-  background:#111;
-  border:4px solid var(--black);
-  box-shadow:7px 7px 0 var(--black);
+.canvas-shell{
+  width:min(100%,360px);
   aspect-ratio:9/16;
+  background:#000;
+  border:4px solid var(--black);
+  box-shadow:8px 8px 0 var(--black);
   overflow:hidden;
+  position:relative;
 }
 
-#preview{
+#canvas{
   display:block;
   width:100%;
   height:100%;
-  background:#111;
+  background:#000;
 }
 
-.preview-meta{
+.preview-info{
+  margin-top:16px;
+  border:2px solid var(--black);
+  background:white;
+}
+
+.progress{
+  height:10px;
+  background:#ddd;
+  border-bottom:2px solid var(--black);
+}
+
+.progress-bar{
+  width:0%;
+  height:100%;
+  background:var(--purple);
+}
+
+.time-row{
+  padding:10px 12px;
   display:flex;
   justify-content:space-between;
   gap:10px;
-  margin-top:15px;
   font-family:"DM Mono",monospace;
   font-size:10px;
 }
 
-.progress{
-  height:12px;
-  border:3px solid var(--black);
-  margin-top:8px;
-  background:white;
-  overflow:hidden;
+#clipLabel{
+  font-weight:700;
 }
 
-.progress > div{
-  height:100%;
-  width:0%;
-  background:var(--purple);
-  transition:width .08s linear;
+.hidden-media{
+  position:absolute;
+  width:1px;
+  height:1px;
+  opacity:0;
+  pointer-events:none;
 }
 
 .note{
   margin-top:15px;
-  padding:13px;
-  border:3px solid var(--black);
-  background:#fff2a8;
   font-family:"DM Mono",monospace;
   font-size:10px;
-  line-height:1.4;
+  line-height:1.5;
+  opacity:.7;
 }
 
 @media(max-width:850px){
-  body{
-    padding:14px;
-  }
-
-  header{
-    display:block;
-  }
-
-  .subtitle{
-    text-align:left;
-    margin-top:14px;
-  }
-
   .layout{
     grid-template-columns:1fr;
   }
 
   .preview-panel{
     position:static;
+    order:-1;
   }
 
-  .canvas-wrap{
-    width:min(75vw,330px);
+  .canvas-shell{
+    width:min(70vw,360px);
   }
 }
 
-@media(max-width:560px){
-  .import-grid{
-    grid-template-columns:1fr;
+@media(max-width:600px){
+  .app{
+    width:92vw;
+    padding-top:22px;
   }
 
-  .status-grid{
-    grid-template-columns:1fr;
+  header{
+    align-items:flex-start;
+    flex-direction:column;
   }
 
+  .import-grid,
+  .status-grid,
   .actions{
     grid-template-columns:1fr;
   }
 
-  .logo{
-    font-size:58px;
+  .canvas-shell{
+    width:min(82vw,360px);
   }
 }
 </style>
@@ -421,35 +397,38 @@ input[type=range]{
 <div class="app">
 
 <header>
-  <div class="logo">AUTO EDIT</div>
-
-  <div class="subtitle">
-    JOHN BANANA'S EXTREMELY SERIOUS<br>
-    BEAT-SYNCED EDIT MACHINE™
+  <div>
+    <div class="logo">AUTO EDIT</div>
+    <div class="subtitle">
+      JOHN BANANA'S EXTREMELY SERIOUS<br>
+      BEAT-SYNCED EDIT MACHINE™
+    </div>
   </div>
+
+  <div class="badge">100% SCIENTIFICALLY UNNECESSARY</div>
 </header>
 
 <div class="layout">
 
 <section class="panel">
 
-  <div class="panel-title">1. FEED THE MACHINE</div>
+  <h2>IMPORT YOUR ABSOLUTE CINEMA</h2>
 
   <div class="import-grid">
 
-    <button class="import-btn photo" id="photoButton" type="button">
-      📸 IMPORT PHOTOS
-      <small>ADD ONE OR MORE PHOTOS</small>
+    <button class="import-btn photo" id="photoButton">
+      📸 PHOTOS
+      <small>MULTIPLE ALLOWED</small>
     </button>
 
-    <button class="import-btn video" id="videoButton" type="button">
-      🎥 IMPORT VIDEO
-      <small>ONE VIDEO CLIP</small>
+    <button class="import-btn video" id="videoButton">
+      🎬 VIDEO
+      <small>ONE VIDEO</small>
     </button>
 
-    <button class="import-btn audio" id="audioButton" type="button">
-      🔊 IMPORT AUDIO
-      <small>MP3 / M4A / WAV / AAC / ETC.</small>
+    <button class="import-btn audio" id="audioButton">
+      🔊 AUDIO
+      <small>MP3 / WAV / M4A</small>
     </button>
 
   </div>
@@ -475,40 +454,40 @@ input[type=range]{
 
   <div class="status-grid">
 
-    <div class="status neutral" id="photoStatus">
-      <strong>PHOTOS</strong>
-      <span>NONE</span>
+    <div class="status">
+      <div class="status-title">Photos</div>
+      <div class="status-value" id="photoStatus">NONE</div>
     </div>
 
-    <div class="status neutral" id="videoStatus">
-      <strong>VIDEO</strong>
-      <span>NONE</span>
+    <div class="status">
+      <div class="status-title">Video</div>
+      <div class="status-value" id="videoStatus">NONE</div>
     </div>
 
-    <div class="status neutral" id="audioStatus">
-      <strong>AUDIO</strong>
-      <span>NONE</span>
+    <div class="status">
+      <div class="status-title">Audio</div>
+      <div class="status-value" id="audioStatus">NONE</div>
     </div>
 
   </div>
 
-  <div class="control">
+  <div class="controls">
 
     <div class="control-row">
-      <div class="control-title">BEAT SENSITIVITY</div>
-      <div class="control-value" id="sensitivityValue">50%</div>
-    </div>
 
-    <input
-      id="sensitivity"
-      type="range"
-      min="0"
-      max="100"
-      value="50"
-    >
+      <div class="control-head">
+        <div class="control-name">Beat sensitivity</div>
+        <div class="control-value" id="sensitivityValue">50%</div>
+      </div>
 
-    <div class="help">
-      Higher = MORE beats detected = MORE SHAKES.
+      <input
+        id="sensitivity"
+        type="range"
+        min="0"
+        max="100"
+        value="50"
+      >
+
     </div>
 
   </div>
@@ -516,18 +495,15 @@ input[type=range]{
   <div class="actions">
 
     <button
-      class="action"
+      class="action generate"
       id="generateButton"
-      type="button"
-      disabled
     >
       GENERATE EDIT
     </button>
 
     <button
-      class="action secondary"
+      class="action export"
       id="exportButton"
-      type="button"
       disabled
     >
       EXPORT WEBM
@@ -536,36 +512,56 @@ input[type=range]{
   </div>
 
   <div class="message" id="message">
-    IMPORT AUDIO + PHOTOS OR VIDEO TO BEGIN.
+    Import some stuff and let's make something unnecessarily hard.
   </div>
 
   <div class="note">
-    💀 PHOTO MODE = AGGRESSIVE BEAT SHAKES.<br>
-    🎥 VIDEO MODE = SMOOTH PHYSICAL SHAKES.<br>
-    🔊 AUDIO IS REQUIRED.<br>
-    🎬 VIDEOS PLAY FIRST, THEN PHOTOS.
+    Videos are played continuously during their clip instead of being
+    frame-seeked. Audio is the master timeline clock.
   </div>
 
 </section>
+
 
 <section class="panel preview-panel">
 
-  <div class="preview-head">
-    <div class="preview-title">9:16 PREVIEW</div>
-    <div class="badge" id="previewBadge">WAITING</div>
+  <h2>PREVIEW</h2>
+
+  <div class="preview-wrap">
+
+    <div class="canvas-shell">
+
+      <canvas
+        id="canvas"
+        width="540"
+        height="960"
+      ></canvas>
+
+    </div>
+
   </div>
 
-  <div class="canvas-wrap">
-    <canvas id="preview" width="540" height="960"></canvas>
-  </div>
+  <div class="preview-info">
 
-  <div class="preview-meta">
-    <span id="timeLabel">00:00 / 00:00</span>
-    <span id="clipLabel">CLIP —</span>
-  </div>
+    <div class="progress">
+      <div
+        class="progress-bar"
+        id="progressBar"
+      ></div>
+    </div>
 
-  <div class="progress">
-    <div id="progressBar"></div>
+    <div class="time-row">
+
+      <span id="timeLabel">
+        00:00 / 00:00
+      </span>
+
+      <span id="clipLabel">
+        READY
+      </span>
+
+    </div>
+
   </div>
 
 </section>
@@ -573,574 +569,407 @@ input[type=range]{
 </div>
 </div>
 
+
 <script>
-"use strict";
 
 /* =========================================================
    STATE
 ========================================================= */
 
-const state = {
-  photos: [],
-  videos: [],
+const photos = [];
+const videos = [];
 
-  audioFile: null,
-  audio: null,
-  audioURL: null,
+let audioFile = null;
+let audio = null;
+let audioURL = null;
 
-  audioContext: null,
-  audioSource: null,
-  audioDestination: null,
-  audioGraphConnected: false,
+let audioContext = null;
+let audioSource = null;
+let audioDestination = null;
+let audioGraphConnected = false;
 
-  beats: [],
-  sequence: [],
+let beats = [];
+let sequence = [];
 
-  generated: false,
-  generating: false,
-  exporting: false,
-  playing: false,
+let generated = false;
+let generating = false;
+let exporting = false;
+let playing = false;
 
-  currentClipIndex: -1,
-  currentVideoIndex: -1,
+let currentClipIndex = -1;
+let animationFrame = null;
 
-  animationFrame: null,
+let currentTime = 0;
+let totalDuration = 0;
 
-  mediaRecorder: null,
-  exportStream: null,
-  exportChunks: []
-};
+let playStartTime = 0;
 
 
 /* =========================================================
-   ELEMENTS
+   DOM
 ========================================================= */
 
-const photoButton = document.getElementById("photoButton");
-const videoButton = document.getElementById("videoButton");
-const audioButton = document.getElementById("audioButton");
+const canvas =
+  document.getElementById("canvas");
 
-const photoInput = document.getElementById("photoInput");
-const videoInput = document.getElementById("videoInput");
-const audioInput = document.getElementById("audioInput");
+const ctx =
+  canvas.getContext("2d");
 
-const photoStatus = document.getElementById("photoStatus");
-const videoStatus = document.getElementById("videoStatus");
-const audioStatus = document.getElementById("audioStatus");
+const photoInput =
+  document.getElementById("photoInput");
 
-const sensitivity = document.getElementById("sensitivity");
-const sensitivityValue = document.getElementById("sensitivityValue");
+const videoInput =
+  document.getElementById("videoInput");
 
-const generateButton = document.getElementById("generateButton");
-const exportButton = document.getElementById("exportButton");
+const audioInput =
+  document.getElementById("audioInput");
 
-const message = document.getElementById("message");
+const photoButton =
+  document.getElementById("photoButton");
 
-const canvas = document.getElementById("preview");
-const ctx = canvas.getContext("2d");
+const videoButton =
+  document.getElementById("videoButton");
 
-const progressBar = document.getElementById("progressBar");
-const timeLabel = document.getElementById("timeLabel");
-const clipLabel = document.getElementById("clipLabel");
-const previewBadge = document.getElementById("previewBadge");
+const audioButton =
+  document.getElementById("audioButton");
 
+const photoStatus =
+  document.getElementById("photoStatus");
 
-/* =========================================================
-   BUTTONS
-========================================================= */
+const videoStatus =
+  document.getElementById("videoStatus");
 
-photoButton.addEventListener("click", () => {
-  photoInput.click();
-});
+const audioStatus =
+  document.getElementById("audioStatus");
 
-videoButton.addEventListener("click", () => {
-  videoInput.click();
-});
+const sensitivity =
+  document.getElementById("sensitivity");
 
-audioButton.addEventListener("click", () => {
-  audioInput.click();
-});
+const sensitivityValue =
+  document.getElementById("sensitivityValue");
+
+const generateButton =
+  document.getElementById("generateButton");
+
+const exportButton =
+  document.getElementById("exportButton");
+
+const message =
+  document.getElementById("message");
+
+const progressBar =
+  document.getElementById("progressBar");
+
+const timeLabel =
+  document.getElementById("timeLabel");
+
+const clipLabel =
+  document.getElementById("clipLabel");
 
 
 /* =========================================================
    HELPERS
 ========================================================= */
 
-function setStatus(text){
+function setMessage(text){
   message.textContent = text;
 }
 
 function formatTime(seconds){
-  if(!Number.isFinite(seconds)) seconds = 0;
 
-  const mins = Math.floor(seconds / 60);
-  const secs = Math.floor(seconds % 60);
+  seconds = Math.max(0,seconds || 0);
 
-  return String(mins).padStart(2,"0") + ":" +
-         String(secs).padStart(2,"0");
+  const m =
+    Math.floor(seconds / 60);
+
+  const s =
+    Math.floor(seconds % 60);
+
+  return (
+    String(m).padStart(2,"0") +
+    ":" +
+    String(s).padStart(2,"0")
+  );
 }
 
 function clamp(value,min,max){
   return Math.max(min,Math.min(max,value));
 }
 
-function waitForVideoReady(video){
-  return new Promise(resolve => {
-
-    if(video.readyState >= 2){
-      resolve(true);
-      return;
-    }
-
-    let finished = false;
-
-    const finish = ok => {
-
-      if(finished) return;
-
-      finished = true;
-
-      video.removeEventListener("loadeddata",onReady);
-      video.removeEventListener("canplay",onReady);
-      video.removeEventListener("error",onError);
-
-      resolve(ok);
-    };
-
-    const onReady = () => finish(true);
-    const onError = () => finish(false);
-
-    video.addEventListener("loadeddata",onReady,{once:true});
-    video.addEventListener("canplay",onReady,{once:true});
-    video.addEventListener("error",onError,{once:true});
-
-    try{
-      video.load();
-    }catch{}
-  });
-}
-
 
 /* =========================================================
-   UI
+   BUTTONS
 ========================================================= */
 
-function canGenerate(){
-  return Boolean(
-    state.audioFile &&
-    (state.photos.length > 0 || state.videos.length > 0)
-  );
-}
+photoButton.onclick = () =>
+  photoInput.click();
 
-function updateUI(){
+videoButton.onclick = () =>
+  videoInput.click();
 
-  photoStatus.className =
-    "status " + (state.photos.length ? "ok" : "neutral");
-
-  videoStatus.className =
-    "status " + (state.videos.length ? "ok" : "neutral");
-
-  audioStatus.className =
-    "status " + (state.audioFile ? "ok" : "neutral");
-
-  photoStatus.querySelector("span").textContent =
-    state.photos.length
-      ? state.photos.length + " LOADED"
-      : "NONE";
-
-  videoStatus.querySelector("span").textContent =
-    state.videos.length
-      ? state.videos.length + " LOADED"
-      : "NONE";
-
-  audioStatus.querySelector("span").textContent =
-    state.audioFile
-      ? state.audioFile.name
-      : "NONE";
-
-  generateButton.disabled =
-    !canGenerate() ||
-    state.generating ||
-    state.exporting;
-
-  exportButton.disabled =
-    !state.generated ||
-    state.generating ||
-    state.exporting;
-}
+audioButton.onclick = () =>
+  audioInput.click();
 
 
-/* =========================================================
-   SENSITIVITY
-========================================================= */
-
-sensitivity.addEventListener("input", () => {
+sensitivity.oninput = () => {
 
   sensitivityValue.textContent =
     sensitivity.value + "%";
-
-});
+};
 
 
 /* =========================================================
    PHOTO IMPORT
 ========================================================= */
 
-photoInput.addEventListener("change", async () => {
+photoInput.onchange = async () => {
 
-  const files = Array.from(photoInput.files || []);
+  if(!photoInput.files.length) return;
 
-  if(!files.length) return;
+  photos.length = 0;
 
-  stopPreview();
+  for(const file of photoInput.files){
 
-  state.photos.forEach(item => {
-    if(item.url){
-      URL.revokeObjectURL(item.url);
-    }
-  });
+    const url =
+      URL.createObjectURL(file);
 
-  state.photos = [];
-
-  setStatus("LOADING PHOTOS...");
-
-  for(const file of files){
-
-    if(!file.type.startsWith("image/")){
-      continue;
-    }
-
-    const url = URL.createObjectURL(file);
-    const img = new Image();
+    const img =
+      new Image();
 
     img.src = url;
 
-    try{
-      await img.decode();
-    }catch{
-      await new Promise(resolve => {
-        img.onload = resolve;
-        img.onerror = resolve;
-      });
-    }
+    await new Promise(resolve => {
 
-    state.photos.push({
-      type:"photo",
+      img.onload = resolve;
+      img.onerror = resolve;
+
+    });
+
+    photos.push({
       file,
       url,
-      image:img
+      img
     });
   }
 
-  state.generated = false;
+  photoStatus.textContent =
+    photos.length +
+    (photos.length === 1
+      ? " PHOTO"
+      : " PHOTOS");
 
-  updateUI();
+  generated = false;
 
-  if(state.photos.length){
+  exportButton.disabled = true;
 
-    setStatus(
-      state.photos.length +
-      " PHOTO" +
-      (state.photos.length === 1 ? "" : "S") +
-      " LOADED."
-    );
-
-  }else{
-
-    setStatus("NO VALID PHOTOS FOUND 😭");
-
-  }
-
-  drawIdle();
-});
+  setMessage(
+    `Loaded ${photos.length} photo${photos.length === 1 ? "" : "s"}.`
+  );
+};
 
 
 /* =========================================================
    VIDEO IMPORT
 ========================================================= */
 
-videoInput.addEventListener("change", async () => {
+function waitForVideoReady(video){
 
-  const file = videoInput.files?.[0];
+  return new Promise(resolve => {
 
-  if(!file) return;
-
-  stopPreview();
-
-  state.videos.forEach(item => {
-
-    if(item.url){
-      URL.revokeObjectURL(item.url);
-    }
-
-  });
-
-  state.videos = [];
-
-  if(
-    !file.type.startsWith("video/") &&
-    !/\.(mp4|mov|webm|m4v)$/i.test(file.name)
-  ){
-
-    setStatus("THAT IS NOT VIDEO 😭");
-    return;
-
-  }
-
-  setStatus("LOADING VIDEO...");
-
-  const url = URL.createObjectURL(file);
-
-  const video = document.createElement("video");
-
-  video.src = url;
-  video.preload = "auto";
-  video.playsInline = true;
-  video.muted = true;
-  video.controls = false;
-  video.loop = false;
-
-  /*
-    IMPORTANT:
-    Wait for actual video frame data, not merely metadata.
-    loadedmetadata only tells us the duration/dimensions.
-    loadeddata/canplay tells us there is usable media data.
-  */
-
-  const ready = await waitForVideoReady(video);
-
-  if(
-    !ready ||
-    !Number.isFinite(video.duration) ||
-    video.duration <= 0
-  ){
-
-    URL.revokeObjectURL(url);
-
-    setStatus("COULD NOT READ THAT VIDEO 😭");
-
-    updateUI();
-
-    return;
-  }
-
-  /*
-    Force the browser to have the first frame available.
-  */
-
-  try{
-    video.currentTime = 0;
-  }catch{}
-
-  await new Promise(resolve => {
-
-    if(video.readyState >= 2){
+    if(
+      video.readyState >= 2 &&
+      video.videoWidth > 0
+    ){
       resolve();
       return;
     }
 
+    let finished = false;
+
+    const done = () => {
+
+      if(finished) return;
+
+      finished = true;
+
+      cleanup();
+
+      resolve();
+    };
+
+    const cleanup = () => {
+
+      video.removeEventListener(
+        "loadeddata",
+        done
+      );
+
+      video.removeEventListener(
+        "canplay",
+        done
+      );
+
+      video.removeEventListener(
+        "error",
+        done
+      );
+    };
+
     video.addEventListener(
       "loadeddata",
-      resolve,
-      {once:true}
+      done
     );
 
-  });
+    video.addEventListener(
+      "canplay",
+      done
+    );
 
-  state.videos.push({
-    type:"video",
+    video.addEventListener(
+      "error",
+      done
+    );
+
+    setTimeout(done,10000);
+  });
+}
+
+
+videoInput.onchange = async () => {
+
+  if(!videoInput.files.length) return;
+
+  stopAllVideos();
+
+  videos.length = 0;
+
+  const file =
+    videoInput.files[0];
+
+  const url =
+    URL.createObjectURL(file);
+
+  const video =
+    document.createElement("video");
+
+  video.src = url;
+
+  video.preload = "auto";
+  video.playsInline = true;
+  video.muted = true;
+  video.controls = false;
+
+  video.setAttribute(
+    "playsinline",
+    ""
+  );
+
+  video.setAttribute(
+    "webkit-playsinline",
+    ""
+  );
+
+  await waitForVideoReady(video);
+
+  videos.push({
     file,
     url,
-    video,
-    duration:video.duration,
-    ready:true
+    video
   });
 
-  state.generated = false;
+  videoStatus.textContent =
+    file.name;
 
-  updateUI();
+  generated = false;
 
-  setStatus(
-    "VIDEO LOADED · " +
-    formatTime(video.duration) +
-    " · VIDEOS PLAY FIRST"
-  );
+  exportButton.disabled = true;
 
   /*
-    Draw the first actual frame immediately.
+    Draw first frame immediately.
   */
 
-  drawBackground();
+  try{
+    video.currentTime = 0;
+  }catch(e){}
 
-  ctx.save();
+  setTimeout(() => {
 
-  ctx.translate(
-    canvas.width/2,
-    canvas.height/2
+    if(
+      video.readyState >= 2 &&
+      video.videoWidth > 0
+    ){
+      drawVideoCover(
+        ctx,
+        video,
+        canvas.width / 2,
+        canvas.height / 2,
+        canvas.width,
+        canvas.height
+      );
+    }
+
+  },100);
+
+  setMessage(
+    `Loaded video: ${file.name}`
   );
-
-  ctx.scale(1.08,1.08);
-
-  ctx.translate(
-    -canvas.width/2,
-    -canvas.height/2
-  );
-
-  drawCoverImage(video);
-
-  ctx.restore();
-
-});
+};
 
 
 /* =========================================================
    AUDIO IMPORT
 ========================================================= */
 
-audioInput.addEventListener("change", async () => {
+audioInput.onchange = async () => {
 
-  const file = audioInput.files?.[0];
+  if(!audioInput.files.length) return;
 
-  if(!file) return;
+  audioFile =
+    audioInput.files[0];
 
-  const audioExtensions =
-    /\.(mp3|m4a|wav|aac|caf|ogg|opus)$/i;
-
-  if(
-    !file.type.startsWith("audio/") &&
-    !audioExtensions.test(file.name)
-  ){
-
-    setStatus("THAT IS NOT AUDIO 😭");
-    return;
-
+  if(audioURL){
+    URL.revokeObjectURL(audioURL);
   }
 
-  stopPreview();
+  audioURL =
+    URL.createObjectURL(audioFile);
 
-  if(state.audioURL){
-    URL.revokeObjectURL(state.audioURL);
+  if(audio){
+    try{
+      audio.pause();
+    }catch(e){}
   }
 
-  state.audioFile = file;
-  state.audioURL = URL.createObjectURL(file);
+  audio =
+    new Audio(audioURL);
 
-  state.audio = new Audio();
+  audio.preload = "auto";
 
-  state.audio.src = state.audioURL;
-  state.audio.preload = "auto";
-  state.audio.playsInline = true;
+  await new Promise(resolve => {
 
-  state.audio.addEventListener(
-    "loadedmetadata",
-    () => {
+    if(audio.readyState >= 1){
+      resolve();
+      return;
+    }
 
-      state.generated = false;
+    audio.addEventListener(
+      "loadedmetadata",
+      resolve,
+      {once:true}
+    );
+  });
 
-      updateUI();
+  audioStatus.textContent =
+    audioFile.name;
 
-      setStatus(
-        "AUDIO LOADED: " +
-        file.name +
-        " · " +
-        formatTime(state.audio.duration)
-      );
+  generated = false;
 
-      drawIdle();
+  exportButton.disabled = true;
 
-    },
-    {once:true}
+  setMessage(
+    `Loaded audio: ${audioFile.name}`
   );
-
-  state.audio.addEventListener("error", () => {
-
-    setStatus(
-      "BROWSER COULD NOT DECODE THAT AUDIO 😭"
-    );
-
-    state.audioFile = null;
-
-    updateUI();
-
-  });
-
-  state.audio.addEventListener("ended", () => {
-
-    if(state.exporting){
-
-      finishExport();
-
-    }else{
-
-      stopPreview();
-
-    }
-
-  });
-
-  state.audio.load();
-
-  updateUI();
-
-  setStatus("LOADING AUDIO...");
-});
-
-
-/* =========================================================
-   AUDIO GRAPH
-========================================================= */
-
-function ensureAudioGraph(){
-
-  if(!state.audio) return false;
-
-  if(!state.audioContext){
-
-    const AudioContext =
-      window.AudioContext ||
-      window.webkitAudioContext;
-
-    if(!AudioContext){
-      return false;
-    }
-
-    state.audioContext =
-      new AudioContext();
-
-  }
-
-  if(!state.audioSource){
-
-    state.audioSource =
-      state.audioContext.createMediaElementSource(
-        state.audio
-      );
-
-  }
-
-  if(!state.audioDestination){
-
-    state.audioDestination =
-      state.audioContext.createMediaStreamDestination();
-
-  }
-
-  if(!state.audioGraphConnected){
-
-    state.audioSource.connect(
-      state.audioDestination
-    );
-
-    state.audioSource.connect(
-      state.audioContext.destination
-    );
-
-    state.audioGraphConnected = true;
-
-  }
-
-  return true;
-}
+};
 
 
 /* =========================================================
@@ -1149,98 +978,86 @@ function ensureAudioGraph(){
 
 async function detectBeats(){
 
-  if(!state.audioFile){
-    return [];
+  if(!audioFile){
+    throw new Error(
+      "Import audio first."
+    );
   }
+
+  setMessage(
+    "Analyzing the audio for suspicious amounts of rhythm..."
+  );
 
   const arrayBuffer =
-    await state.audioFile.arrayBuffer();
+    await audioFile.arrayBuffer();
 
-  const AudioContext =
-    window.AudioContext ||
-    window.webkitAudioContext;
+  const OfflineCtx =
+    window.OfflineAudioContext ||
+    window.webkitOfflineAudioContext;
 
-  if(!AudioContext){
-    return [];
+  if(!OfflineCtx){
+    throw new Error(
+      "Offline audio analysis is not supported in this browser."
+    );
   }
 
-  const offline =
-    new AudioContext();
-
-  let buffer;
-
-  try{
-
-    buffer =
-      await offline.decodeAudioData(
-        arrayBuffer.slice(0)
-      );
-
-  }catch(error){
-
-    try{
-      await offline.close();
-    }catch{}
-
-    console.warn(
-      "Beat detection failed:",
-      error
+  const temp =
+    new OfflineCtx(
+      1,
+      44100,
+      44100
     );
 
-    return [];
-
-  }
-
-  const sampleRate =
-    buffer.sampleRate;
+  const decoded =
+    await temp.decodeAudioData(
+      arrayBuffer.slice(0)
+    );
 
   const channelCount =
-    buffer.numberOfChannels;
+    decoded.numberOfChannels;
+
+  const sampleRate =
+    decoded.sampleRate;
 
   const length =
-    buffer.length;
+    decoded.length;
 
-  const mono =
+  const data =
     new Float32Array(length);
 
   for(let ch=0;ch<channelCount;ch++){
 
-    const data =
-      buffer.getChannelData(ch);
+    const channel =
+      decoded.getChannelData(ch);
 
-    for(let i=0;i<length;i++){
-
-      mono[i] +=
-        data[i] /
-        channelCount;
-
+    for(
+      let i=0;
+      i<length;
+      i++
+    ){
+      data[i] +=
+        channel[i] / channelCount;
     }
-
   }
 
+  const sensitivityAmount =
+    Number(sensitivity.value) / 100;
+
   const windowSize =
-    Math.max(
-      128,
-      Math.floor(
-        sampleRate * .025
-      )
-    );
+    Math.floor(sampleRate * .025);
 
   const hop =
-    Math.max(
-      64,
-      Math.floor(windowSize / 2)
-    );
+    Math.floor(windowSize * .5);
 
-  const energies=[];
+  const energies = [];
 
   for(
     let start=0;
-    start+windowSize<mono.length;
-    start+=hop
+    start + windowSize < length;
+    start += hop
   ){
 
-    let sum=0;
+    let sum = 0;
 
     for(
       let i=0;
@@ -1248,31 +1065,38 @@ async function detectBeats(){
       i++
     ){
 
-      const v =
-        mono[start+i];
+      const sample =
+        data[start+i];
 
-      sum += v*v;
-
+      sum +=
+        sample * sample;
     }
 
-    energies.push({
-      time:start/sampleRate,
-      energy:Math.sqrt(
-        sum/windowSize
+    energies.push(
+      Math.sqrt(
+        sum / windowSize
       )
-    });
-
+    );
   }
 
-  const sensitivityAmount =
-    Number(sensitivity.value)/100;
+  if(energies.length < 3){
+    return [];
+  }
 
-  const smooth=[];
+  /*
+    Smooth energy.
+  */
 
-  for(let i=0;i<energies.length;i++){
+  const smooth = [];
 
-    let total=0;
-    let count=0;
+  for(
+    let i=0;
+    i<energies.length;
+    i++
+  ){
+
+    let sum = 0;
+    let count = 0;
 
     for(
       let j=Math.max(0,i-2);
@@ -1283,636 +1107,801 @@ async function detectBeats(){
       j++
     ){
 
-      total +=
-        energies[j].energy;
-
+      sum += energies[j];
       count++;
-
     }
 
-    smooth.push({
-      time:energies[i].time,
-      energy:total/count
-    });
-
+    smooth.push(
+      sum / count
+    );
   }
 
-  const beats=[];
+  /*
+    Adaptive statistics.
+  */
 
-  const averageThreshold =
-    1.22 -
-    sensitivityAmount*.14;
-
-  const medianThreshold =
-    1.17 -
-    sensitivityAmount*.10;
-
-  const riseThreshold =
-    .055 -
-    sensitivityAmount*.020;
-
-  const transientAverageThreshold =
-    1.105 -
-    sensitivityAmount*.030;
-
-  const minGap =
-    .175 -
-    sensitivityAmount*.030;
-
-  let lastBeat=-Infinity;
-
-  for(
-    let i=3;
-    i<smooth.length-3;
-    i++
-  ){
-
-    const current =
-      smooth[i].energy;
-
-    let localTotal=0;
-    let localValues=[];
-
-    for(
-      let j=Math.max(0,i-16);
-      j<=Math.min(
-        smooth.length-1,
-        i+16
-      );
-      j++
-    ){
-
-      if(j===i) continue;
-
-      localTotal +=
-        smooth[j].energy;
-
-      localValues.push(
-        smooth[j].energy
-      );
-
-    }
-
-    const localAverage =
-      localTotal /
-      Math.max(
-        1,
-        localValues.length
-      );
-
-    localValues.sort(
+  const sorted =
+    [...smooth].sort(
       (a,b)=>a-b
     );
 
-    const median =
-      localValues[
-        Math.floor(
-          localValues.length/2
-        )
-      ] || .00001;
+  const median =
+    sorted[
+      Math.floor(sorted.length / 2)
+    ];
 
-    const previous =
-      smooth[i-1].energy;
+  const average =
+    smooth.reduce(
+      (a,b)=>a+b,
+      0
+    ) / smooth.length;
 
-    const rise =
-      current /
-      Math.max(
-        .00001,
-        previous
-      ) - 1;
+  const variance =
+    smooth.reduce(
+      (sum,v)=>
+        sum +
+        Math.pow(v-average,2),
+      0
+    ) / smooth.length;
 
-    const averageRatio =
-      current /
-      Math.max(
-        .00001,
-        localAverage
+  const deviation =
+    Math.sqrt(variance);
+
+  /*
+    Higher sensitivity = lower threshold.
+  */
+
+  const threshold =
+    median +
+    deviation *
+    (1.65 - sensitivityAmount * .9);
+
+  const minGap =
+    .175 -
+    sensitivityAmount * .030;
+
+  const found = [];
+
+  let lastBeat =
+    -Infinity;
+
+  for(
+    let i=2;
+    i<smooth.length-2;
+    i++
+  ){
+
+    const value =
+      smooth[i];
+
+    const localAverage =
+      (
+        smooth[i-2] +
+        smooth[i-1] +
+        smooth[i+1] +
+        smooth[i+2]
+      ) / 4;
+
+    const rising =
+      value >
+      smooth[i-1] * (
+        1.015 +
+        (1-sensitivityAmount)*.015
       );
 
-    const medianRatio =
-      current /
-      Math.max(
-        .00001,
-        median
-      );
-
-    const isLocalMaximum =
-      current >= smooth[i-1].energy &&
-      current >= smooth[i+1].energy;
+    const localPeak =
+      value >= smooth[i-1] &&
+      value >= smooth[i+1];
 
     const strongEnough =
-      (
-        averageRatio >=
-        averageThreshold &&
-        medianRatio >=
-        medianThreshold
-      ) ||
-      (
-        averageRatio >=
-        transientAverageThreshold &&
-        rise >=
-        riseThreshold
+      value > threshold ||
+      value > localAverage * (
+        1.12 -
+        sensitivityAmount*.12
       );
 
-    const time =
-      smooth[i].time;
-
     if(
-      isLocalMaximum &&
-      strongEnough &&
-      time-lastBeat>=minGap
+      localPeak &&
+      rising &&
+      strongEnough
     ){
 
-      const strength =
-        Math.max(
-          .45,
-          Math.min(
-            2,
-            (
-              averageRatio +
-              medianRatio
-            )/2
-          )
-        );
+      const time =
+        i * hop / sampleRate;
 
-      beats.push({
-        time,
-        strength
-      });
+      if(
+        time-lastBeat >= minGap
+      ){
 
-      lastBeat=time;
+        found.push(time);
 
-      if(beats.length>=900){
-        break;
+        lastBeat =
+          time;
       }
-
     }
-
   }
 
-  try{
-    await offline.close();
-  }catch{}
+  /*
+    If detection is too sparse,
+    use a sensible musical fallback.
+  */
 
-  if(beats.length<2){
+  if(found.length < 2){
 
-    const duration =
-      buffer.duration;
+    const bpm = 150;
 
-    const bpm=150;
-
-    const interval =
-      60/bpm;
+    const gap =
+      60 / bpm;
 
     for(
       let t=0;
-      t<duration;
-      t+=interval
+      t<decoded.duration;
+      t+=gap
     ){
-
-      beats.push({
-        time:t,
-        strength:1
-      });
-
-      if(beats.length>=900){
-        break;
-      }
-
+      found.push(t);
     }
-
   }
 
-  return beats;
+  return found
+    .filter(
+      t => t < decoded.duration
+    )
+    .slice(0,900);
 }
 
 
 /* =========================================================
    SEQUENCE
-   VIDEO FIRST -> PHOTO SECOND
 ========================================================= */
 
 function buildSequence(){
 
-  /*
-    IMPORTANT:
-    Videos are deliberately placed before photos.
+  sequence = [];
 
-    Example:
+  if(!audio){
+    throw new Error(
+      "No audio loaded."
+    );
+  }
 
-      video1
-      video1
-      video1
-      video2
-      video2
-      photo1
-      photo2
-      photo3
-
-    We don't mix them together.
-  */
-
-  const clips=[];
+  totalDuration =
+    audio.duration || 0;
 
   /*
-    First add EVERY video.
+    Beat boundaries.
+
+    We use the detected beats as clip
+    boundaries, but guarantee a usable
+    minimum duration.
   */
 
-  for(const video of state.videos){
-    clips.push(video);
+  const boundaries =
+    beats.length
+      ? beats.filter(
+          b =>
+            b >= 0 &&
+            b < totalDuration
+        )
+      : [];
+
+  const cuts = [0];
+
+  for(const beat of boundaries){
+
+    if(
+      beat > cuts[cuts.length-1] + .12 &&
+      beat < totalDuration
+    ){
+      cuts.push(beat);
+    }
+  }
+
+  if(
+    cuts[cuts.length-1] <
+    totalDuration
+  ){
+    cuts.push(totalDuration);
   }
 
   /*
-    Then add EVERY photo.
+    VIDEO FIRST
+    then PHOTOS.
+
+    This is intentional.
   */
 
-  for(const photo of state.photos){
-    clips.push(photo);
-  }
-
-  if(!clips.length){
-
-    state.sequence=[];
-    return;
-
-  }
-
-  state.sequence=[];
+  let videoIndex = 0;
+  let photoIndex = 0;
 
   for(
     let i=0;
-    i<state.beats.length;
+    i<cuts.length-1;
     i++
   ){
 
-    state.sequence.push(
-      clips[
-        i % clips.length
-      ]
-    );
+    const start =
+      cuts[i];
 
-  }
+    const end =
+      cuts[i+1];
 
-}
+    if(end <= start) continue;
 
-
-/* =========================================================
-   FIND BEAT
-========================================================= */
-
-function findNearestBeat(time){
-
-  if(!state.beats.length){
-    return null;
-  }
-
-  let low=0;
-  let high=
-    state.beats.length-1;
-
-  while(low<=high){
-
-    const mid =
-      Math.floor(
-        (low+high)/2
-      );
+    /*
+      Videos first.
+    */
 
     if(
-      state.beats[mid].time <
-      time
+      videos.length &&
+      videoIndex < videos.length
     ){
 
-      low=mid+1;
+      sequence.push({
 
-    }else{
+        type:"video",
 
-      high=mid-1;
+        source:
+          videos[
+            videoIndex
+          ].video,
 
+        start,
+        end,
+
+        sourceIndex:
+          videoIndex
+
+      });
+
+      videoIndex++;
+
+      continue;
     }
 
+    /*
+      Then photos.
+    */
+
+    if(photos.length){
+
+      sequence.push({
+
+        type:"photo",
+
+        source:
+          photos[
+            photoIndex %
+            photos.length
+          ].img,
+
+        start,
+        end,
+
+        sourceIndex:
+          photoIndex %
+          photos.length
+
+      });
+
+      photoIndex++;
+
+      continue;
+    }
   }
 
-  const a =
-    state.beats[
-      clamp(
-        high,
-        0,
-        state.beats.length-1
-      )
-    ];
+  /*
+    If the audio has no usable cuts,
+    make one clip.
+  */
 
-  const b =
-    state.beats[
-      clamp(
-        low,
-        0,
-        state.beats.length-1
-      )
-    ];
+  if(!sequence.length){
 
-  if(!a) return b;
-  if(!b) return a;
+    if(videos.length){
 
-  return Math.abs(
-    a.time-time
-  ) <
-  Math.abs(
-    b.time-time
-  )
-    ? a
-    : b;
+      sequence.push({
 
+        type:"video",
+
+        source:
+          videos[0].video,
+
+        start:0,
+
+        end:totalDuration,
+
+        sourceIndex:0
+      });
+
+    }else if(photos.length){
+
+      sequence.push({
+
+        type:"photo",
+
+        source:
+          photos[0].img,
+
+        start:0,
+
+        end:totalDuration,
+
+        sourceIndex:0
+      });
+    }
+  }
 }
 
 
 /* =========================================================
-   GET CLIP
+   VIDEO PLAYBACK
+   THIS IS THE IMPORTANT FIX
 ========================================================= */
 
-function getClipAtTime(time){
+let activeVideo = null;
+let activeVideoIndex = -1;
+
+let videoClipStartedAt = 0;
+let lastVideoCorrection = 0;
+
+
+/*
+  Stop every video.
+*/
+
+function stopAllVideos(){
+
+  videos.forEach(item => {
+
+    try{
+
+      item.video.pause();
+
+      item.video.loop = false;
+
+    }catch(e){}
+  });
+
+  activeVideo = null;
+  activeVideoIndex = -1;
+
+  videoClipStartedAt = 0;
+  lastVideoCorrection = 0;
+}
+
+
+/*
+  Start a video ONLY when entering
+  a new video clip.
+*/
+
+async function startCurrentVideo(
+  video,
+  index,
+  timelineTime
+){
+
+  if(!video) return;
+
+  /*
+    If this is already the active video,
+    DON'T restart it.
+  */
 
   if(
-    !state.beats.length ||
-    !state.sequence.length
+    activeVideo === video &&
+    activeVideoIndex === index
   ){
 
-    return {
-      clip:null,
-      index:-1
-    };
+    if(video.paused){
 
-  }
-
-  let low=0;
-  let high=
-    state.beats.length-1;
-
-  while(low<=high){
-
-    const mid =
-      Math.floor(
-        (low+high)/2
-      );
-
-    if(
-      state.beats[mid].time <=
-      time
-    ){
-
-      low=mid+1;
-
-    }else{
-
-      high=mid-1;
-
+      try{
+        await video.play();
+      }catch(e){}
     }
 
+    return;
   }
 
-  const index =
-    clamp(
-      high,
-      0,
-      state.sequence.length-1
-    );
+  stopAllVideos();
 
-  return {
-    clip:
-      state.sequence[index],
-    index
-  };
+  activeVideo =
+    video;
 
-}
+  activeVideoIndex =
+    index;
 
+  videoClipStartedAt =
+    timelineTime;
 
-/* =========================================================
-   SHAKE
-========================================================= */
+  lastVideoCorrection =
+    performance.now();
 
-function averageBeatStrength(){
+  video.muted = true;
+  video.playsInline = true;
+  video.preload = "auto";
+  video.loop = true;
 
-  if(!state.beats.length){
-    return 1;
-  }
+  /*
+    ONLY seek ONCE.
+  */
 
-  let total=0;
+  try{
+    video.currentTime = 0;
+  }catch(e){}
 
-  for(
-    const beat of state.beats
-  ){
+  /*
+    Wait until browser has enough
+    media data before playing.
+  */
 
-    total +=
-      beat.strength;
+  if(video.readyState < 2){
 
-  }
+    await new Promise(resolve => {
 
-  return total /
-    Math.max(
-      .01,
-      state.beats.length
-    );
+      const done = () => {
 
-}
-
-
-/* =========================================================
-   PHOTO SHAKE
-========================================================= */
-
-function applyShake(time){
-
-  const beat =
-    findNearestBeat(time);
-
-  let shakeX=0;
-  let shakeY=0;
-  let rotation=0;
-
-  if(beat){
-
-    const distance =
-      Math.abs(
-        time-beat.time
-      );
-
-    const shakeWindow=.105;
-
-    if(distance<shakeWindow){
-
-      const average =
-        averageBeatStrength();
-
-      const strength =
-        Math.min(
-          2,
-          Math.max(
-            .45,
-            beat.strength /
-            Math.max(
-              .01,
-              average
-            )
-          )
+        video.removeEventListener(
+          "loadeddata",
+          done
         );
 
-      const falloff =
-        1 -
-        distance /
-        shakeWindow;
+        video.removeEventListener(
+          "canplay",
+          done
+        );
 
-      const power =
-        falloff *
-        strength;
+        resolve();
+      };
 
-      shakeX =
-        (Math.random()-.5) *
-        34 *
-        power;
+      video.addEventListener(
+        "loadeddata",
+        done,
+        {once:true}
+      );
 
-      shakeY =
-        (Math.random()-.5) *
-        34 *
-        power;
+      video.addEventListener(
+        "canplay",
+        done,
+        {once:true}
+      );
 
-      rotation =
-        (Math.random()-.5) *
-        .045 *
-        power;
-
-    }
-
+      setTimeout(
+        resolve,
+        3000
+      );
+    });
   }
 
-  return {
-    shakeX,
-    shakeY,
-    rotation
-  };
-
+  try{
+    await video.play();
+  }catch(e){}
 }
 
 
-/* =========================================================
-   VIDEO SHAKE
-========================================================= */
+/*
+  Keep video roughly aligned with
+  the audio, BUT DO NOT SEEK EVERY FRAME.
+*/
 
-function applyVideoShake(time){
+function keepVideoInSync(
+  video,
+  timelineTime
+){
 
-  const beat =
-    findNearestBeat(time);
+  if(!video) return;
 
-  let shakeX=0;
-  let shakeY=0;
-  let rotation=0;
-
-  if(!beat){
-
-    return {
-      shakeX,
-      shakeY,
-      rotation
-    };
-
+  if(video.readyState < 2){
+    return;
   }
 
-  const distance =
-    time-beat.time;
+  /*
+    If playback somehow stopped,
+    restart it.
+  */
 
-  const windowBefore=.035;
-  const windowAfter=.20;
+  if(video.paused){
+
+    video.play().catch(()=>{});
+
+    return;
+  }
+
+  const now =
+    performance.now();
+
+  /*
+    Don't even consider correcting
+    more than twice a second.
+  */
 
   if(
-    distance < -windowBefore ||
-    distance > windowAfter
+    now -
+    lastVideoCorrection <
+    500
   ){
-
-    return {
-      shakeX,
-      shakeY,
-      rotation
-    };
-
+    return;
   }
 
-  const average =
-    averageBeatStrength();
+  lastVideoCorrection =
+    now;
 
-  const strength =
-    Math.min(
-      1.5,
-      Math.max(
-        .45,
-        beat.strength /
-        Math.max(
-          .01,
-          average
-        )
-      )
+  const expected =
+    timelineTime -
+    videoClipStartedAt;
+
+  if(
+    !Number.isFinite(expected) ||
+    expected < 0
+  ){
+    return;
+  }
+
+  const duration =
+    video.duration;
+
+  if(
+    !Number.isFinite(duration) ||
+    duration <= 0
+  ){
+    return;
+  }
+
+  const expectedTime =
+    expected % duration;
+
+  const drift =
+    Math.abs(
+      video.currentTime -
+      expectedTime
     );
 
-  let power;
+  /*
+    Only seek when we're REALLY
+    out of sync.
 
-  if(distance<0){
+    Normal playback is untouched.
+  */
 
-    power =
-      1 -
-      Math.abs(distance) /
-      windowBefore;
+  if(drift > .35){
 
-    power *= .35;
+    try{
 
-  }else{
+      video.currentTime =
+        expectedTime;
 
-    power =
-      1 -
-      distance /
-      windowAfter;
+    }catch(e){}
+  }
+}
 
-    power =
-      power *
-      power;
 
+/*
+  Timeline video sync.
+*/
+
+function syncVideoToTimeline(
+  video,
+  index,
+  timelineTime
+){
+
+  if(!video) return;
+
+  /*
+    New clip:
+    start it once.
+  */
+
+  if(
+    activeVideo !== video ||
+    activeVideoIndex !== index
+  ){
+
+    startCurrentVideo(
+      video,
+      index,
+      timelineTime
+    );
+
+    return;
   }
 
-  const amount =
-    10 *
-    strength *
-    power;
+  /*
+    Same clip:
+    LET IT PLAY.
+  */
 
-  const phase =
-    beat.time *
-    17.731;
-
-  shakeX =
-    Math.sin(phase) *
-    amount;
-
-  shakeY =
-    Math.cos(phase*1.37) *
-    amount *
-    .65;
-
-  rotation =
-    Math.sin(phase*.73) *
-    .012 *
-    strength *
-    power;
-
-  return {
-    shakeX,
-    shakeY,
-    rotation
-  };
-
+  keepVideoInSync(
+    video,
+    timelineTime
+  );
 }
 
 
 /* =========================================================
-   DRAWING
+   DRAW HELPERS
 ========================================================= */
 
-function drawBackground(){
+function drawImageCover(
+  ctx,
+  img,
+  x,
+  y,
+  width,
+  height,
+  zoom=1
+){
 
-  ctx.fillStyle="#111";
+  if(
+    !img ||
+    !img.naturalWidth ||
+    !img.naturalHeight
+  ){
+    return;
+  }
+
+  const iw =
+    img.naturalWidth;
+
+  const ih =
+    img.naturalHeight;
+
+  const scale =
+    Math.max(
+      width / iw,
+      height / ih
+    ) * zoom;
+
+  const w =
+    iw * scale;
+
+  const h =
+    ih * scale;
+
+  ctx.drawImage(
+    img,
+    x - w/2,
+    y - h/2,
+    w,
+    h
+  );
+}
+
+
+function drawVideoCover(
+  ctx,
+  video,
+  x,
+  y,
+  width,
+  height,
+  zoom=1
+){
+
+  if(
+    !video ||
+    video.readyState < 2 ||
+    !video.videoWidth ||
+    !video.videoHeight
+  ){
+    return;
+  }
+
+  const iw =
+    video.videoWidth;
+
+  const ih =
+    video.videoHeight;
+
+  const scale =
+    Math.max(
+      width / iw,
+      height / ih
+    ) * zoom;
+
+  const w =
+    iw * scale;
+
+  const h =
+    ih * scale;
+
+  ctx.drawImage(
+    video,
+    x - w/2,
+    y - h/2,
+    w,
+    h
+  );
+}
+
+
+/* =========================================================
+   SHAKE PHYSICS
+========================================================= */
+
+function applyShake(
+  time,
+  strength=1
+){
+
+  const amount =
+    13 * strength;
+
+  return {
+
+    x:
+      Math.sin(time * 71.3) *
+      amount,
+
+    y:
+      Math.cos(time * 83.7) *
+      amount,
+
+    rotation:
+      Math.sin(time * 61.1) *
+      .035 *
+      strength,
+
+    zoom:
+      1 +
+      Math.abs(
+        Math.sin(time * 47)
+      ) *
+      .045 *
+      strength
+  };
+}
+
+
+function applyVideoShake(
+  time,
+  strength=1
+){
+
+  const amount =
+    7 * strength;
+
+  return {
+
+    x:
+      Math.sin(time * 12.7) *
+      amount,
+
+    y:
+      Math.cos(time * 15.1) *
+      amount,
+
+    rotation:
+      Math.sin(time * 10.1) *
+      .012 *
+      strength,
+
+    zoom:
+      1 +
+      .018 *
+      strength
+  };
+}
+
+
+/* =========================================================
+   RENDER
+========================================================= */
+
+function renderFrame(time){
+
+  ctx.clearRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
+
+  /*
+    Background.
+  */
+
+  ctx.fillStyle =
+    "#080609";
 
   ctx.fillRect(
     0,
@@ -1921,495 +1910,410 @@ function drawBackground(){
     canvas.height
   );
 
-}
+  if(!sequence.length){
+    return;
+  }
 
+  let index = -1;
 
-function drawCoverImage(img){
-
-  if(
-    !img ||
-    !img.width &&
-    !img.videoWidth
+  for(
+    let i=0;
+    i<sequence.length;
+    i++
   ){
 
-    return;
+    if(
+      time >= sequence[i].start &&
+      time < sequence[i].end
+    ){
 
+      index = i;
+      break;
+    }
   }
 
-  const cw =
-    canvas.width;
+  if(index === -1){
 
-  const ch =
-    canvas.height;
-
-  const iw =
-    img.videoWidth ||
-    img.naturalWidth ||
-    img.width;
-
-  const ih =
-    img.videoHeight ||
-    img.naturalHeight ||
-    img.height;
-
-  if(!iw || !ih){
-    return;
+    index =
+      sequence.length - 1;
   }
-
-  const scale =
-    Math.max(
-      cw/iw,
-      ch/ih
-    );
-
-  const dw =
-    iw*scale;
-
-  const dh =
-    ih*scale;
-
-  const x =
-    (cw-dw)/2;
-
-  const y =
-    (ch-dh)/2;
-
-  ctx.drawImage(
-    img,
-    x,
-    y,
-    dw,
-    dh
-  );
-
-}
-
-
-function drawIdle(){
-
-  drawBackground();
-
-  ctx.save();
-
-  ctx.fillStyle="#ab04f9";
-
-  ctx.font=
-    "bold 58px Bangers, Impact, sans-serif";
-
-  ctx.textAlign="center";
-  ctx.textBaseline="middle";
-
-  ctx.fillText(
-    "JOHN BANANA",
-    canvas.width/2,
-    canvas.height/2-30
-  );
-
-  ctx.fillStyle="#ffe600";
-
-  ctx.font=
-    "bold 31px Bangers, Impact, sans-serif";
-
-  ctx.fillText(
-    "AUTO EDIT MAKER",
-    canvas.width/2,
-    canvas.height/2+35
-  );
-
-  ctx.restore();
-
-}
-
-
-/* =========================================================
-   VIDEO FRAME POSITION
-========================================================= */
-
-function syncVideoToTimeline(video,index,time){
-
-  if(
-    !video ||
-    !Number.isFinite(video.duration) ||
-    video.duration<=0
-  ){
-
-    return;
-
-  }
-
-  const beatStart =
-    state.beats[index]?.time || 0;
-
-  /*
-    How far into THIS beat's clip are we?
-  */
-
-  let localTime =
-    time -
-    beatStart;
-
-  if(localTime<0){
-    localTime=0;
-  }
-
-  /*
-    Loop the source video if its duration
-    is shorter than the time it is displayed.
-  */
-
-  const desired =
-    localTime %
-    video.duration;
-
-  /*
-    Don't constantly seek.
-
-    Constant currentTime assignments can make
-    the video appear frozen/black in some browsers.
-  */
-
-  if(
-    Math.abs(
-      video.currentTime -
-      desired
-    ) > .12
-  ){
-
-    try{
-      video.currentTime =
-        desired;
-    }catch{}
-
-  }
-
-}
-
-
-/* =========================================================
-   RENDER FRAME
-========================================================= */
-
-function renderFrame(time){
-
-  if(!state.audio){
-
-    drawIdle();
-    return;
-
-  }
-
-  const duration =
-    state.audio.duration || 0;
-
-  const result =
-    getClipAtTime(time);
 
   const clip =
-    result.clip;
+    sequence[index];
 
-  const index =
-    result.index;
+  if(!clip) return;
 
-  state.currentClipIndex =
-    index;
-
-  drawBackground();
-
-  if(clip){
-
-    const shake =
-      clip.type === "video"
-        ? applyVideoShake(time)
-        : applyShake(time);
-
-    ctx.save();
-
-    ctx.translate(
-      canvas.width/2 +
-      shake.shakeX,
-      canvas.height/2 +
-      shake.shakeY
+  const localTime =
+    Math.max(
+      0,
+      time - clip.start
     );
 
-    ctx.rotate(
-      shake.rotation
-    );
+  /*
+    Find nearest beat.
+  */
 
-    ctx.scale(
-      1.08,
-      1.08
-    );
+  let beatStrength = 0;
 
-    ctx.translate(
-      -canvas.width/2,
-      -canvas.height/2
-    );
+  for(const beat of beats){
 
-    if(clip.type==="photo"){
-
-      drawCoverImage(
-        clip.image
+    const distance =
+      Math.abs(
+        beat - time
       );
 
-    }
+    if(distance < .16){
 
-    else if(clip.type==="video"){
+      beatStrength =
+        1 -
+        distance / .16;
+
+      break;
+    }
+  }
+
+  /*
+    VIDEO
+  */
+
+  if(clip.type === "video"){
+
+    const video =
+      clip.source;
+
+    if(
+      video &&
+      video.readyState >= 2 &&
+      video.videoWidth > 0 &&
+      video.videoHeight > 0
+    ){
+
+      const shake =
+        applyVideoShake(
+          localTime,
+          beatStrength
+        );
+
+      ctx.save();
+
+      ctx.translate(
+        canvas.width/2 +
+        shake.x,
+        canvas.height/2 +
+        shake.y
+      );
+
+      ctx.rotate(
+        shake.rotation
+      );
+
+      drawVideoCover(
+        ctx,
+        video,
+        0,
+        0,
+        canvas.width,
+        canvas.height,
+        shake.zoom
+      );
+
+      ctx.restore();
+
+    }else{
 
       /*
-        IMPORTANT:
-        Synchronise the video BEFORE drawing it.
+        Don't flicker randomly.
+      */
+
+      ctx.fillStyle =
+        "#111";
+
+      ctx.fillRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+      );
+    }
+
+  }
+
+
+  /*
+    PHOTO
+  */
+
+  else if(
+    clip.type === "photo"
+  ){
+
+    const img =
+      clip.source;
+
+    if(img){
+
+      const shake =
+        applyShake(
+          localTime,
+          beatStrength
+        );
+
+      ctx.save();
+
+      ctx.translate(
+        canvas.width/2 +
+        shake.x,
+        canvas.height/2 +
+        shake.y
+      );
+
+      ctx.rotate(
+        shake.rotation
+      );
+
+      drawImageCover(
+        ctx,
+        img,
+        0,
+        0,
+        canvas.width,
+        canvas.height,
+        shake.zoom
+      );
+
+      ctx.restore();
+    }
+  }
+
+  /*
+    Beat flash.
+  */
+
+  if(
+    beatStrength > .72
+  ){
+
+    ctx.fillStyle =
+      `rgba(255,255,255,${
+        (beatStrength-.72)*.35
+      })`;
+
+    ctx.fillRect(
+      0,
+      0,
+      canvas.width,
+      canvas.height
+    );
+  }
+}
+
+
+/* =========================================================
+   PLAYBACK
+========================================================= */
+
+function animationLoop(){
+
+  if(!playing) return;
+
+  const now =
+    performance.now();
+
+  /*
+    AUDIO IS MASTER CLOCK.
+  */
+
+  let time = 0;
+
+  if(
+    audio &&
+    Number.isFinite(
+      audio.currentTime
+    )
+  ){
+
+    time =
+      audio.currentTime;
+
+  }else{
+
+    time =
+      (now - playStartTime) /
+      1000;
+  }
+
+  currentTime =
+    time;
+
+  /*
+    Find current clip.
+  */
+
+  let clipIndex = -1;
+
+  for(
+    let i=0;
+    i<sequence.length;
+    i++
+  ){
+
+    const clip =
+      sequence[i];
+
+    if(
+      time >= clip.start &&
+      time < clip.end
+    ){
+
+      clipIndex =
+        i;
+
+      break;
+    }
+  }
+
+  /*
+    Finished.
+  */
+
+  if(
+    clipIndex === -1
+  ){
+
+    if(
+      time >= totalDuration
+    ){
+
+      playing =
+        false;
+
+      stopAllVideos();
+
+      if(audio){
+
+        try{
+          audio.pause();
+        }catch(e){}
+      }
+
+      renderFrame(
+        totalDuration
+      );
+
+      progressBar.style.width =
+        "100%";
+
+      timeLabel.textContent =
+        `${formatTime(totalDuration)} / ${formatTime(totalDuration)}`;
+
+      clipLabel.textContent =
+        "DONE";
+
+      return;
+    }
+
+    animationFrame =
+      requestAnimationFrame(
+        animationLoop
+      );
+
+    return;
+  }
+
+  /*
+    Clip changed.
+  */
+
+  if(
+    currentClipIndex !==
+    clipIndex
+  ){
+
+    currentClipIndex =
+      clipIndex;
+
+    const clip =
+      sequence[clipIndex];
+
+    if(
+      clip.type === "video"
+    ){
+
+      /*
+        Start video ONCE.
       */
 
       syncVideoToTimeline(
-        clip.video,
-        index,
+        clip.source,
+        clipIndex,
         time
       );
 
+    }else{
+
       /*
-        readyState >= 2 means there is actual
-        media data available to draw.
+        We're back on a photo.
       */
 
-      if(
-        clip.video.readyState >= 2 &&
-        clip.video.videoWidth > 0 &&
-        clip.video.videoHeight > 0
-      ){
-
-        drawCoverImage(
-          clip.video
-        );
-
-      }else{
-
-        /*
-          Don't permanently paint black.
-          Try to draw once the first frame arrives.
-        */
-
-        ctx.fillStyle="#222";
-
-        ctx.fillRect(
-          0,
-          0,
-          canvas.width,
-          canvas.height
-        );
-
-      }
-
+      stopAllVideos();
     }
-
-    ctx.restore();
-
   }
 
+  /*
+    Continue syncing the active
+    video WITHOUT restarting it.
+  */
+
+  const currentClip =
+    sequence[currentClipIndex];
+
+  if(
+    currentClip &&
+    currentClip.type === "video"
+  ){
+
+    syncVideoToTimeline(
+      currentClip.source,
+      currentClipIndex,
+      time
+    );
+  }
+
+  /*
+    Render.
+  */
+
+  renderFrame(time);
+
+  /*
+    UI.
+  */
+
   const progress =
-    duration
+    totalDuration > 0
       ? clamp(
-          time/duration,
+          time /
+          totalDuration,
           0,
           1
         )
       : 0;
 
   progressBar.style.width =
-    (progress*100)+"%";
+    `${progress*100}%`;
 
   timeLabel.textContent =
-    formatTime(time) +
-    " / " +
-    formatTime(duration);
+    `${formatTime(time)} / ${formatTime(totalDuration)}`;
 
   clipLabel.textContent =
-    clip
-      ? (
-          clip.type === "video"
-            ? "VIDEO " + (index+1)
-            : "PHOTO " + (index+1)
-        )
-      : "CLIP —";
+    currentClip
+      ? `${currentClip.type.toUpperCase()} ${currentClipIndex+1} / ${sequence.length}`
+      : "";
 
-  previewBadge.textContent =
-    state.playing
-      ? "PLAYING"
-      : "READY";
-
-}
-
-
-/* =========================================================
-   PLAYBACK LOOP
-========================================================= */
-
-async function startCurrentVideo(video){
-
-  if(!video){
-    return;
-  }
-
-  video.muted=true;
-  video.playsInline=true;
-
-  try{
-
-    if(video.paused){
-      await video.play();
-    }
-
-  }catch(error){
-
-    /*
-      Video audio is muted, so autoplay restrictions
-      should normally not matter, but don't let a
-      rejected promise kill the whole editor.
-    */
-
-    console.warn(
-      "Video play failed:",
-      error
+  animationFrame =
+    requestAnimationFrame(
+      animationLoop
     );
-
-  }
-
-}
-
-
-function stopAllVideos(){
-
-  state.videos.forEach(item => {
-
-    try{
-      item.video.pause();
-    }catch{}
-
-  });
-
-}
-
-
-function animationLoop(){
-
-  if(!state.audio){
-    return;
-  }
-
-  const time =
-    state.audio.currentTime || 0;
-
-  const result =
-    getClipAtTime(time);
-
-  if(
-    result.clip &&
-    result.clip.type==="video"
-  ){
-
-    const video =
-      result.clip.video;
-
-    const previous =
-      state.currentVideoIndex;
-
-    /*
-      Only reset/start the video when
-      switching to a different video.
-    */
-
-    if(previous !== result.index){
-
-      stopAllVideos();
-
-      state.currentVideoIndex =
-        result.index;
-
-      try{
-        video.currentTime=0;
-      }catch{}
-
-      startCurrentVideo(video);
-
-    }
-
-    syncVideoToTimeline(
-      video,
-      result.index,
-      time
-    );
-
-    if(
-      video.paused &&
-      state.playing
-    ){
-
-      startCurrentVideo(video);
-
-    }
-
-  }else{
-
-    /*
-      Once we enter the photo section,
-      stop any video.
-    */
-
-    if(state.currentVideoIndex !== -1){
-
-      stopAllVideos();
-
-      state.currentVideoIndex=-1;
-
-    }
-
-  }
-
-  renderFrame(time);
-
-  if(state.playing){
-
-    state.animationFrame =
-      requestAnimationFrame(
-        animationLoop
-      );
-
-  }
-
-}
-
-
-/* =========================================================
-   STOP PREVIEW
-========================================================= */
-
-function stopPreview(){
-
-  state.playing=false;
-
-  if(state.animationFrame){
-
-    cancelAnimationFrame(
-      state.animationFrame
-    );
-
-    state.animationFrame=null;
-
-  }
-
-  if(state.audio){
-
-    try{
-      state.audio.pause();
-    }catch{}
-
-  }
-
-  stopAllVideos();
-
-  state.currentVideoIndex=-1;
-
-  previewBadge.textContent="READY";
-
 }
 
 
@@ -2417,524 +2321,603 @@ function stopPreview(){
    GENERATE
 ========================================================= */
 
-generateButton.addEventListener(
-  "click",
-  async () => {
+generateButton.onclick =
+async () => {
 
-    if(!canGenerate()){
-      return;
-    }
+  if(generating) return;
 
-    if(state.generating){
-      return;
-    }
+  if(!audio){
 
-    state.generating=true;
-    state.generated=false;
-
-    updateUI();
-
-    setStatus(
-      "LISTENING TO THE AUDIO... 👂"
+    setMessage(
+      "BRO. YOU FORGOT THE AUDIO 😭"
     );
 
-    try{
-
-      stopPreview();
-
-      state.beats =
-        await detectBeats();
-
-      if(!state.beats.length){
-
-        throw new Error(
-          "No beats detected"
-        );
-
-      }
-
-      /*
-        THIS now creates:
-
-        VIDEOS FIRST
-        ↓
-        PHOTOS AFTER
-
-        instead of the old:
-        PHOTOS FIRST
-        ↓
-        VIDEOS
-      */
-
-      buildSequence();
-
-      state.generated=true;
-
-      setStatus(
-        "EDIT GENERATED · " +
-        state.beats.length +
-        " BEATS DETECTED · VIDEO → PHOTO"
-      );
-
-      previewBadge.textContent="READY";
-
-      if(state.audio){
-
-        state.audio.currentTime=0;
-
-      }
-
-      state.currentVideoIndex=-1;
-
-      renderFrame(0);
-
-    }catch(error){
-
-      console.error(error);
-
-      state.generated=false;
-
-      setStatus(
-        "COULDN'T GENERATE THE EDIT 😭"
-      );
-
-    }finally{
-
-      state.generating=false;
-
-      updateUI();
-
-    }
-
+    return;
   }
-);
-
-
-/* =========================================================
-   PREVIEW START
-========================================================= */
-
-canvas.addEventListener(
-  "click",
-  async () => {
-
-    if(
-      !state.generated ||
-      !state.audio
-    ){
-
-      return;
-
-    }
-
-    if(state.playing){
-
-      stopPreview();
-      return;
-
-    }
-
-    try{
-
-      if(state.audioContext){
-
-        if(
-          state.audioContext.state ===
-          "suspended"
-        ){
-
-          await state.audioContext.resume();
-
-        }
-
-      }
-
-      state.playing=true;
-
-      previewBadge.textContent="PLAYING";
-
-      if(
-        state.audio.currentTime >=
-        state.audio.duration
-      ){
-
-        state.audio.currentTime=0;
-
-      }
-
-      state.currentVideoIndex=-1;
-
-      await state.audio.play();
-
-      animationLoop();
-
-    }catch(error){
-
-      console.error(error);
-
-      state.playing=false;
-
-      setStatus(
-        "TAP THE PREVIEW AGAIN TO START IT."
-      );
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   EXPORT
-========================================================= */
-
-function getSupportedMimeType(){
-
-  const types=[
-    "video/webm;codecs=vp9,opus",
-    "video/webm;codecs=vp8,opus",
-    "video/webm"
-  ];
-
-  for(
-    const type of types
-  ){
-
-    if(
-      window.MediaRecorder &&
-      MediaRecorder.isTypeSupported(type)
-    ){
-
-      return type;
-
-    }
-
-  }
-
-  return "";
-
-}
-
-
-async function startExport(){
 
   if(
-    !state.generated ||
-    !state.audio
+    !photos.length &&
+    !videos.length
   ){
 
-    return;
-
-  }
-
-  if(!window.MediaRecorder){
-
-    setStatus(
-      "THIS BROWSER DOES NOT SUPPORT WEBM EXPORT 😭"
+    setMessage(
+      "Import at least one photo or video first."
     );
 
     return;
-
   }
 
-  if(!canvas.captureStream){
+  generating = true;
 
-    setStatus(
-      "THIS BROWSER CANNOT CAPTURE THE CANVAS 😭"
-    );
+  generateButton.disabled =
+    true;
 
-    return;
+  exportButton.disabled =
+    true;
 
-  }
-
-  const mime =
-    getSupportedMimeType();
-
-  if(!mime){
-
-    setStatus(
-      "NO COMPATIBLE WEBM FORMAT FOUND 😭"
-    );
-
-    return;
-
-  }
-
-  stopPreview();
+  stopAllVideos();
 
   try{
 
-    const audioReady =
-      ensureAudioGraph();
+    beats =
+      await detectBeats();
 
-    if(!audioReady){
-
-      throw new Error(
-        "Audio graph unavailable"
-      );
-
-    }
-
-    if(
-      state.audioContext.state ===
-      "suspended"
-    ){
-
-      await state.audioContext.resume();
-
-    }
-
-    const canvasStream =
-      canvas.captureStream(60);
-
-    const combinedStream =
-      new MediaStream();
-
-    const videoTrack =
-      canvasStream.getVideoTracks()[0];
-
-    if(videoTrack){
-
-      combinedStream.addTrack(
-        videoTrack
-      );
-
-    }
-
-    const audioTrack =
-      state.audioDestination
-        .stream
-        .getAudioTracks()[0];
-
-    if(audioTrack){
-
-      combinedStream.addTrack(
-        audioTrack
-      );
-
-    }
-
-    state.exportStream =
-      combinedStream;
-
-    state.exportChunks=[];
-
-    state.mediaRecorder =
-      new MediaRecorder(
-        combinedStream,
-        {
-          mimeType:mime,
-          videoBitsPerSecond:8000000
-        }
-      );
-
-    state.mediaRecorder.ondataavailable =
-      event => {
-
-        if(
-          event.data &&
-          event.data.size
-        ){
-
-          state.exportChunks.push(
-            event.data
-          );
-
-        }
-
-      };
-
-    state.mediaRecorder.onerror =
-      event => {
-
-        console.error(
-          "MediaRecorder error:",
-          event
-        );
-
-      };
-
-    state.mediaRecorder.onstop =
-      () => {
-
-        const blob =
-          new Blob(
-            state.exportChunks,
-            {
-              type:mime
-            }
-          );
-
-        const url =
-          URL.createObjectURL(
-            blob
-          );
-
-        const link =
-          document.createElement("a");
-
-        link.href=url;
-
-        link.download =
-          "john-banana-edit.webm";
-
-        document.body.appendChild(link);
-
-        link.click();
-
-        link.remove();
-
-        setTimeout(
-          () => {
-            URL.revokeObjectURL(url);
-          },
-          2000
-        );
-
-        state.exporting=false;
-
-        updateUI();
-
-        previewBadge.textContent="DONE";
-
-        setStatus(
-          "EXPORT COMPLETE 🎬"
-        );
-
-      };
-
-    state.exporting=true;
-
-    updateUI();
-
-    setStatus(
-      "EXPORTING IN REAL TIME... 🎬"
+    setMessage(
+      `Found ${beats.length} suspiciously beat-like events. Building cinema...`
     );
 
-    state.audio.currentTime=0;
+    buildSequence();
 
-    state.currentVideoIndex=-1;
+    generated =
+      true;
 
     /*
-      Start recording before playback.
+      Draw first frame.
     */
 
-    state.mediaRecorder.start(250);
+    currentClipIndex = -1;
 
-    state.playing=true;
+    currentTime = 0;
 
-    await state.audio.play();
+    if(audio){
 
-    animationLoop();
+      try{
+        audio.currentTime = 0;
+      }catch(e){}
+    }
+
+    renderFrame(0);
+
+    progressBar.style.width =
+      "0%";
+
+    timeLabel.textContent =
+      `00:00 / ${formatTime(totalDuration)}`;
+
+    clipLabel.textContent =
+      "READY";
+
+    exportButton.disabled =
+      false;
+
+    setMessage(
+      `EDIT READY — ${sequence.length} clips / ${beats.length} beats`
+    );
+
+    /*
+      Start playback automatically.
+    */
+
+    await startPlayback();
 
   }catch(error){
 
     console.error(error);
 
-    state.exporting=false;
-
-    updateUI();
-
-    setStatus(
-      "EXPORT FAILED 😭"
+    setMessage(
+      "Something exploded: " +
+      error.message
     );
 
+  }finally{
+
+    generating =
+      false;
+
+    generateButton.disabled =
+      false;
+  }
+};
+
+
+/* =========================================================
+   START PLAYBACK
+========================================================= */
+
+async function startPlayback(){
+
+  if(!generated) return;
+
+  if(!audio) return;
+
+  stopAllVideos();
+
+  currentClipIndex =
+    -1;
+
+  currentTime =
+    0;
+
+  try{
+    audio.currentTime = 0;
+  }catch(e){}
+
+  /*
+    Set up Web Audio routing.
+  */
+
+  try{
+
+    if(!audioContext){
+
+      audioContext =
+        new (
+          window.AudioContext ||
+          window.webkitAudioContext
+        )();
+
+      audioSource =
+        audioContext.createMediaElementSource(
+          audio
+        );
+
+      audioDestination =
+        audioContext.createMediaStreamDestination();
+
+      audioSource.connect(
+        audioContext.destination
+      );
+
+      audioSource.connect(
+        audioDestination
+      );
+
+      audioGraphConnected =
+        true;
+    }
+
+    if(
+      audioContext.state === "suspended"
+    ){
+
+      await audioContext.resume();
+    }
+
+  }catch(error){
+
+    console.warn(
+      "AudioContext setup failed:",
+      error
+    );
   }
 
+  playing =
+    true;
+
+  playStartTime =
+    performance.now();
+
+  try{
+    await audio.play();
+  }catch(error){
+
+    console.warn(
+      "Audio play failed:",
+      error
+    );
+  }
+
+  if(animationFrame){
+
+    cancelAnimationFrame(
+      animationFrame
+    );
+  }
+
+  animationFrame =
+    requestAnimationFrame(
+      animationLoop
+    );
 }
 
 
-function finishExport(){
+/* =========================================================
+   AUDIO ENDED
+========================================================= */
 
-  stopPreview();
+if(audio){
+
+  audio.addEventListener(
+    "ended",
+    () => {
+
+      if(!exporting){
+
+        playing =
+          false;
+
+        stopAllVideos();
+      }
+    }
+  );
+}
+
+
+/* =========================================================
+   EXPORT WEBM
+========================================================= */
+
+exportButton.onclick =
+async () => {
 
   if(
-    state.mediaRecorder &&
-    state.mediaRecorder.state !==
-    "inactive"
+    exporting ||
+    !generated ||
+    !audio
   ){
-
-    state.mediaRecorder.stop();
-
+    return;
   }
 
-}
+  exporting =
+    true;
 
+  exportButton.disabled =
+    true;
 
-exportButton.addEventListener(
-  "click",
-  () => {
+  generateButton.disabled =
+    true;
 
-    if(state.exporting){
-      return;
+  setMessage(
+    "EXPORTING WEBM... THIS MAY TAKE A SECOND."
+  );
+
+  try{
+
+    /*
+      Make sure playback starts
+      from the beginning.
+    */
+
+    playing =
+      false;
+
+    stopAllVideos();
+
+    if(animationFrame){
+
+      cancelAnimationFrame(
+        animationFrame
+      );
+
+      animationFrame =
+        null;
     }
 
-    startExport();
+    audio.currentTime =
+      0;
 
+    /*
+      Canvas video stream.
+    */
+
+    const canvasStream =
+      canvas.captureStream(60);
+
+    /*
+      Audio stream.
+    */
+
+    let combinedStream;
+
+    if(
+      audioDestination &&
+      audioGraphConnected
+    ){
+
+      combinedStream =
+        new MediaStream();
+
+      canvasStream
+        .getVideoTracks()
+        .forEach(track =>
+          combinedStream.addTrack(track)
+        );
+
+      audioDestination
+        .stream
+        .getAudioTracks()
+        .forEach(track =>
+          combinedStream.addTrack(track)
+        );
+
+    }else{
+
+      combinedStream =
+        canvasStream;
+    }
+
+    const mimeTypes = [
+
+      "video/webm;codecs=vp9,opus",
+
+      "video/webm;codecs=vp8,opus",
+
+      "video/webm"
+
+    ];
+
+    let mimeType =
+      "";
+
+    for(
+      const type of mimeTypes
+    ){
+
+      if(
+        MediaRecorder.isTypeSupported(
+          type
+        )
+      ){
+
+        mimeType =
+          type;
+
+        break;
+      }
+    }
+
+    if(!mimeType){
+
+      throw new Error(
+        "WebM recording is not supported by this browser."
+      );
+    }
+
+    const chunks = [];
+
+    const recorder =
+      new MediaRecorder(
+        combinedStream,
+        {
+          mimeType,
+          videoBitsPerSecond:
+            8000000
+        }
+      );
+
+    recorder.ondataavailable =
+      event => {
+
+        if(
+          event.data &&
+          event.data.size > 0
+        ){
+
+          chunks.push(
+            event.data
+          );
+        }
+      };
+
+    const finished =
+      new Promise(
+        (resolve,reject) => {
+
+          recorder.onstop =
+            resolve;
+
+          recorder.onerror =
+            reject;
+        }
+      );
+
+    /*
+      Start rendering from the beginning.
+    */
+
+    playing =
+      true;
+
+    currentClipIndex =
+      -1;
+
+    currentTime =
+      0;
+
+    await audio.play();
+
+    recorder.start(
+      100
+    );
+
+    animationFrame =
+      requestAnimationFrame(
+        animationLoop
+      );
+
+    /*
+      Wait for the actual audio
+      duration rather than guessing.
+    */
+
+    await new Promise(resolve => {
+
+      const check =
+        () => {
+
+          if(
+            !audio ||
+            audio.ended ||
+            audio.currentTime >=
+            totalDuration - .03
+          ){
+
+            resolve();
+
+          }else{
+
+            setTimeout(
+              check,
+              50
+            );
+          }
+        };
+
+      check();
+    });
+
+    playing =
+      false;
+
+    stopAllVideos();
+
+    try{
+      audio.pause();
+    }catch(e){}
+
+    recorder.stop();
+
+    await finished;
+
+    const blob =
+      new Blob(
+        chunks,
+        {
+          type:
+            mimeType
+        }
+      );
+
+    const url =
+      URL.createObjectURL(blob);
+
+    const a =
+      document.createElement("a");
+
+    a.href =
+      url;
+
+    a.download =
+      "john-banana-auto-edit.webm";
+
+    document.body.appendChild(a);
+
+    a.click();
+
+    a.remove();
+
+    setTimeout(
+      () =>
+        URL.revokeObjectURL(url),
+      5000
+    );
+
+    /*
+      Restore preview.
+    */
+
+    audio.currentTime =
+      0;
+
+    currentClipIndex =
+      -1;
+
+    currentTime =
+      0;
+
+    renderFrame(0);
+
+    progressBar.style.width =
+      "0%";
+
+    timeLabel.textContent =
+      `00:00 / ${formatTime(totalDuration)}`;
+
+    clipLabel.textContent =
+      "READY";
+
+    setMessage(
+      "WEBM EXPORTED. ABSOLUTE CINEMA. 🎬"
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    playing =
+      false;
+
+    stopAllVideos();
+
+    setMessage(
+      "Export failed: " +
+      error.message
+    );
+
+  }finally{
+
+    exporting =
+      false;
+
+    exportButton.disabled =
+      !generated;
+
+    generateButton.disabled =
+      false;
   }
-);
+};
 
 
 /* =========================================================
-   CLEANUP
+   INITIAL CANVAS
 ========================================================= */
 
-window.addEventListener(
-  "beforeunload",
-  () => {
+ctx.fillStyle =
+  "#080609";
 
-    stopPreview();
-
-    state.photos.forEach(item => {
-
-      try{
-        URL.revokeObjectURL(
-          item.url
-        );
-      }catch{}
-
-    });
-
-    state.videos.forEach(item => {
-
-      try{
-        URL.revokeObjectURL(
-          item.url
-        );
-      }catch{}
-
-    });
-
-    if(state.audioURL){
-
-      try{
-
-        URL.revokeObjectURL(
-          state.audioURL
-        );
-
-      }catch{}
-
-    }
-
-    if(state.audioContext){
-
-      try{
-        state.audioContext.close();
-      }catch{}
-
-    }
-
-  }
+ctx.fillRect(
+  0,
+  0,
+  canvas.width,
+  canvas.height
 );
 
+ctx.fillStyle =
+  "#ffe600";
 
-/* =========================================================
-   INITIAL STATE
-========================================================= */
+ctx.textAlign =
+  "center";
 
-updateUI();
-drawIdle();
+ctx.textBaseline =
+  "middle";
+
+ctx.font =
+  "bold 42px Inter";
+
+ctx.fillText(
+  "IMPORT SOME CINEMA",
+  canvas.width/2,
+  canvas.height/2
+);
+
+ctx.font =
+  "16px DM Mono";
+
+ctx.fillText(
+  "JOHN BANANA AUTO EDIT MAKER",
+  canvas.width/2,
+  canvas.height/2 + 55
+);
 
 </script>
 
