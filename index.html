@@ -172,6 +172,7 @@ input[type=file]{
   font-family:"DM Mono",monospace;
   font-size:11px;
   font-weight:500;
+  overflow:hidden;
 }
 
 .status strong{
@@ -180,6 +181,13 @@ input[type=file]{
   font-size:22px;
   letter-spacing:1px;
   margin-bottom:5px;
+}
+
+.status span{
+  display:block;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 
 .status.ok{
@@ -412,159 +420,157 @@ input[type=range]{
 
 <div class="app">
 
-  <header>
-    <div class="logo">AUTO EDIT</div>
-    <div class="subtitle">
-      JOHN BANANA'S EXTREMELY SERIOUS<br>
-      BEAT-SYNCED EDIT MACHINE™
-    </div>
-  </header>
+<header>
+  <div class="logo">AUTO EDIT</div>
 
-  <div class="layout">
+  <div class="subtitle">
+    JOHN BANANA'S EXTREMELY SERIOUS<br>
+    BEAT-SYNCED EDIT MACHINE™
+  </div>
+</header>
 
-    <section class="panel">
+<div class="layout">
 
-      <div class="panel-title">1. FEED THE MACHINE</div>
+<section class="panel">
 
-      <div class="import-grid">
+  <div class="panel-title">1. FEED THE MACHINE</div>
 
-        <button class="import-btn photo" id="photoButton" type="button">
-          📸 IMPORT PHOTOS
-          <small>ADD ONE OR MORE PHOTOS</small>
-        </button>
+  <div class="import-grid">
 
-        <button class="import-btn video" id="videoButton" type="button">
-          🎥 IMPORT VIDEO
-          <small>ONE VIDEO CLIP</small>
-        </button>
+    <button class="import-btn photo" id="photoButton" type="button">
+      📸 IMPORT PHOTOS
+      <small>ADD ONE OR MORE PHOTOS</small>
+    </button>
 
-        <button class="import-btn audio" id="audioButton" type="button">
-          🔊 IMPORT AUDIO
-          <small>MP3 / M4A / WAV / AAC / ETC.</small>
-        </button>
+    <button class="import-btn video" id="videoButton" type="button">
+      🎥 IMPORT VIDEO
+      <small>ONE VIDEO CLIP</small>
+    </button>
 
-      </div>
-
-      <input
-        id="photoInput"
-        type="file"
-        accept="image/*"
-        multiple
-      >
-
-      <input
-        id="videoInput"
-        type="file"
-        accept="video/*,.mp4,.mov,.webm,.m4v"
-      >
-
-      <!-- IMPORTANT:
-           Do NOT use audio/* here.
-           iOS Safari has a WebKit bug where audio/* can make
-           perfectly valid audio files appear greyed out. -->
-      <input
-        id="audioInput"
-        type="file"
-        accept=".mp3,.m4a,.wav,.aac,.caf,.ogg,.opus"
-      >
-
-      <div class="status-grid">
-
-        <div class="status neutral" id="photoStatus">
-          <strong>PHOTOS</strong>
-          <span>NONE</span>
-        </div>
-
-        <div class="status neutral" id="videoStatus">
-          <strong>VIDEO</strong>
-          <span>NONE</span>
-        </div>
-
-        <div class="status neutral" id="audioStatus">
-          <strong>AUDIO</strong>
-          <span>NONE</span>
-        </div>
-
-      </div>
-
-      <div class="control">
-
-        <div class="control-row">
-          <div class="control-title">BEAT SENSITIVITY</div>
-          <div class="control-value" id="sensitivityValue">50%</div>
-        </div>
-
-        <input
-          id="sensitivity"
-          type="range"
-          min="0"
-          max="100"
-          value="50"
-        >
-
-        <div class="help">
-          Higher = MORE beats detected = MORE SHAKES.
-        </div>
-
-      </div>
-
-      <div class="actions">
-
-        <button
-          class="action"
-          id="generateButton"
-          type="button"
-          disabled
-        >
-          GENERATE EDIT
-        </button>
-
-        <button
-          class="action secondary"
-          id="exportButton"
-          type="button"
-          disabled
-        >
-          EXPORT WEBM
-        </button>
-
-      </div>
-
-      <div class="message" id="message">
-        IMPORT AUDIO + PHOTOS OR VIDEO TO BEGIN.
-      </div>
-
-      <div class="note">
-        💀 PHOTO MODE = AGGRESSIVE BEAT SHAKES.<br>
-        🎥 VIDEO MODE = SMOOTH PHYSICAL SHAKES.<br>
-        🔊 AUDIO IS REQUIRED.
-      </div>
-
-    </section>
-
-    <section class="panel preview-panel">
-
-      <div class="preview-head">
-        <div class="preview-title">9:16 PREVIEW</div>
-        <div class="badge" id="previewBadge">WAITING</div>
-      </div>
-
-      <div class="canvas-wrap">
-        <canvas id="preview" width="540" height="960"></canvas>
-      </div>
-
-      <div class="preview-meta">
-        <span id="timeLabel">00:00 / 00:00</span>
-        <span id="clipLabel">CLIP —</span>
-      </div>
-
-      <div class="progress">
-        <div id="progressBar"></div>
-      </div>
-
-    </section>
+    <button class="import-btn audio" id="audioButton" type="button">
+      🔊 IMPORT AUDIO
+      <small>MP3 / M4A / WAV / AAC / ETC.</small>
+    </button>
 
   </div>
+
+  <input
+    id="photoInput"
+    type="file"
+    accept="image/*"
+    multiple
+  >
+
+  <input
+    id="videoInput"
+    type="file"
+    accept="video/*,.mp4,.mov,.webm,.m4v"
+  >
+
+  <input
+    id="audioInput"
+    type="file"
+    accept=".mp3,.m4a,.wav,.aac,.caf,.ogg,.opus"
+  >
+
+  <div class="status-grid">
+
+    <div class="status neutral" id="photoStatus">
+      <strong>PHOTOS</strong>
+      <span>NONE</span>
+    </div>
+
+    <div class="status neutral" id="videoStatus">
+      <strong>VIDEO</strong>
+      <span>NONE</span>
+    </div>
+
+    <div class="status neutral" id="audioStatus">
+      <strong>AUDIO</strong>
+      <span>NONE</span>
+    </div>
+
+  </div>
+
+  <div class="control">
+
+    <div class="control-row">
+      <div class="control-title">BEAT SENSITIVITY</div>
+      <div class="control-value" id="sensitivityValue">50%</div>
+    </div>
+
+    <input
+      id="sensitivity"
+      type="range"
+      min="0"
+      max="100"
+      value="50"
+    >
+
+    <div class="help">
+      Higher = MORE beats detected = MORE SHAKES.
+    </div>
+
+  </div>
+
+  <div class="actions">
+
+    <button
+      class="action"
+      id="generateButton"
+      type="button"
+      disabled
+    >
+      GENERATE EDIT
+    </button>
+
+    <button
+      class="action secondary"
+      id="exportButton"
+      type="button"
+      disabled
+    >
+      EXPORT WEBM
+    </button>
+
+  </div>
+
+  <div class="message" id="message">
+    IMPORT AUDIO + PHOTOS OR VIDEO TO BEGIN.
+  </div>
+
+  <div class="note">
+    💀 PHOTO MODE = AGGRESSIVE BEAT SHAKES.<br>
+    🎥 VIDEO MODE = SMOOTH PHYSICAL SHAKES.<br>
+    🔊 AUDIO IS REQUIRED.<br>
+    🎬 VIDEOS PLAY FIRST, THEN PHOTOS.
+  </div>
+
+</section>
+
+<section class="panel preview-panel">
+
+  <div class="preview-head">
+    <div class="preview-title">9:16 PREVIEW</div>
+    <div class="badge" id="previewBadge">WAITING</div>
+  </div>
+
+  <div class="canvas-wrap">
+    <canvas id="preview" width="540" height="960"></canvas>
+  </div>
+
+  <div class="preview-meta">
+    <span id="timeLabel">00:00 / 00:00</span>
+    <span id="clipLabel">CLIP —</span>
+  </div>
+
+  <div class="progress">
+    <div id="progressBar"></div>
+  </div>
+
+</section>
+
+</div>
 </div>
 
 <script>
@@ -596,6 +602,7 @@ const state = {
   playing: false,
 
   currentClipIndex: -1,
+  currentVideoIndex: -1,
 
   animationFrame: null,
 
@@ -603,6 +610,7 @@ const state = {
   exportStream: null,
   exportChunks: []
 };
+
 
 /* =========================================================
    ELEMENTS
@@ -636,6 +644,7 @@ const timeLabel = document.getElementById("timeLabel");
 const clipLabel = document.getElementById("clipLabel");
 const previewBadge = document.getElementById("previewBadge");
 
+
 /* =========================================================
    BUTTONS
 ========================================================= */
@@ -651,6 +660,7 @@ videoButton.addEventListener("click", () => {
 audioButton.addEventListener("click", () => {
   audioInput.click();
 });
+
 
 /* =========================================================
    HELPERS
@@ -673,6 +683,43 @@ function formatTime(seconds){
 function clamp(value,min,max){
   return Math.max(min,Math.min(max,value));
 }
+
+function waitForVideoReady(video){
+  return new Promise(resolve => {
+
+    if(video.readyState >= 2){
+      resolve(true);
+      return;
+    }
+
+    let finished = false;
+
+    const finish = ok => {
+
+      if(finished) return;
+
+      finished = true;
+
+      video.removeEventListener("loadeddata",onReady);
+      video.removeEventListener("canplay",onReady);
+      video.removeEventListener("error",onError);
+
+      resolve(ok);
+    };
+
+    const onReady = () => finish(true);
+    const onError = () => finish(false);
+
+    video.addEventListener("loadeddata",onReady,{once:true});
+    video.addEventListener("canplay",onReady,{once:true});
+    video.addEventListener("error",onError,{once:true});
+
+    try{
+      video.load();
+    }catch{}
+  });
+}
+
 
 /* =========================================================
    UI
@@ -722,14 +769,18 @@ function updateUI(){
     state.exporting;
 }
 
+
 /* =========================================================
    SENSITIVITY
 ========================================================= */
 
 sensitivity.addEventListener("input", () => {
+
   sensitivityValue.textContent =
     sensitivity.value + "%";
+
 });
+
 
 /* =========================================================
    PHOTO IMPORT
@@ -760,7 +811,6 @@ photoInput.addEventListener("change", async () => {
     }
 
     const url = URL.createObjectURL(file);
-
     const img = new Image();
 
     img.src = url;
@@ -783,21 +833,27 @@ photoInput.addEventListener("change", async () => {
   }
 
   state.generated = false;
+
   updateUI();
 
   if(state.photos.length){
+
     setStatus(
       state.photos.length +
       " PHOTO" +
       (state.photos.length === 1 ? "" : "S") +
-      " LOADED. NOW ADD AUDIO."
+      " LOADED."
     );
+
   }else{
+
     setStatus("NO VALID PHOTOS FOUND 😭");
+
   }
 
   drawIdle();
 });
+
 
 /* =========================================================
    VIDEO IMPORT
@@ -812,9 +868,11 @@ videoInput.addEventListener("change", async () => {
   stopPreview();
 
   state.videos.forEach(item => {
+
     if(item.url){
       URL.revokeObjectURL(item.url);
     }
+
   });
 
   state.videos = [];
@@ -823,8 +881,10 @@ videoInput.addEventListener("change", async () => {
     !file.type.startsWith("video/") &&
     !/\.(mp4|mov|webm|m4v)$/i.test(file.name)
   ){
+
     setStatus("THAT IS NOT VIDEO 😭");
     return;
+
   }
 
   setStatus("LOADING VIDEO...");
@@ -837,48 +897,104 @@ videoInput.addEventListener("change", async () => {
   video.preload = "auto";
   video.playsInline = true;
   video.muted = true;
+  video.controls = false;
+  video.loop = false;
 
-  await new Promise(resolve => {
+  /*
+    IMPORTANT:
+    Wait for actual video frame data, not merely metadata.
+    loadedmetadata only tells us the duration/dimensions.
+    loadeddata/canplay tells us there is usable media data.
+  */
 
-    const done = () => {
-      video.removeEventListener("loadedmetadata",done);
-      resolve();
-    };
+  const ready = await waitForVideoReady(video);
 
-    video.addEventListener("loadedmetadata",done);
-    video.addEventListener("error",done);
-
-  });
-
-  if(!Number.isFinite(video.duration) || video.duration <= 0){
+  if(
+    !ready ||
+    !Number.isFinite(video.duration) ||
+    video.duration <= 0
+  ){
 
     URL.revokeObjectURL(url);
 
     setStatus("COULD NOT READ THAT VIDEO 😭");
+
     updateUI();
+
     return;
   }
+
+  /*
+    Force the browser to have the first frame available.
+  */
+
+  try{
+    video.currentTime = 0;
+  }catch{}
+
+  await new Promise(resolve => {
+
+    if(video.readyState >= 2){
+      resolve();
+      return;
+    }
+
+    video.addEventListener(
+      "loadeddata",
+      resolve,
+      {once:true}
+    );
+
+  });
 
   state.videos.push({
     type:"video",
     file,
     url,
     video,
-    duration:video.duration
+    duration:video.duration,
+    ready:true
   });
 
   state.generated = false;
 
   updateUI();
 
-  setStatus("VIDEO LOADED. NOW ADD AUDIO.");
+  setStatus(
+    "VIDEO LOADED · " +
+    formatTime(video.duration) +
+    " · VIDEOS PLAY FIRST"
+  );
 
-  drawIdle();
+  /*
+    Draw the first actual frame immediately.
+  */
+
+  drawBackground();
+
+  ctx.save();
+
+  ctx.translate(
+    canvas.width/2,
+    canvas.height/2
+  );
+
+  ctx.scale(1.08,1.08);
+
+  ctx.translate(
+    -canvas.width/2,
+    -canvas.height/2
+  );
+
+  drawCoverImage(video);
+
+  ctx.restore();
+
 });
+
 
 /* =========================================================
    AUDIO IMPORT
-   IMPORTANT IOS FIX
 ========================================================= */
 
 audioInput.addEventListener("change", async () => {
@@ -887,17 +1003,6 @@ audioInput.addEventListener("change", async () => {
 
   if(!file) return;
 
-  /*
-    DO NOT ONLY DO:
-
-      file.type.startsWith("audio/")
-
-    iOS Safari has a WebKit file-picker bug involving
-    accept="audio/*".
-
-    We therefore accept known audio extensions too.
-  */
-
   const audioExtensions =
     /\.(mp3|m4a|wav|aac|caf|ogg|opus)$/i;
 
@@ -905,8 +1010,10 @@ audioInput.addEventListener("change", async () => {
     !file.type.startsWith("audio/") &&
     !audioExtensions.test(file.name)
   ){
+
     setStatus("THAT IS NOT AUDIO 😭");
     return;
+
   }
 
   stopPreview();
@@ -952,6 +1059,7 @@ audioInput.addEventListener("change", async () => {
     );
 
     state.audioFile = null;
+
     updateUI();
 
   });
@@ -959,9 +1067,13 @@ audioInput.addEventListener("change", async () => {
   state.audio.addEventListener("ended", () => {
 
     if(state.exporting){
+
       finishExport();
+
     }else{
+
       stopPreview();
+
     }
 
   });
@@ -972,6 +1084,7 @@ audioInput.addEventListener("change", async () => {
 
   setStatus("LOADING AUDIO...");
 });
+
 
 /* =========================================================
    AUDIO GRAPH
@@ -993,6 +1106,7 @@ function ensureAudioGraph(){
 
     state.audioContext =
       new AudioContext();
+
   }
 
   if(!state.audioSource){
@@ -1001,12 +1115,14 @@ function ensureAudioGraph(){
       state.audioContext.createMediaElementSource(
         state.audio
       );
+
   }
 
   if(!state.audioDestination){
 
     state.audioDestination =
       state.audioContext.createMediaStreamDestination();
+
   }
 
   if(!state.audioGraphConnected){
@@ -1020,10 +1136,12 @@ function ensureAudioGraph(){
     );
 
     state.audioGraphConnected = true;
+
   }
 
   return true;
 }
+
 
 /* =========================================================
    BEAT DETECTION
@@ -1064,17 +1182,26 @@ async function detectBeats(){
       await offline.close();
     }catch{}
 
-    console.warn("Beat detection failed:",error);
+    console.warn(
+      "Beat detection failed:",
+      error
+    );
 
     return [];
+
   }
 
-  const sampleRate = buffer.sampleRate;
-  const channelCount = buffer.numberOfChannels;
+  const sampleRate =
+    buffer.sampleRate;
 
-  const length = buffer.length;
+  const channelCount =
+    buffer.numberOfChannels;
 
-  const mono = new Float32Array(length);
+  const length =
+    buffer.length;
+
+  const mono =
+    new Float32Array(length);
 
   for(let ch=0;ch<channelCount;ch++){
 
@@ -1082,21 +1209,30 @@ async function detectBeats(){
       buffer.getChannelData(ch);
 
     for(let i=0;i<length;i++){
-      mono[i] += data[i] / channelCount;
+
+      mono[i] +=
+        data[i] /
+        channelCount;
+
     }
+
   }
 
-  /*
-    25ms windows with 50% overlap.
-  */
-
   const windowSize =
-    Math.max(128,Math.floor(sampleRate * .025));
+    Math.max(
+      128,
+      Math.floor(
+        sampleRate * .025
+      )
+    );
 
   const hop =
-    Math.max(64,Math.floor(windowSize / 2));
+    Math.max(
+      64,
+      Math.floor(windowSize / 2)
+    );
 
-  const energies = [];
+  const energies=[];
 
   for(
     let start=0;
@@ -1112,9 +1248,11 @@ async function detectBeats(){
       i++
     ){
 
-      const v = mono[start+i];
+      const v =
+        mono[start+i];
 
       sum += v*v;
+
     }
 
     energies.push({
@@ -1123,12 +1261,13 @@ async function detectBeats(){
         sum/windowSize
       )
     });
+
   }
 
   const sensitivityAmount =
     Number(sensitivity.value)/100;
 
-  const smooth = [];
+  const smooth=[];
 
   for(let i=0;i<energies.length;i++){
 
@@ -1137,18 +1276,25 @@ async function detectBeats(){
 
     for(
       let j=Math.max(0,i-2);
-      j<=Math.min(energies.length-1,i+2);
+      j<=Math.min(
+        energies.length-1,
+        i+2
+      );
       j++
     ){
 
-      total += energies[j].energy;
+      total +=
+        energies[j].energy;
+
       count++;
+
     }
 
     smooth.push({
       time:energies[i].time,
       energy:total/count
     });
+
   }
 
   const beats=[];
@@ -1175,7 +1321,11 @@ async function detectBeats(){
 
   let lastBeat=-Infinity;
 
-  for(let i=3;i<smooth.length-3;i++){
+  for(
+    let i=3;
+    i<smooth.length-3;
+    i++
+  ){
 
     const current =
       smooth[i].energy;
@@ -1185,41 +1335,65 @@ async function detectBeats(){
 
     for(
       let j=Math.max(0,i-16);
-      j<=Math.min(smooth.length-1,i+16);
+      j<=Math.min(
+        smooth.length-1,
+        i+16
+      );
       j++
     ){
 
       if(j===i) continue;
 
-      localTotal += smooth[j].energy;
-      localValues.push(smooth[j].energy);
+      localTotal +=
+        smooth[j].energy;
+
+      localValues.push(
+        smooth[j].energy
+      );
+
     }
 
     const localAverage =
       localTotal /
-      Math.max(1,localValues.length);
+      Math.max(
+        1,
+        localValues.length
+      );
 
-    localValues.sort((a,b)=>a-b);
+    localValues.sort(
+      (a,b)=>a-b
+    );
 
     const median =
       localValues[
-        Math.floor(localValues.length/2)
-      ] || 0.00001;
+        Math.floor(
+          localValues.length/2
+        )
+      ] || .00001;
 
     const previous =
       smooth[i-1].energy;
 
     const rise =
       current /
-      Math.max(.00001,previous) - 1;
+      Math.max(
+        .00001,
+        previous
+      ) - 1;
 
     const averageRatio =
       current /
-      Math.max(.00001,localAverage);
+      Math.max(
+        .00001,
+        localAverage
+      );
 
     const medianRatio =
       current /
-      Math.max(.00001,median);
+      Math.max(
+        .00001,
+        median
+      );
 
     const isLocalMaximum =
       current >= smooth[i-1].energy &&
@@ -1227,15 +1401,20 @@ async function detectBeats(){
 
     const strongEnough =
       (
-        averageRatio >= averageThreshold &&
-        medianRatio >= medianThreshold
+        averageRatio >=
+        averageThreshold &&
+        medianRatio >=
+        medianThreshold
       ) ||
       (
-        averageRatio >= transientAverageThreshold &&
-        rise >= riseThreshold
+        averageRatio >=
+        transientAverageThreshold &&
+        rise >=
+        riseThreshold
       );
 
-    const time=smooth[i].time;
+    const time =
+      smooth[i].time;
 
     if(
       isLocalMaximum &&
@@ -1265,17 +1444,14 @@ async function detectBeats(){
       if(beats.length>=900){
         break;
       }
+
     }
+
   }
 
   try{
     await offline.close();
   }catch{}
-
-  /*
-    If detection produces nothing, use a sensible
-    fallback pulse.
-  */
 
   if(beats.length<2){
 
@@ -1301,37 +1477,87 @@ async function detectBeats(){
       if(beats.length>=900){
         break;
       }
+
     }
+
   }
 
   return beats;
 }
 
+
 /* =========================================================
    SEQUENCE
+   VIDEO FIRST -> PHOTO SECOND
 ========================================================= */
 
 function buildSequence(){
 
-  const clips = [
-    ...state.photos,
-    ...state.videos
-  ];
+  /*
+    IMPORTANT:
+    Videos are deliberately placed before photos.
+
+    Example:
+
+      video1
+      video1
+      video1
+      video2
+      video2
+      photo1
+      photo2
+      photo3
+
+    We don't mix them together.
+  */
+
+  const clips=[];
+
+  /*
+    First add EVERY video.
+  */
+
+  for(const video of state.videos){
+    clips.push(video);
+  }
+
+  /*
+    Then add EVERY photo.
+  */
+
+  for(const photo of state.photos){
+    clips.push(photo);
+  }
 
   if(!clips.length){
+
     state.sequence=[];
     return;
+
   }
 
   state.sequence=[];
 
-  for(let i=0;i<state.beats.length;i++){
+  for(
+    let i=0;
+    i<state.beats.length;
+    i++
+  ){
 
     state.sequence.push(
-      clips[i % clips.length]
+      clips[
+        i % clips.length
+      ]
     );
+
   }
+
 }
+
+
+/* =========================================================
+   FIND BEAT
+========================================================= */
 
 function findNearestBeat(time){
 
@@ -1340,60 +1566,19 @@ function findNearestBeat(time){
   }
 
   let low=0;
-  let high=state.beats.length-1;
+  let high=
+    state.beats.length-1;
 
   while(low<=high){
 
     const mid =
-      Math.floor((low+high)/2);
-
-    if(state.beats[mid].time < time){
-      low=mid+1;
-    }else{
-      high=mid-1;
-    }
-  }
-
-  const a =
-    state.beats[
-      clamp(high,0,state.beats.length-1)
-    ];
-
-  const b =
-    state.beats[
-      clamp(low,0,state.beats.length-1)
-    ];
-
-  if(!a) return b;
-  if(!b) return a;
-
-  return Math.abs(a.time-time) <
-    Math.abs(b.time-time)
-    ? a
-    : b;
-}
-
-function getClipAtTime(time){
-
-  if(!state.beats.length ||
-     !state.sequence.length){
-
-    return {
-      clip:null,
-      index:-1
-    };
-  }
-
-  let low=0;
-  let high=state.beats.length-1;
-
-  while(low<=high){
-
-    const mid =
-      Math.floor((low+high)/2);
+      Math.floor(
+        (low+high)/2
+      );
 
     if(
-      state.beats[mid].time <= time
+      state.beats[mid].time <
+      time
     ){
 
       low=mid+1;
@@ -1401,7 +1586,86 @@ function getClipAtTime(time){
     }else{
 
       high=mid-1;
+
     }
+
+  }
+
+  const a =
+    state.beats[
+      clamp(
+        high,
+        0,
+        state.beats.length-1
+      )
+    ];
+
+  const b =
+    state.beats[
+      clamp(
+        low,
+        0,
+        state.beats.length-1
+      )
+    ];
+
+  if(!a) return b;
+  if(!b) return a;
+
+  return Math.abs(
+    a.time-time
+  ) <
+  Math.abs(
+    b.time-time
+  )
+    ? a
+    : b;
+
+}
+
+
+/* =========================================================
+   GET CLIP
+========================================================= */
+
+function getClipAtTime(time){
+
+  if(
+    !state.beats.length ||
+    !state.sequence.length
+  ){
+
+    return {
+      clip:null,
+      index:-1
+    };
+
+  }
+
+  let low=0;
+  let high=
+    state.beats.length-1;
+
+  while(low<=high){
+
+    const mid =
+      Math.floor(
+        (low+high)/2
+      );
+
+    if(
+      state.beats[mid].time <=
+      time
+    ){
+
+      low=mid+1;
+
+    }else{
+
+      high=mid-1;
+
+    }
+
   }
 
   const index =
@@ -1412,19 +1676,17 @@ function getClipAtTime(time){
     );
 
   return {
-    clip:state.sequence[index],
+    clip:
+      state.sequence[index],
     index
   };
+
 }
+
 
 /* =========================================================
    SHAKE
 ========================================================= */
-
-/*
-  PHOTO MODE:
-  aggressive/random physical shakes.
-*/
 
 function averageBeatStrength(){
 
@@ -1434,13 +1696,27 @@ function averageBeatStrength(){
 
   let total=0;
 
-  for(const beat of state.beats){
-    total += beat.strength;
+  for(
+    const beat of state.beats
+  ){
+
+    total +=
+      beat.strength;
+
   }
 
   return total /
-    Math.max(.01,state.beats.length);
+    Math.max(
+      .01,
+      state.beats.length
+    );
+
 }
+
+
+/* =========================================================
+   PHOTO SHAKE
+========================================================= */
 
 function applyShake(time){
 
@@ -1454,7 +1730,9 @@ function applyShake(time){
   if(beat){
 
     const distance =
-      Math.abs(time-beat.time);
+      Math.abs(
+        time-beat.time
+      );
 
     const shakeWindow=.105;
 
@@ -1469,15 +1747,21 @@ function applyShake(time){
           Math.max(
             .45,
             beat.strength /
-            Math.max(.01,average)
+            Math.max(
+              .01,
+              average
+            )
           )
         );
 
       const falloff =
-        1-distance/shakeWindow;
+        1 -
+        distance /
+        shakeWindow;
 
       const power =
-        falloff*strength;
+        falloff *
+        strength;
 
       shakeX =
         (Math.random()-.5) *
@@ -1493,7 +1777,9 @@ function applyShake(time){
         (Math.random()-.5) *
         .045 *
         power;
+
     }
+
   }
 
   return {
@@ -1501,14 +1787,13 @@ function applyShake(time){
     shakeY,
     rotation
   };
+
 }
 
-/*
-  VIDEO MODE:
-  smooth deterministic physical shake.
-  No flashing to black.
-  No aggressive random jitter.
-*/
+
+/* =========================================================
+   VIDEO SHAKE
+========================================================= */
 
 function applyVideoShake(time){
 
@@ -1520,11 +1805,13 @@ function applyVideoShake(time){
   let rotation=0;
 
   if(!beat){
+
     return {
       shakeX,
       shakeY,
       rotation
     };
+
   }
 
   const distance =
@@ -1543,6 +1830,7 @@ function applyVideoShake(time){
       shakeY,
       rotation
     };
+
   }
 
   const average =
@@ -1554,7 +1842,10 @@ function applyVideoShake(time){
       Math.max(
         .45,
         beat.strength /
-        Math.max(.01,average)
+        Math.max(
+          .01,
+          average
+        )
       )
     );
 
@@ -1563,17 +1854,23 @@ function applyVideoShake(time){
   if(distance<0){
 
     power =
-      1-Math.abs(distance)/windowBefore;
+      1 -
+      Math.abs(distance) /
+      windowBefore;
 
     power *= .35;
 
   }else{
 
     power =
-      1-distance/windowAfter;
+      1 -
+      distance /
+      windowAfter;
 
     power =
-      power*power;
+      power *
+      power;
+
   }
 
   const amount =
@@ -1582,7 +1879,8 @@ function applyVideoShake(time){
     power;
 
   const phase =
-    beat.time*17.731;
+    beat.time *
+    17.731;
 
   shakeX =
     Math.sin(phase) *
@@ -1590,7 +1888,8 @@ function applyVideoShake(time){
 
   shakeY =
     Math.cos(phase*1.37) *
-    amount*.65;
+    amount *
+    .65;
 
   rotation =
     Math.sin(phase*.73) *
@@ -1603,7 +1902,9 @@ function applyVideoShake(time){
     shakeY,
     rotation
   };
+
 }
+
 
 /* =========================================================
    DRAWING
@@ -1612,25 +1913,44 @@ function applyVideoShake(time){
 function drawBackground(){
 
   ctx.fillStyle="#111";
+
   ctx.fillRect(
     0,
     0,
     canvas.width,
     canvas.height
   );
+
 }
+
 
 function drawCoverImage(img){
 
-  if(!img || !img.width || !img.height){
+  if(
+    !img ||
+    !img.width &&
+    !img.videoWidth
+  ){
+
     return;
+
   }
 
-  const cw=canvas.width;
-  const ch=canvas.height;
+  const cw =
+    canvas.width;
 
-  const iw=img.videoWidth || img.naturalWidth || img.width;
-  const ih=img.videoHeight || img.naturalHeight || img.height;
+  const ch =
+    canvas.height;
+
+  const iw =
+    img.videoWidth ||
+    img.naturalWidth ||
+    img.width;
+
+  const ih =
+    img.videoHeight ||
+    img.naturalHeight ||
+    img.height;
 
   if(!iw || !ih){
     return;
@@ -1642,11 +1962,17 @@ function drawCoverImage(img){
       ch/ih
     );
 
-  const dw=iw*scale;
-  const dh=ih*scale;
+  const dw =
+    iw*scale;
 
-  const x=(cw-dw)/2;
-  const y=(ch-dh)/2;
+  const dh =
+    ih*scale;
+
+  const x =
+    (cw-dw)/2;
+
+  const y =
+    (ch-dh)/2;
 
   ctx.drawImage(
     img,
@@ -1655,7 +1981,9 @@ function drawCoverImage(img){
     dw,
     dh
   );
+
 }
+
 
 function drawIdle(){
 
@@ -1664,7 +1992,10 @@ function drawIdle(){
   ctx.save();
 
   ctx.fillStyle="#ab04f9";
-  ctx.font="bold 58px Bangers, Impact, sans-serif";
+
+  ctx.font=
+    "bold 58px Bangers, Impact, sans-serif";
+
   ctx.textAlign="center";
   ctx.textBaseline="middle";
 
@@ -1675,7 +2006,9 @@ function drawIdle(){
   );
 
   ctx.fillStyle="#ffe600";
-  ctx.font="bold 31px Bangers, Impact, sans-serif";
+
+  ctx.font=
+    "bold 31px Bangers, Impact, sans-serif";
 
   ctx.fillText(
     "AUTO EDIT MAKER",
@@ -1684,7 +2017,73 @@ function drawIdle(){
   );
 
   ctx.restore();
+
 }
+
+
+/* =========================================================
+   VIDEO FRAME POSITION
+========================================================= */
+
+function syncVideoToTimeline(video,index,time){
+
+  if(
+    !video ||
+    !Number.isFinite(video.duration) ||
+    video.duration<=0
+  ){
+
+    return;
+
+  }
+
+  const beatStart =
+    state.beats[index]?.time || 0;
+
+  /*
+    How far into THIS beat's clip are we?
+  */
+
+  let localTime =
+    time -
+    beatStart;
+
+  if(localTime<0){
+    localTime=0;
+  }
+
+  /*
+    Loop the source video if its duration
+    is shorter than the time it is displayed.
+  */
+
+  const desired =
+    localTime %
+    video.duration;
+
+  /*
+    Don't constantly seek.
+
+    Constant currentTime assignments can make
+    the video appear frozen/black in some browsers.
+  */
+
+  if(
+    Math.abs(
+      video.currentTime -
+      desired
+    ) > .12
+  ){
+
+    try{
+      video.currentTime =
+        desired;
+    }catch{}
+
+  }
+
+}
+
 
 /* =========================================================
    RENDER FRAME
@@ -1693,8 +2092,10 @@ function drawIdle(){
 function renderFrame(time){
 
   if(!state.audio){
+
     drawIdle();
     return;
+
   }
 
   const duration =
@@ -1709,7 +2110,8 @@ function renderFrame(time){
   const index =
     result.index;
 
-  state.currentClipIndex=index;
+  state.currentClipIndex =
+    index;
 
   drawBackground();
 
@@ -1723,23 +2125,20 @@ function renderFrame(time){
     ctx.save();
 
     ctx.translate(
-      canvas.width/2 + shake.shakeX,
-      canvas.height/2 + shake.shakeY
+      canvas.width/2 +
+      shake.shakeX,
+      canvas.height/2 +
+      shake.shakeY
     );
 
     ctx.rotate(
       shake.rotation
     );
 
-    /*
-      Slight fixed safety scale.
-
-      This is NOT an animated zoom.
-      It simply prevents the physical shake
-      from exposing black edges.
-    */
-
-    ctx.scale(1.08,1.08);
+    ctx.scale(
+      1.08,
+      1.08
+    );
 
     ctx.translate(
       -canvas.width/2,
@@ -1752,10 +2151,30 @@ function renderFrame(time){
         clip.image
       );
 
-    }else if(clip.type==="video"){
+    }
+
+    else if(clip.type==="video"){
+
+      /*
+        IMPORTANT:
+        Synchronise the video BEFORE drawing it.
+      */
+
+      syncVideoToTimeline(
+        clip.video,
+        index,
+        time
+      );
+
+      /*
+        readyState >= 2 means there is actual
+        media data available to draw.
+      */
 
       if(
-        clip.video.readyState >= 2
+        clip.video.readyState >= 2 &&
+        clip.video.videoWidth > 0 &&
+        clip.video.videoHeight > 0
       ){
 
         drawCoverImage(
@@ -1763,6 +2182,11 @@ function renderFrame(time){
         );
 
       }else{
+
+        /*
+          Don't permanently paint black.
+          Try to draw once the first frame arrives.
+        */
 
         ctx.fillStyle="#222";
 
@@ -1772,15 +2196,22 @@ function renderFrame(time){
           canvas.width,
           canvas.height
         );
+
       }
+
     }
 
     ctx.restore();
+
   }
 
   const progress =
     duration
-      ? clamp(time/duration,0,1)
+      ? clamp(
+          time/duration,
+          0,
+          1
+        )
       : 0;
 
   progressBar.style.width =
@@ -1794,21 +2225,69 @@ function renderFrame(time){
   clipLabel.textContent =
     clip
       ? (
-        clip.type === "video"
-          ? "VIDEO " + (index+1)
-          : "PHOTO " + (index+1)
-      )
+          clip.type === "video"
+            ? "VIDEO " + (index+1)
+            : "PHOTO " + (index+1)
+        )
       : "CLIP —";
 
   previewBadge.textContent =
     state.playing
       ? "PLAYING"
       : "READY";
+
 }
+
 
 /* =========================================================
    PLAYBACK LOOP
 ========================================================= */
+
+async function startCurrentVideo(video){
+
+  if(!video){
+    return;
+  }
+
+  video.muted=true;
+  video.playsInline=true;
+
+  try{
+
+    if(video.paused){
+      await video.play();
+    }
+
+  }catch(error){
+
+    /*
+      Video audio is muted, so autoplay restrictions
+      should normally not matter, but don't let a
+      rejected promise kill the whole editor.
+    */
+
+    console.warn(
+      "Video play failed:",
+      error
+    );
+
+  }
+
+}
+
+
+function stopAllVideos(){
+
+  state.videos.forEach(item => {
+
+    try{
+      item.video.pause();
+    }catch{}
+
+  });
+
+}
+
 
 function animationLoop(){
 
@@ -1830,59 +2309,59 @@ function animationLoop(){
     const video =
       result.clip.video;
 
-    /*
-      Keep video aligned with the audio timeline.
+    const previous =
+      state.currentVideoIndex;
 
-      The video is NOT the master clock.
-      The audio remains the master timeline.
+    /*
+      Only reset/start the video when
+      switching to a different video.
     */
 
-    const previous =
-      state.currentClipIndex;
+    if(previous !== result.index){
 
-    if(previous!==result.index){
+      stopAllVideos();
 
-      try{
-        video.pause();
-      }catch{}
+      state.currentVideoIndex =
+        result.index;
 
       try{
         video.currentTime=0;
       }catch{}
 
-      video.play().catch(()=>{});
+      startCurrentVideo(video);
+
     }
 
-    const videoTime =
-      time -
-      (
-        state.beats[result.index]?.time || 0
-      );
+    syncVideoToTimeline(
+      video,
+      result.index,
+      time
+    );
 
     if(
-      Number.isFinite(video.duration) &&
-      video.duration>0
+      video.paused &&
+      state.playing
     ){
 
-      const desired =
-        videoTime %
-        video.duration;
+      startCurrentVideo(video);
 
-      if(
-        Math.abs(
-          video.currentTime-desired
-        )>.08
-      ){
-
-        try{
-          video.currentTime=desired;
-        }catch{}
-      }
     }
 
-    if(video.paused){
-      video.play().catch(()=>{});
+  }else{
+
+    /*
+      Once we enter the photo section,
+      stop any video.
+    */
+
+    if(state.currentVideoIndex !== -1){
+
+      stopAllVideos();
+
+      state.currentVideoIndex=-1;
+
     }
+
   }
 
   renderFrame(time);
@@ -1893,8 +2372,11 @@ function animationLoop(){
       requestAnimationFrame(
         animationLoop
       );
+
   }
+
 }
+
 
 /* =========================================================
    STOP PREVIEW
@@ -1911,6 +2393,7 @@ function stopPreview(){
     );
 
     state.animationFrame=null;
+
   }
 
   if(state.audio){
@@ -1918,18 +2401,17 @@ function stopPreview(){
     try{
       state.audio.pause();
     }catch{}
+
   }
 
-  state.videos.forEach(item => {
+  stopAllVideos();
 
-    try{
-      item.video.pause();
-    }catch{}
-
-  });
+  state.currentVideoIndex=-1;
 
   previewBadge.textContent="READY";
+
 }
+
 
 /* =========================================================
    GENERATE
@@ -1968,7 +2450,21 @@ generateButton.addEventListener(
         throw new Error(
           "No beats detected"
         );
+
       }
+
+      /*
+        THIS now creates:
+
+        VIDEOS FIRST
+        ↓
+        PHOTOS AFTER
+
+        instead of the old:
+        PHOTOS FIRST
+        ↓
+        VIDEOS
+      */
 
       buildSequence();
 
@@ -1977,7 +2473,7 @@ generateButton.addEventListener(
       setStatus(
         "EDIT GENERATED · " +
         state.beats.length +
-        " BEATS DETECTED"
+        " BEATS DETECTED · VIDEO → PHOTO"
       );
 
       previewBadge.textContent="READY";
@@ -1985,7 +2481,10 @@ generateButton.addEventListener(
       if(state.audio){
 
         state.audio.currentTime=0;
+
       }
+
+      state.currentVideoIndex=-1;
 
       renderFrame(0);
 
@@ -2004,9 +2503,12 @@ generateButton.addEventListener(
       state.generating=false;
 
       updateUI();
+
     }
+
   }
 );
+
 
 /* =========================================================
    PREVIEW START
@@ -2020,14 +2522,16 @@ canvas.addEventListener(
       !state.generated ||
       !state.audio
     ){
+
       return;
+
     }
 
     if(state.playing){
 
       stopPreview();
-
       return;
+
     }
 
     try{
@@ -2040,7 +2544,9 @@ canvas.addEventListener(
         ){
 
           await state.audioContext.resume();
+
         }
+
       }
 
       state.playing=true;
@@ -2053,7 +2559,10 @@ canvas.addEventListener(
       ){
 
         state.audio.currentTime=0;
+
       }
+
+      state.currentVideoIndex=-1;
 
       await state.audio.play();
 
@@ -2068,9 +2577,12 @@ canvas.addEventListener(
       setStatus(
         "TAP THE PREVIEW AGAIN TO START IT."
       );
+
     }
+
   }
 );
+
 
 /* =========================================================
    EXPORT
@@ -2084,7 +2596,9 @@ function getSupportedMimeType(){
     "video/webm"
   ];
 
-  for(const type of types){
+  for(
+    const type of types
+  ){
 
     if(
       window.MediaRecorder &&
@@ -2092,11 +2606,15 @@ function getSupportedMimeType(){
     ){
 
       return type;
+
     }
+
   }
 
   return "";
+
 }
+
 
 async function startExport(){
 
@@ -2104,7 +2622,9 @@ async function startExport(){
     !state.generated ||
     !state.audio
   ){
+
     return;
+
   }
 
   if(!window.MediaRecorder){
@@ -2114,6 +2634,7 @@ async function startExport(){
     );
 
     return;
+
   }
 
   if(!canvas.captureStream){
@@ -2123,6 +2644,7 @@ async function startExport(){
     );
 
     return;
+
   }
 
   const mime =
@@ -2135,6 +2657,7 @@ async function startExport(){
     );
 
     return;
+
   }
 
   stopPreview();
@@ -2149,6 +2672,7 @@ async function startExport(){
       throw new Error(
         "Audio graph unavailable"
       );
+
     }
 
     if(
@@ -2157,6 +2681,7 @@ async function startExport(){
     ){
 
       await state.audioContext.resume();
+
     }
 
     const canvasStream =
@@ -2169,7 +2694,11 @@ async function startExport(){
       canvasStream.getVideoTracks()[0];
 
     if(videoTrack){
-      combinedStream.addTrack(videoTrack);
+
+      combinedStream.addTrack(
+        videoTrack
+      );
+
     }
 
     const audioTrack =
@@ -2178,7 +2707,11 @@ async function startExport(){
         .getAudioTracks()[0];
 
     if(audioTrack){
-      combinedStream.addTrack(audioTrack);
+
+      combinedStream.addTrack(
+        audioTrack
+      );
+
     }
 
     state.exportStream =
@@ -2198,11 +2731,27 @@ async function startExport(){
     state.mediaRecorder.ondataavailable =
       event => {
 
-        if(event.data && event.data.size){
+        if(
+          event.data &&
+          event.data.size
+        ){
+
           state.exportChunks.push(
             event.data
           );
+
         }
+
+      };
+
+    state.mediaRecorder.onerror =
+      event => {
+
+        console.error(
+          "MediaRecorder error:",
+          event
+        );
+
       };
 
     state.mediaRecorder.onstop =
@@ -2211,17 +2760,22 @@ async function startExport(){
         const blob =
           new Blob(
             state.exportChunks,
-            {type:mime}
+            {
+              type:mime
+            }
           );
 
         const url =
-          URL.createObjectURL(blob);
+          URL.createObjectURL(
+            blob
+          );
 
         const link =
           document.createElement("a");
 
         link.href=url;
-        link.download=
+
+        link.download =
           "john-banana-edit.webm";
 
         document.body.appendChild(link);
@@ -2231,7 +2785,9 @@ async function startExport(){
         link.remove();
 
         setTimeout(
-          () => URL.revokeObjectURL(url),
+          () => {
+            URL.revokeObjectURL(url);
+          },
           2000
         );
 
@@ -2244,6 +2800,7 @@ async function startExport(){
         setStatus(
           "EXPORT COMPLETE 🎬"
         );
+
       };
 
     state.exporting=true;
@@ -2256,9 +2813,13 @@ async function startExport(){
 
     state.audio.currentTime=0;
 
-    state.mediaRecorder.start(
-      250
-    );
+    state.currentVideoIndex=-1;
+
+    /*
+      Start recording before playback.
+    */
+
+    state.mediaRecorder.start(250);
 
     state.playing=true;
 
@@ -2277,8 +2838,11 @@ async function startExport(){
     setStatus(
       "EXPORT FAILED 😭"
     );
+
   }
+
 }
+
 
 function finishExport(){
 
@@ -2291,8 +2855,11 @@ function finishExport(){
   ){
 
     state.mediaRecorder.stop();
+
   }
+
 }
+
 
 exportButton.addEventListener(
   "click",
@@ -2303,8 +2870,10 @@ exportButton.addEventListener(
     }
 
     startExport();
+
   }
 );
+
 
 /* =========================================================
    CLEANUP
@@ -2319,7 +2888,9 @@ window.addEventListener(
     state.photos.forEach(item => {
 
       try{
-        URL.revokeObjectURL(item.url);
+        URL.revokeObjectURL(
+          item.url
+        );
       }catch{}
 
     });
@@ -2327,7 +2898,9 @@ window.addEventListener(
     state.videos.forEach(item => {
 
       try{
-        URL.revokeObjectURL(item.url);
+        URL.revokeObjectURL(
+          item.url
+        );
       }catch{}
 
     });
@@ -2335,10 +2908,13 @@ window.addEventListener(
     if(state.audioURL){
 
       try{
+
         URL.revokeObjectURL(
           state.audioURL
         );
+
       }catch{}
+
     }
 
     if(state.audioContext){
@@ -2346,9 +2922,12 @@ window.addEventListener(
       try{
         state.audioContext.close();
       }catch{}
+
     }
+
   }
 );
+
 
 /* =========================================================
    INITIAL STATE
