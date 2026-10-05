@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>JOHN BANANA — AUTO EDIT MAKER</title>
 
 <style>
@@ -23,37 +23,41 @@
   box-sizing:border-box;
 }
 
-body{
+html,body{
   margin:0;
-  min-height:100vh;
-  background:
-    radial-gradient(circle at 20% 10%,rgba(171,4,249,.12),transparent 30%),
-    radial-gradient(circle at 80% 90%,rgba(255,48,79,.08),transparent 30%),
-    var(--cream);
+  min-height:100%;
+}
+
+body{
+  background:var(--cream);
   color:var(--black);
   font-family:Inter,Arial,sans-serif;
 }
 
 .wrap{
-  width:min(1100px,94vw);
-  margin:0 auto;
-  padding:30px 0 60px;
+  width:min(1120px,94vw);
+  margin:auto;
+  padding:28px 0 60px;
 }
+
+/* =========================================================
+   HEADER
+========================================================= */
 
 header{
   display:flex;
-  align-items:end;
   justify-content:space-between;
+  align-items:flex-end;
   gap:20px;
-  margin-bottom:25px;
+  margin-bottom:28px;
 }
 
 .logo{
   font-family:Bangers,cursive;
-  font-size:clamp(42px,8vw,78px);
+  font-size:clamp(48px,8vw,82px);
   line-height:.8;
-  color:var(--purple);
   letter-spacing:2px;
+  color:var(--purple);
   text-shadow:4px 4px 0 var(--black);
   transform:rotate(-2deg);
 }
@@ -64,33 +68,41 @@ header{
 
 .subtitle{
   font-family:"DM Mono",monospace;
-  font-size:12px;
-  font-weight:700;
-  max-width:300px;
-  text-align:right;
+  font-size:11px;
   line-height:1.5;
+  text-align:right;
+  font-weight:700;
 }
+
+/* =========================================================
+   MAIN
+========================================================= */
 
 .layout{
   display:grid;
-  grid-template-columns:360px 1fr;
+  grid-template-columns:350px minmax(0,1fr);
   gap:28px;
+  align-items:start;
 }
 
 .panel{
   background:#fff;
   border:3px solid var(--black);
   border-radius:18px;
-  padding:20px;
   box-shadow:8px 8px 0 var(--black);
+  padding:20px;
 }
 
 .panel h2{
   margin:0 0 15px;
   font-family:Bangers,cursive;
-  font-size:28px;
+  font-size:29px;
   letter-spacing:1px;
 }
+
+/* =========================================================
+   IMPORT BUTTONS
+========================================================= */
 
 .imports{
   display:grid;
@@ -98,14 +110,18 @@ header{
 }
 
 .importBtn{
+  width:100%;
   border:3px solid var(--black);
-  background:white;
-  padding:14px;
   border-radius:12px;
+  padding:14px;
+  background:#fff;
+  color:var(--black);
+  text-align:left;
+  font-family:Inter,sans-serif;
+  font-size:14px;
   font-weight:900;
   cursor:pointer;
-  text-align:left;
-  transition:.12s;
+  transition:transform .1s,box-shadow .1s;
 }
 
 .importBtn:hover{
@@ -113,54 +129,59 @@ header{
   box-shadow:4px 4px 0 var(--black);
 }
 
-.importBtn.photo{
-  background:#fff;
-}
-
 .importBtn.video{
-  background:#e9d3ff;
+  background:#ead5ff;
 }
 
 .importBtn.audio{
-  background:#fff2a6;
+  background:#fff1a3;
 }
 
 input[type=file]{
   display:none;
 }
 
+/* =========================================================
+   STATUS
+========================================================= */
+
 .status{
-  margin-top:14px;
   display:grid;
   gap:7px;
+  margin-top:15px;
 }
 
 .statusRow{
   display:flex;
   justify-content:space-between;
-  gap:10px;
-  padding:8px 10px;
-  background:#f1eee7;
+  align-items:center;
+  padding:9px 11px;
   border-radius:8px;
+  background:#f0ede7;
   font-family:"DM Mono",monospace;
   font-size:11px;
+  font-weight:700;
 }
 
 .statusRow strong{
   color:var(--purple);
 }
 
+/* =========================================================
+   CONTROLS
+========================================================= */
+
 .control{
-  margin-top:20px;
+  margin-top:21px;
 }
 
 .control label{
   display:flex;
   justify-content:space-between;
-  font-family:"DM Mono",monospace;
-  font-size:12px;
-  font-weight:700;
   margin-bottom:8px;
+  font-family:"DM Mono",monospace;
+  font-size:11px;
+  font-weight:700;
 }
 
 input[type=range]{
@@ -174,14 +195,14 @@ input[type=range]{
   margin-top:20px;
 }
 
-button{
+button.action{
   border:3px solid var(--black);
   border-radius:12px;
   padding:14px 16px;
-  font-weight:900;
+  font-family:Inter,sans-serif;
   font-size:14px;
+  font-weight:900;
   cursor:pointer;
-  background:white;
 }
 
 button.primary{
@@ -191,23 +212,28 @@ button.primary{
 
 button.export{
   background:var(--yellow);
+  color:var(--black);
 }
 
-button:disabled{
-  opacity:.4;
+button.action:disabled{
+  opacity:.42;
   cursor:not-allowed;
 }
 
 .message{
-  min-height:42px;
   margin-top:15px;
-  padding:10px;
+  min-height:48px;
+  padding:11px;
   border:2px dashed var(--black);
   border-radius:10px;
   font-family:"DM Mono",monospace;
-  font-size:11px;
-  line-height:1.45;
+  font-size:10px;
+  line-height:1.5;
 }
+
+/* =========================================================
+   PREVIEW
+========================================================= */
 
 .previewPanel{
   display:flex;
@@ -218,8 +244,8 @@ button:disabled{
 .previewWrap{
   position:relative;
   width:min(100%,540px);
-  aspect-ratio:9/16;
-  background:#111;
+  aspect-ratio:9 / 16;
+  background:#080609;
   border:4px solid var(--black);
   border-radius:18px;
   overflow:hidden;
@@ -228,7 +254,7 @@ button:disabled{
   touch-action:manipulation;
 }
 
-canvas{
+#canvas{
   display:block;
   width:100%;
   height:100%;
@@ -240,43 +266,43 @@ canvas{
   display:flex;
   align-items:center;
   justify-content:center;
-  pointer-events:none;
   opacity:0;
-  transition:.15s;
-}
-
-.pauseIcon{
-  width:82px;
-  height:82px;
-  border-radius:50%;
-  background:rgba(0,0,0,.65);
-  color:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:34px;
-  font-weight:900;
+  pointer-events:none;
+  transition:opacity .12s ease;
 }
 
 .pauseOverlay.show{
   opacity:1;
 }
 
+.pauseIcon{
+  width:76px;
+  height:76px;
+  border-radius:50%;
+  background:rgba(0,0,0,.68);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:31px;
+  font-weight:900;
+}
+
 .previewHint{
   margin-top:10px;
   font-family:"DM Mono",monospace;
-  font-size:11px;
+  font-size:10px;
   font-weight:700;
+  text-align:center;
 }
 
 .progressOuter{
-  width:100%;
-  max-width:540px;
+  width:min(100%,540px);
   height:10px;
+  margin-top:13px;
   background:#ddd;
   border:2px solid var(--black);
   border-radius:99px;
-  margin-top:14px;
   overflow:hidden;
 }
 
@@ -287,18 +313,17 @@ canvas{
 }
 
 .timelineInfo{
-  width:100%;
-  max-width:540px;
+  width:min(100%,540px);
   display:flex;
   justify-content:space-between;
-  gap:10px;
   margin-top:7px;
   font-family:"DM Mono",monospace;
-  font-size:11px;
+  font-size:10px;
   font-weight:700;
 }
 
-@media(max-width:800px){
+@media(max-width:820px){
+
   .layout{
     grid-template-columns:1fr;
   }
@@ -308,8 +333,8 @@ canvas{
   }
 
   header{
-    align-items:flex-start;
     flex-direction:column;
+    align-items:flex-start;
   }
 
   .subtitle{
@@ -324,6 +349,7 @@ canvas{
 <div class="wrap">
 
 <header>
+
   <div class="logo">
     AUTO <span>EDIT</span>
   </div>
@@ -332,9 +358,15 @@ canvas{
     JOHN BANANA'S COMPLETELY AUTOMATIC<br>
     BEAT-SYNCED EDIT MACHINE™
   </div>
+
 </header>
 
+
 <div class="layout">
+
+  <!-- =====================================================
+       LEFT PANEL
+  ====================================================== -->
 
   <section class="panel">
 
@@ -342,19 +374,29 @@ canvas{
 
     <div class="imports">
 
-      <button class="importBtn photo" id="photoButton">
+      <button
+        class="importBtn"
+        id="photoButton"
+      >
         📸 ADD PHOTOS
       </button>
 
-      <button class="importBtn video" id="videoButton">
+      <button
+        class="importBtn video"
+        id="videoButton"
+      >
         🎬 ADD VIDEOS
       </button>
 
-      <button class="importBtn audio" id="audioButton">
+      <button
+        class="importBtn audio"
+        id="audioButton"
+      >
         🔊 ADD MUSIC
       </button>
 
     </div>
+
 
     <input
       id="photoInput"
@@ -373,8 +415,9 @@ canvas{
     <input
       id="audioInput"
       type="file"
-      accept=".mp3,.m4a,.wav,.aac,.caf,.ogg,.opus,audio/*"
+      accept="audio/*,.mp3,.m4a,.wav,.aac,.caf,.ogg,.opus"
     >
+
 
     <div class="status">
 
@@ -400,6 +443,7 @@ canvas{
 
     </div>
 
+
     <div class="control">
 
       <label>
@@ -417,19 +461,20 @@ canvas{
 
     </div>
 
+
     <div class="buttons">
 
       <button
+        class="action primary"
         id="generateButton"
-        class="primary"
         disabled
       >
         ⚡ GENERATE EDIT
       </button>
 
       <button
+        class="action export"
         id="exportButton"
-        class="export"
         disabled
       >
         💾 EXPORT WEBM
@@ -437,19 +482,27 @@ canvas{
 
     </div>
 
-    <div class="message" id="message">
+
+    <div
+      class="message"
+      id="message"
+    >
       Add some photos, videos and music.
     </div>
 
   </section>
 
 
+  <!-- =====================================================
+       PREVIEW
+  ====================================================== -->
+
   <section class="panel previewPanel">
 
     <div
       class="previewWrap"
       id="previewWrap"
-      title="Click/tap to pause or play"
+      title="Tap / click to pause or play"
     >
 
       <canvas
@@ -458,24 +511,40 @@ canvas{
         height="960"
       ></canvas>
 
-      <div class="pauseOverlay" id="pauseOverlay">
-        <div class="pauseIcon" id="pauseIcon">Ⅱ</div>
+      <div
+        class="pauseOverlay"
+        id="pauseOverlay"
+      >
+        <div
+          class="pauseIcon"
+          id="pauseIcon"
+        >Ⅱ</div>
       </div>
 
     </div>
 
+
     <div class="previewHint">
-      TAP / CLICK THE VIDEO TO PAUSE OR PLAY
+      TAP / CLICK THE PREVIEW TO PAUSE OR PLAY
     </div>
+
 
     <div class="progressOuter">
-      <div class="progressInner" id="progress"></div>
+      <div
+        class="progressInner"
+        id="progress"
+      ></div>
     </div>
 
+
     <div class="timelineInfo">
+
       <span id="timeLabel">00:00</span>
+
       <span id="clipLabel">READY</span>
+
       <span id="durationLabel">00:00</span>
+
     </div>
 
   </section>
@@ -486,38 +555,82 @@ canvas{
 
 
 <script>
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
 
-const previewWrap = document.getElementById("previewWrap");
-const pauseOverlay = document.getElementById("pauseOverlay");
-const pauseIcon = document.getElementById("pauseIcon");
+/* =========================================================
+   DOM
+========================================================= */
 
-const photoInput = document.getElementById("photoInput");
-const videoInput = document.getElementById("videoInput");
-const audioInput = document.getElementById("audioInput");
+const canvas =
+  document.getElementById("canvas");
 
-const photoButton = document.getElementById("photoButton");
-const videoButton = document.getElementById("videoButton");
-const audioButton = document.getElementById("audioButton");
+const ctx =
+  canvas.getContext("2d");
 
-const generateButton = document.getElementById("generateButton");
-const exportButton = document.getElementById("exportButton");
+const previewWrap =
+  document.getElementById("previewWrap");
 
-const photoCount = document.getElementById("photoCount");
-const videoCount = document.getElementById("videoCount");
-const audioStatus = document.getElementById("audioStatus");
-const beatCount = document.getElementById("beatCount");
+const pauseOverlay =
+  document.getElementById("pauseOverlay");
 
-const sensitivity = document.getElementById("sensitivity");
-const sensitivityValue = document.getElementById("sensitivityValue");
+const pauseIcon =
+  document.getElementById("pauseIcon");
 
-const message = document.getElementById("message");
-const progress = document.getElementById("progress");
+const photoInput =
+  document.getElementById("photoInput");
 
-const timeLabel = document.getElementById("timeLabel");
-const durationLabel = document.getElementById("durationLabel");
-const clipLabel = document.getElementById("clipLabel");
+const videoInput =
+  document.getElementById("videoInput");
+
+const audioInput =
+  document.getElementById("audioInput");
+
+const photoButton =
+  document.getElementById("photoButton");
+
+const videoButton =
+  document.getElementById("videoButton");
+
+const audioButton =
+  document.getElementById("audioButton");
+
+const generateButton =
+  document.getElementById("generateButton");
+
+const exportButton =
+  document.getElementById("exportButton");
+
+const photoCount =
+  document.getElementById("photoCount");
+
+const videoCount =
+  document.getElementById("videoCount");
+
+const audioStatus =
+  document.getElementById("audioStatus");
+
+const beatCount =
+  document.getElementById("beatCount");
+
+const sensitivity =
+  document.getElementById("sensitivity");
+
+const sensitivityValue =
+  document.getElementById("sensitivityValue");
+
+const message =
+  document.getElementById("message");
+
+const progress =
+  document.getElementById("progress");
+
+const timeLabel =
+  document.getElementById("timeLabel");
+
+const clipLabel =
+  document.getElementById("clipLabel");
+
+const durationLabel =
+  document.getElementById("durationLabel");
 
 
 /* =========================================================
@@ -534,59 +647,52 @@ let audioURL = null;
 let audioContext = null;
 let audioSource = null;
 let audioDestination = null;
+
 let audioGraphConnected = false;
 
 let beats = [];
 let sequence = [];
 
+let totalDuration = 0;
+let currentTime = 0;
+
 let generated = false;
 let generating = false;
 let exporting = false;
-let playing = false;
 
+let playing = false;
 let paused = false;
 
 let animationFrame = null;
 
-let currentTime = 0;
-let totalDuration = 0;
-
-let playStartTime = 0;
-
 let currentClipIndex = -1;
 
-
-/*
-  Video state.
-
-  IMPORTANT:
-  A video is NEVER controlled by:
-      currentTime = timelineTime % duration
-
-  and NEVER restarted every animation frame.
-
-  Each imported video owns one continuous section
-  of the edit timeline.
-*/
 let activeVideo = null;
 let activeVideoIndex = -1;
-let videoClipStartedAt = 0;
-let lastVideoCorrection = 0;
+
+let videoStartTimeline = 0;
+
+let videoStartToken = 0;
 
 
 /* =========================================================
-   HELPERS
+   BASIC HELPERS
 ========================================================= */
 
-function setMessage(text){
-  message.textContent = text;
+function clamp(value,min,max){
+  return Math.max(min,Math.min(max,value));
 }
 
 function formatTime(seconds){
-  seconds = Math.max(0, Number(seconds) || 0);
 
-  const mins = Math.floor(seconds / 60);
-  const secs = Math.floor(seconds % 60);
+  seconds =
+    Math.max(0,Number(seconds)||0);
+
+  const mins =
+    Math.floor(seconds / 60);
+
+  const secs =
+    Math.floor(seconds % 60);
 
   return (
     String(mins).padStart(2,"0") +
@@ -595,206 +701,264 @@ function formatTime(seconds){
   );
 }
 
-function clamp(v,min,max){
-  return Math.max(min,Math.min(max,v));
-}
-
-function sleep(ms){
-  return new Promise(resolve => setTimeout(resolve,ms));
+function setMessage(text){
+  message.textContent = text;
 }
 
 
 /* =========================================================
-   FILE IMPORT
+   IMPORT
 ========================================================= */
 
-photoButton.addEventListener("click",()=>{
+photoButton.onclick = ()=>{
   photoInput.click();
-});
+};
 
-videoButton.addEventListener("click",()=>{
+videoButton.onclick = ()=>{
   videoInput.click();
-});
+};
 
-audioButton.addEventListener("click",()=>{
+audioButton.onclick = ()=>{
   audioInput.click();
-});
+};
 
 
-photoInput.addEventListener("change",async e=>{
+/* ---------------- PHOTOS ---------------- */
 
-  const files = [...e.target.files];
+photoInput.addEventListener(
+  "change",
+  async e=>{
 
-  for(const file of files){
+    const files =
+      [...e.target.files];
 
-    const url = URL.createObjectURL(file);
+    for(const file of files){
 
-    const img = new Image();
+      const url =
+        URL.createObjectURL(file);
 
-    img.src = url;
+      const img =
+        new Image();
 
-    await new Promise(resolve=>{
-      img.onload = resolve;
-      img.onerror = resolve;
-    });
+      img.src = url;
 
-    photos.push({
-      file,
-      url,
-      img
-    });
-  }
+      await new Promise(resolve=>{
 
-  photoInput.value = "";
+        img.onload = resolve;
+        img.onerror = resolve;
 
-  photoCount.textContent = photos.length;
+      });
 
-  drawPlaceholder();
-
-  updateButtons();
-
-  setMessage(
-    photos.length +
-    " photo" +
-    (photos.length === 1 ? "" : "s") +
-    " loaded."
-  );
-});
-
-
-videoInput.addEventListener("change",async e=>{
-
-  const files = [...e.target.files];
-
-  for(const file of files){
-
-    const url = URL.createObjectURL(file);
-
-    const video = document.createElement("video");
-
-    video.preload = "auto";
-    video.playsInline = true;
-    video.muted = true;
-    video.controls = false;
-    video.loop = false;
-
-    video.src = url;
-
-    await waitForVideo(video);
-
-    videos.push({
-      file,
-      url,
-      video,
-      duration: Number.isFinite(video.duration)
-        ? video.duration
-        : 0
-    });
-  }
-
-  videoInput.value = "";
-
-  videoCount.textContent = videos.length;
-
-  drawPlaceholder();
-
-  updateButtons();
-
-  setMessage(
-    videos.length +
-    " video" +
-    (videos.length === 1 ? "" : "s") +
-    " loaded. Videos will play FIRST."
-  );
-});
-
-
-audioInput.addEventListener("change",async e=>{
-
-  const file = e.target.files[0];
-
-  if(!file) return;
-
-  if(audioURL){
-    URL.revokeObjectURL(audioURL);
-  }
-
-  audioFile = file;
-
-  audioURL = URL.createObjectURL(file);
-
-  audio = new Audio();
-
-  audio.src = audioURL;
-  audio.preload = "auto";
-  audio.crossOrigin = "anonymous";
-
-  await new Promise(resolve=>{
-    if(audio.readyState >= 1){
-      resolve();
-      return;
+      photos.push({
+        file,
+        url,
+        img
+      });
     }
 
-    audio.addEventListener("loadedmetadata",resolve,{
-      once:true
+    photoInput.value = "";
+
+    photoCount.textContent =
+      photos.length;
+
+    updateButtons();
+
+    drawPlaceholder();
+
+    setMessage(
+      `${photos.length} photo${
+        photos.length === 1 ? "" : "s"
+      } loaded.`
+    );
+  }
+);
+
+
+/* ---------------- VIDEOS ---------------- */
+
+videoInput.addEventListener(
+  "change",
+  async e=>{
+
+    const files =
+      [...e.target.files];
+
+    for(const file of files){
+
+      const url =
+        URL.createObjectURL(file);
+
+      const video =
+        document.createElement("video");
+
+      video.preload = "auto";
+      video.playsInline = true;
+      video.muted = true;
+      video.loop = false;
+      video.controls = false;
+
+      video.src = url;
+
+      await waitForVideo(video);
+
+      videos.push({
+
+        file,
+        url,
+        video,
+
+        duration:
+          Number.isFinite(video.duration)
+            ? video.duration
+            : 0
+
+      });
+    }
+
+    videoInput.value = "";
+
+    videoCount.textContent =
+      videos.length;
+
+    updateButtons();
+
+    drawPlaceholder();
+
+    setMessage(
+      `${videos.length} video${
+        videos.length === 1 ? "" : "s"
+      } loaded. Videos will play first.`
+    );
+  }
+);
+
+
+/* ---------------- AUDIO ---------------- */
+
+audioInput.addEventListener(
+  "change",
+  async e=>{
+
+    const file =
+      e.target.files[0];
+
+    if(!file) return;
+
+    if(audioURL){
+      URL.revokeObjectURL(audioURL);
+    }
+
+    audioFile = file;
+
+    audioURL =
+      URL.createObjectURL(file);
+
+    audio =
+      new Audio();
+
+    audio.src =
+      audioURL;
+
+    audio.preload =
+      "auto";
+
+    await new Promise(resolve=>{
+
+      if(audio.readyState >= 1){
+        resolve();
+        return;
+      }
+
+      audio.addEventListener(
+        "loadedmetadata",
+        resolve,
+        {once:true}
+      );
+
     });
-  });
 
-  audioStatus.textContent = formatTime(audio.duration);
+    audioStatus.textContent =
+      formatTime(audio.duration);
 
-  audioInput.value = "";
+    audioInput.value = "";
 
-  updateButtons();
+    updateButtons();
 
-  setMessage("Music loaded. Ready to detect the beat.");
-});
+    setMessage(
+      "Music loaded. Ready to detect the beat."
+    );
+  }
+);
 
 
 function waitForVideo(video){
 
   return new Promise(resolve=>{
 
-    if(video.readyState >= 2){
+    if(
+      video.readyState >= 2 &&
+      video.videoWidth
+    ){
+
       resolve();
       return;
     }
 
-    let finished = false;
-
     const done = ()=>{
-      if(finished) return;
-      finished = true;
       cleanup();
       resolve();
     };
 
     const cleanup = ()=>{
-      video.removeEventListener("loadeddata",done);
-      video.removeEventListener("canplay",done);
-      video.removeEventListener("error",done);
+
+      video.removeEventListener(
+        "loadeddata",
+        done
+      );
+
+      video.removeEventListener(
+        "canplay",
+        done
+      );
+
+      video.removeEventListener(
+        "error",
+        done
+      );
     };
 
-    video.addEventListener("loadeddata",done);
-    video.addEventListener("canplay",done);
-    video.addEventListener("error",done);
+    video.addEventListener(
+      "loadeddata",
+      done
+    );
+
+    video.addEventListener(
+      "canplay",
+      done
+    );
+
+    video.addEventListener(
+      "error",
+      done
+    );
 
   });
 }
 
 
 /* =========================================================
-   BUTTON STATE
+   BUTTONS
 ========================================================= */
 
 function updateButtons(){
 
-  const ready =
-    photos.length > 0 ||
-    videos.length > 0;
+  const hasMedia =
+    photos.length ||
+    videos.length;
 
   generateButton.disabled =
     !audio ||
-    !ready ||
+    !hasMedia ||
     generating ||
     exporting;
 
@@ -806,39 +970,67 @@ function updateButtons(){
 
 
 /* =========================================================
-   SENSITIVITY
+   DRAW — 9:16 COVER
 ========================================================= */
 
-sensitivity.addEventListener("input",()=>{
-  sensitivityValue.textContent = sensitivity.value;
-});
+/*
+  THIS is the important video placement fix.
 
+  Whatever aspect ratio the source is:
 
-/* =========================================================
-   DRAWING
-========================================================= */
+      16:9
+      4:3
+      1:1
+      21:9
+
+  it gets scaled until the ENTIRE 540x960 canvas
+  is covered.
+
+  No letterboxing.
+  No tiny video sitting in the middle.
+  No distorted stretching.
+*/
 
 function drawCover(source){
 
-  const sw = source.videoWidth || source.naturalWidth || source.width;
-  const sh = source.videoHeight || source.naturalHeight || source.height;
+  const sw =
+    source.videoWidth ||
+    source.naturalWidth ||
+    source.width;
+
+  const sh =
+    source.videoHeight ||
+    source.naturalHeight ||
+    source.height;
 
   if(!sw || !sh){
-    ctx.fillStyle = "#111";
-    ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle = "#080609";
+    ctx.fillRect(
+      0,
+      0,
+      canvas.width,
+      canvas.height
+    );
     return;
   }
 
-  const scale = Math.max(
-    canvas.width / sw,
-    canvas.height / sh
-  );
+  const scale =
+    Math.max(
+      canvas.width / sw,
+      canvas.height / sh
+    );
 
-  const dw = sw * scale;
-  const dh = sh * scale;
+  const dw =
+    sw * scale;
 
-  const dx = (canvas.width - dw) / 2;
-  const dy = (canvas.height - dh) / 2;
+  const dh =
+    sh * scale;
+
+  const dx =
+    (canvas.width - dw) / 2;
+
+  const dy =
+    (canvas.height - dh) / 2;
 
   ctx.drawImage(
     source,
@@ -850,62 +1042,38 @@ function drawCover(source){
 }
 
 
-function drawVideoCover(video){
-
-  ctx.save();
-
-  ctx.translate(
-    canvas.width / 2,
-    canvas.height / 2
-  );
-
-  const sw = video.videoWidth;
-  const sh = video.videoHeight;
-
-  if(!sw || !sh){
-    ctx.restore();
-    return;
-  }
-
-  const scale = Math.max(
-    canvas.width / sw,
-    canvas.height / sh
-  );
-
-  const dw = sw * scale;
-  const dh = sh * scale;
-
-  ctx.drawImage(
-    video,
-    -dw / 2,
-    -dh / 2,
-    dw,
-    dh
-  );
-
-  ctx.restore();
-}
-
-
 function drawPlaceholder(){
 
-  ctx.fillStyle = "#111";
-  ctx.fillRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle =
+    "#080609";
 
-  ctx.fillStyle = "#fff";
+  ctx.fillRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
 
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
+  ctx.textAlign =
+    "center";
 
-  ctx.font = "900 38px Inter";
+  ctx.textBaseline =
+    "middle";
+
+  ctx.fillStyle =
+    "#fff";
+
+  ctx.font =
+    "900 38px Inter";
 
   ctx.fillText(
     "JOHN BANANA",
     canvas.width / 2,
-    canvas.height / 2 - 25
+    canvas.height / 2 - 24
   );
 
-  ctx.font = "700 16px DM Mono";
+  ctx.font =
+    "700 15px 'DM Mono'";
 
   ctx.fillText(
     "AUTO EDIT MAKER",
@@ -920,65 +1088,82 @@ function drawPlaceholder(){
 ========================================================= */
 
 /*
-  PHOTO SHAKE.
+  The photo physics are intentionally separate from
+  video physics.
 
-  This is deliberately independent from the video system.
-
-  The important part:
-  - beat strength controls intensity
-  - local photo time controls the decay
-  - deterministic movement means export and preview match
-  - no video timing is involved
+  Beat = stronger impact.
+  No random video syncing.
 */
 
-function seededRandom(n){
+function randomFromSeed(seed){
 
-  const x = Math.sin(n * 12.9898) * 43758.5453;
+  const x =
+    Math.sin(seed * 12.9898) *
+    43758.5453;
 
-  return x - Math.floor(x);
+  return x -
+    Math.floor(x);
 }
 
 
-function applyShake(time,beatStrength,clipIndex){
+function applyPhotoPhysics(
+  localTime,
+  strength,
+  clipIndex
+){
 
-  const strength = clamp(
-    Number(beatStrength) || 0,
-    0,
-    1
-  );
-
-  const seed =
-    (clipIndex + 1) * 71.317 +
-    Math.floor(time * 60) * 13.77;
-
-  const r1 = seededRandom(seed);
-  const r2 = seededRandom(seed + 4.17);
-  const r3 = seededRandom(seed + 9.81);
+  strength =
+    clamp(strength,0,1);
 
   /*
-    Keep the aggressive photo feel.
+    Decaying impact.
   */
 
+  const impact =
+    Math.pow(strength,.82);
+
+  /*
+    Smooth deterministic shake.
+  */
+
+  const seed =
+    clipIndex * 71.31;
+
+  const xNoise =
+    Math.sin(
+      localTime * 70 +
+      seed
+    );
+
+  const yNoise =
+    Math.cos(
+      localTime * 63 +
+      seed * 1.7
+    );
+
+  const rotNoise =
+    Math.sin(
+      localTime * 55 +
+      seed * .8
+    );
+
   const shake =
-    Math.pow(strength,0.82) *
-    18;
+    impact * 18;
 
   const x =
-    (r1 - .5) *
-    shake;
+    xNoise * shake;
 
   const y =
-    (r2 - .5) *
-    shake;
+    yNoise * shake;
 
   const rotation =
-    (r3 - .5) *
-    strength *
-    0.045;
+    rotNoise *
+    impact *
+    .045;
 
   const zoom =
     1 +
-    strength * .055;
+    impact * .055;
 
   ctx.translate(
     canvas.width / 2 + x,
@@ -987,54 +1172,61 @@ function applyShake(time,beatStrength,clipIndex){
 
   ctx.rotate(rotation);
 
-  ctx.scale(zoom,zoom);
+  ctx.scale(
+    zoom,
+    zoom
+  );
 }
 
 
 /* =========================================================
-   VIDEO MOTION
+   VIDEO PHYSICS
 ========================================================= */
 
-function applyVideoShake(time,beatStrength){
+function applyVideoPhysics(
+  localTime,
+  strength
+){
 
-  const strength = clamp(
-    Number(beatStrength) || 0,
-    0,
-    1
-  );
+  strength =
+    clamp(strength,0,1);
 
   /*
-    Smooth motion for video.
-    No random per-frame jumps.
+    VERY subtle video movement.
+
+    We don't use this to control video timing.
   */
 
-  const pulse =
-    Math.sin(time * 42) *
+  const x =
+    Math.sin(localTime * 38) *
     strength *
     3;
 
-  const pulseY =
-    Math.cos(time * 37) *
+  const y =
+    Math.cos(localTime * 34) *
     strength *
     2;
 
   const rotation =
-    Math.sin(time * 31) *
+    Math.sin(localTime * 28) *
     strength *
-    0.008;
+    .007;
 
   const zoom =
     1 +
-    strength * 0.018;
+    strength * .015;
 
   ctx.translate(
-    canvas.width / 2 + pulse,
-    canvas.height / 2 + pulseY
+    canvas.width / 2 + x,
+    canvas.height / 2 + y
   );
 
   ctx.rotate(rotation);
 
-  ctx.scale(zoom,zoom);
+  ctx.scale(
+    zoom,
+    zoom
+  );
 }
 
 
@@ -1049,145 +1241,191 @@ async function detectBeats(){
     return;
   }
 
-  setMessage("Listening to the music... 👂");
+  setMessage(
+    "Listening to the music... 👂"
+  );
 
-  const arrayBuffer =
+  const buffer =
     await audioFile.arrayBuffer();
 
-  const tempContext =
-    new (
-      window.AudioContext ||
-      window.webkitAudioContext
-    )();
+  const AC =
+    window.AudioContext ||
+    window.webkitAudioContext;
 
-  const audioBuffer =
-    await tempContext.decodeAudioData(
-      arrayBuffer.slice(0)
+  const temp =
+    new AC();
+
+  const decoded =
+    await temp.decodeAudioData(
+      buffer.slice(0)
     );
 
-  await tempContext.close();
+  await temp.close();
 
-  const sampleRate = audioBuffer.sampleRate;
+  const sr =
+    decoded.sampleRate;
 
-  const channelCount = audioBuffer.numberOfChannels;
+  const length =
+    decoded.length;
 
-  const length = audioBuffer.length;
+  const channels =
+    decoded.numberOfChannels;
 
-  const mono = new Float32Array(length);
+  const mono =
+    new Float32Array(length);
 
-  for(let c=0;c<channelCount;c++){
+  for(
+    let c=0;
+    c<channels;
+    c++
+  ){
 
     const data =
-      audioBuffer.getChannelData(c);
+      decoded.getChannelData(c);
 
-    for(let i=0;i<length;i++){
-      mono[i] += data[i] / channelCount;
+    for(
+      let i=0;
+      i<length;
+      i++
+    ){
+
+      mono[i] +=
+        data[i] / channels;
     }
   }
 
   const windowSize =
     Math.max(
       256,
-      Math.floor(sampleRate * 0.025)
+      Math.floor(sr * .025)
     );
 
   const hop =
     Math.floor(windowSize * .5);
 
-  const energies = [];
+  const energy = [];
 
   for(
     let i=0;
-    i + windowSize < mono.length;
+    i + windowSize < length;
     i += hop
   ){
 
     let sum = 0;
 
-    for(let j=0;j<windowSize;j++){
+    for(
+      let j=0;
+      j<windowSize;
+      j++
+    ){
 
-      const s = mono[i+j];
+      const s =
+        mono[i+j];
 
-      sum += s * s;
+      sum +=
+        s*s;
     }
 
-    energies.push({
-      time:i / sampleRate,
-      energy:Math.sqrt(sum / windowSize)
+    energy.push({
+
+      time:i / sr,
+
+      value:
+        Math.sqrt(
+          sum / windowSize
+        )
+
     });
   }
 
-  if(!energies.length){
-    beats = [];
-    return;
-  }
-
-  /*
-    Smooth the energy curve.
-  */
-
   const smooth = [];
 
-  const radius = 3;
-
-  for(let i=0;i<energies.length;i++){
+  for(
+    let i=0;
+    i<energy.length;
+    i++
+  ){
 
     let sum = 0;
     let count = 0;
 
     for(
-      let j=Math.max(0,i-radius);
-      j<=Math.min(energies.length-1,i+radius);
+      let j=Math.max(0,i-3);
+      j<=Math.min(
+        energy.length-1,
+        i+3
+      );
       j++
     ){
 
-      sum += energies[j].energy;
+      sum +=
+        energy[j].value;
+
       count++;
     }
 
     smooth.push({
-      time:energies[i].time,
-      energy:sum / count
+
+      time:
+        energy[i].time,
+
+      value:
+        sum / count
+
     });
   }
-
-  /*
-    Adaptive threshold.
-  */
 
   const sens =
     Number(sensitivity.value) / 100;
 
-  const recent = [];
+  const minGap =
+    .175 -
+    sens * .03;
 
+  const recent = [];
   const detected = [];
 
-  let lastBeat = -Infinity;
+  let last =
+    -Infinity;
 
-  const minGap =
-    0.175 -
-    sens * 0.03;
+  for(
+    let i=2;
+    i<smooth.length-2;
+    i++
+  ){
 
-  for(let i=2;i<smooth.length-2;i++){
+    const value =
+      smooth[i].value;
 
-    const current = smooth[i].energy;
+    if(
+      value <= smooth[i-1].value
+    ) continue;
 
-    if(current <= smooth[i-1].energy) continue;
-    if(current < smooth[i+1].energy) continue;
+    if(
+      value < smooth[i+1].value
+    ) continue;
 
-    recent.push(current);
+    recent.push(value);
 
     if(recent.length > 40){
       recent.shift();
     }
 
     const avg =
-      recent.reduce((a,b)=>a+b,0) /
+      recent.reduce(
+        (a,b)=>a+b,
+        0
+      ) /
       recent.length;
 
     const variance =
       recent.reduce(
-        (a,b)=>a + Math.pow(b-avg,2),
+        (a,b)=>
+          a +
+          Math.pow(
+            b-avg,
+            2
+          ),
         0
       ) /
       recent.length;
@@ -1198,19 +1436,26 @@ async function detectBeats(){
     const threshold =
       avg +
       deviation *
-      (1.7 - sens * .65);
+      (1.7 - sens*.65);
 
-    if(current < threshold) continue;
+    if(value < threshold){
+      continue;
+    }
 
-    const time = smooth[i].time;
+    const time =
+      smooth[i].time;
 
-    if(time - lastBeat < minGap) continue;
+    if(
+      time-last < minGap
+    ){
+      continue;
+    }
 
     const strength =
       clamp(
-        (current - avg) /
+        (value-avg) /
         Math.max(
-          deviation * 2.5,
+          deviation*2.5,
           .00001
         ),
         0,
@@ -1222,29 +1467,24 @@ async function detectBeats(){
       strength
     });
 
-    lastBeat = time;
+    last =
+      time;
 
     if(detected.length >= 900){
       break;
     }
   }
 
-  /*
-    If detection is extremely sparse,
-    provide a musical fallback.
-  */
-
   if(detected.length < 4){
-
-    const bpm = 150;
-
-    const interval = 60 / bpm;
 
     beats = [];
 
+    const interval =
+      60 / 150;
+
     for(
       let t=0;
-      t<audioBuffer.duration;
+      t<decoded.duration;
       t+=interval
     ){
 
@@ -1256,150 +1496,213 @@ async function detectBeats(){
 
   }else{
 
-    beats = detected;
+    beats =
+      detected;
   }
 
-  beatCount.textContent = beats.length;
+  beatCount.textContent =
+    beats.length;
 
   setMessage(
-    beats.length +
-    " beats detected. Generate the edit."
+    `${beats.length} beats detected.`
   );
 }
 
 
 /* =========================================================
-   BUILD SEQUENCE
+   BUILD TIMELINE
 ========================================================= */
 
 function buildSequence(){
 
   sequence = [];
 
-  const audioDuration =
-    audio && Number.isFinite(audio.duration)
-      ? audio.duration
-      : 0;
-
-  /*
-    ---------------------------------------------------------
-    VIDEOS FIRST
-    ---------------------------------------------------------
-
-    Every video gets one continuous timeline section.
-
-    Video 1:
-      0 -> duration 1
-
-    Video 2:
-      duration 1 -> duration 1 + duration 2
-
-    Video 3:
-      ... etc.
-
-    THERE IS NO PHOTO BETWEEN THEM.
-  */
-
   let timeline = 0;
 
-  for(let i=0;i<videos.length;i++){
+  /*
+    ========================================================
+    PART 1 — ALL VIDEOS
+    ========================================================
 
-    const item = videos[i];
+    Videos are ALWAYS first.
+
+    The order is exactly the order the user selected.
+  */
+
+  for(
+    let i=0;
+    i<videos.length;
+    i++
+  ){
+
+    const item =
+      videos[i];
 
     const duration =
-      Number.isFinite(item.duration) &&
-      item.duration > 0
-        ? item.duration
-        : item.video.duration;
+      Number(item.video.duration);
 
-    if(!duration || !Number.isFinite(duration)){
+    if(
+      !Number.isFinite(duration) ||
+      duration <= 0
+    ){
       continue;
     }
 
     sequence.push({
+
       type:"video",
+
       source:item.video,
+
       sourceIndex:i,
+
       start:timeline,
-      end:timeline + duration
+
+      end:
+        timeline +
+        duration
+
     });
 
-    timeline += duration;
+    timeline +=
+      duration;
   }
 
   /*
-    ---------------------------------------------------------
-    PHOTOS START IMMEDIATELY AFTER FINAL VIDEO
-    ---------------------------------------------------------
+    ========================================================
+    PART 2 — PHOTOS
+    ========================================================
+
+    THE EXACT START:
+      final video end
+
+    Not:
+      next beat
+      next animation frame
+      next arbitrary time
+
+    The first photo begins at precisely `timeline`.
   */
 
-  const photoStart = timeline;
+  const photoStart =
+    timeline;
 
-  /*
-    If the video collection already fills the entire
-    music track, there is no photo section.
-  */
+  const musicDuration =
+    audio &&
+    Number.isFinite(audio.duration)
+      ? audio.duration
+      : timeline;
 
-  if(photos.length){
+  if(
+    photos.length &&
+    photoStart < musicDuration
+  ){
 
-    let photoTimeline = photoStart;
-
-    let photoIndex = 0;
+    const remaining =
+      musicDuration -
+      photoStart;
 
     /*
-      Use detected beats after the video section.
-
-      The photo begins exactly at the end of the last video.
+      Beats occurring after the videos.
     */
 
-    const photoBeats = beats.filter(
-      beat => beat.time >= photoStart
-    );
+    const afterVideoBeats =
+      beats.filter(
+        b =>
+          b.time > photoStart &&
+          b.time < musicDuration
+      );
 
-    if(photoBeats.length){
+    /*
+      First photo begins EXACTLY when
+      the final video ends.
+    */
 
-      for(let i=0;i<photoBeats.length;i++){
+    if(afterVideoBeats.length){
 
-        const start =
-          i === 0
-            ? photoStart
-            : photoBeats[i].time;
+      let photoIndex = 0;
 
-        const next =
-          i + 1 < photoBeats.length
-            ? photoBeats[i+1].time
-            : audioDuration;
+      let start =
+        photoStart;
 
-        if(next <= start) continue;
+      for(
+        let i=0;
+        i<afterVideoBeats.length;
+        i++
+      ){
+
+        const end =
+          afterVideoBeats[i].time;
+
+        if(end <= start){
+          continue;
+        }
 
         sequence.push({
+
           type:"photo",
-          source:photos[
-            photoIndex % photos.length
-          ].img,
+
+          source:
+            photos[
+              photoIndex %
+              photos.length
+            ].img,
+
           sourceIndex:
-            photoIndex % photos.length,
+            photoIndex %
+            photos.length,
+
           start,
-          end:next
+
+          end
+
         });
 
         photoIndex++;
+
+        start =
+          end;
       }
 
-    }else if(photoStart < audioDuration){
-
       /*
-        No usable beats after the videos.
-
-        Split the remaining audio reasonably between photos.
+        Final photo fills to music end.
       */
 
-      const remaining =
-        audioDuration - photoStart;
+      if(start < musicDuration){
+
+        sequence.push({
+
+          type:"photo",
+
+          source:
+            photos[
+              photoIndex %
+              photos.length
+            ].img,
+
+          sourceIndex:
+            photoIndex %
+            photos.length,
+
+          start,
+
+          end:
+            musicDuration
+
+        });
+      }
+
+    }else{
+
+      /*
+        No beats after videos.
+
+        Divide remaining music between photos.
+      */
 
       const durationPerPhoto =
         remaining /
-        Math.max(1,photos.length);
+        photos.length;
 
       for(
         let i=0;
@@ -1409,80 +1712,88 @@ function buildSequence(){
 
         const start =
           photoStart +
-          i * durationPerPhoto;
+          i *
+          durationPerPhoto;
 
         const end =
-          i === photos.length - 1
-            ? audioDuration
-            : start + durationPerPhoto;
+          i === photos.length-1
+            ? musicDuration
+            : start +
+              durationPerPhoto;
 
-        if(end <= start) continue;
+        if(end <= start){
+          continue;
+        }
 
         sequence.push({
+
           type:"photo",
-          source:photos[i].img,
+
+          source:
+            photos[i].img,
+
           sourceIndex:i,
+
           start,
+
           end
+
         });
       }
     }
   }
 
   /*
-    ---------------------------------------------------------
-    TOTAL DURATION
-    ---------------------------------------------------------
+    Total timeline.
 
-    If videos extend beyond the audio, the edit needs to
-    continue until the final video ends.
-
-    Normally the music should be long enough, but this makes
-    the timeline robust.
+    If there are videos longer than music,
+    we still preserve the complete videos.
   */
 
   totalDuration =
     Math.max(
-      audioDuration,
+      musicDuration,
       timeline
     );
 
   durationLabel.textContent =
     formatTime(totalDuration);
-
-  return sequence;
 }
 
 
 /* =========================================================
-   CLIP LOOKUP
+   FIND CLIP
 ========================================================= */
 
 function findClip(time){
 
-  if(!sequence.length) return null;
-
   /*
-    Exact end boundaries belong to the NEXT clip.
+    IMPORTANT:
 
-    This is important because it means:
+    `time === clip.end` belongs to the NEXT clip.
 
-      video ends
-          ↓
-      photo starts IMMEDIATELY
+    That means:
 
-    instead of displaying the last video frame for
-    another beat/frame.
+      video ends at 4.237
+      photo begins at 4.237
+
+    There is no extra video frame section.
   */
 
-  for(let i=0;i<sequence.length;i++){
+  for(
+    let i=0;
+    i<sequence.length;
+    i++
+  ){
 
-    const clip = sequence[i];
+    const clip =
+      sequence[i];
 
     if(
       time >= clip.start &&
       time < clip.end
     ){
+
       return {
         clip,
         index:i
@@ -1491,20 +1802,10 @@ function findClip(time){
   }
 
   /*
-    At the absolute end, return the final clip so the
-    last frame can still be rendered.
+    Don't return the final video beyond its end.
+
+    This prevents the final video frame lingering.
   */
-
-  if(
-    time >= totalDuration &&
-    sequence.length
-  ){
-
-    return {
-      clip:sequence[sequence.length-1],
-      index:sequence.length-1
-    };
-  }
 
   return null;
 }
@@ -1516,45 +1817,52 @@ function findClip(time){
 
 function getBeatStrength(time){
 
-  if(!beats.length) return 0;
-
-  let strength = 0;
-
-  for(let i=beats.length-1;i>=0;i--){
-
-    const beat = beats[i];
-
-    const diff =
-      time - beat.time;
-
-    if(diff < 0) continue;
-
-    if(diff > .16) break;
-
-    const decay =
-      1 -
-      diff / .16;
-
-    strength =
-      Math.max(
-        strength,
-        beat.strength * decay
-      );
-
-    break;
+  if(!beats.length){
+    return 0;
   }
 
-  return clamp(strength,0,1);
+  for(
+    let i=beats.length-1;
+    i>=0;
+    i--
+  ){
+
+    const beat =
+      beats[i];
+
+    const delta =
+      time -
+      beat.time;
+
+    if(delta < 0){
+      continue;
+    }
+
+    if(delta > .16){
+      break;
+    }
+
+    return clamp(
+      beat.strength *
+      (1 - delta/.16),
+      0,
+      1
+    );
+  }
+
+  return 0;
 }
 
 
 /* =========================================================
-   STOP ALL VIDEOS
+   VIDEO CONTROL
 ========================================================= */
 
 function stopAllVideos(){
 
-  for(const item of videos){
+  for(
+    const item of videos
+  ){
 
     try{
       item.video.pause();
@@ -1564,53 +1872,43 @@ function stopAllVideos(){
 
   activeVideo = null;
   activeVideoIndex = -1;
-  videoClipStartedAt = 0;
+  videoStartTimeline = 0;
 }
 
 
-/* =========================================================
-   START VIDEO
-========================================================= */
+/*
+  Start exactly ONE video.
 
-async function startCurrentVideo(
+  The token prevents an older async start from
+  taking control after a transition.
+*/
+
+async function startVideo(
   video,
   index,
   timelineTime
 ){
 
-  /*
-    CRITICAL:
-
-    If this is already the active video,
-    DO NOT restart it.
-  */
-
-  if(
-    activeVideo === video &&
-    activeVideoIndex === index
-  ){
-    return;
-  }
+  const token =
+    ++videoStartToken;
 
   stopAllVideos();
 
-  activeVideo = video;
-  activeVideoIndex = index;
+  activeVideo =
+    video;
 
-  /*
-    This is the EXACT point on the master timeline
-    at which this video began.
-  */
+  activeVideoIndex =
+    index;
 
-  videoClipStartedAt =
+  videoStartTimeline =
     timelineTime;
 
-  lastVideoCorrection = 0;
-
-  video.loop = false;
+  video.loop =
+    false;
 
   /*
-    Every video starts exactly once at 0.
+    EXACTLY once:
+    every new video starts at 0.
   */
 
   try{
@@ -1620,189 +1918,60 @@ async function startCurrentVideo(
   await waitForVideoReady(video);
 
   /*
-    The user may have paused while the video was loading.
+    Another video may have become active
+    while this one was loading.
   */
 
   if(
+    token !== videoStartToken ||
+    activeVideo !== video ||
     !playing ||
-    paused ||
-    activeVideo !== video
+    paused
   ){
+
     return;
   }
 
   try{
     await video.play();
   }catch(e){
+
     /*
-      Autoplay restrictions should not kill the editor.
-      The user already interacted with the page.
+      Browser autoplay restrictions are harmless
+      because the preview is user initiated.
     */
   }
 }
 
 
-function waitForVideoReady(video){
+/*
+  Resume the active video without restarting it.
+*/
 
-  return new Promise(resolve=>{
-
-    if(
-      video.readyState >= 2 &&
-      video.videoWidth > 0
-    ){
-      resolve();
-      return;
-    }
-
-    let done = false;
-
-    const finish = ()=>{
-      if(done) return;
-
-      done = true;
-
-      video.removeEventListener(
-        "loadeddata",
-        finish
-      );
-
-      video.removeEventListener(
-        "canplay",
-        finish
-      );
-
-      resolve();
-    };
-
-    video.addEventListener(
-      "loadeddata",
-      finish,
-      {once:true}
-    );
-
-    video.addEventListener(
-      "canplay",
-      finish,
-      {once:true}
-    );
-
-  });
-}
-
-
-/* =========================================================
-   KEEP VIDEO IN SYNC
-========================================================= */
-
-function keepVideoInSync(
-  video,
-  timelineTime
-){
-
-  if(!video) return;
-
-  /*
-    Expected video time is simply:
-
-      timeline position
-      -
-      video's timeline start
-  */
-
-  const expected =
-    clamp(
-      timelineTime -
-      videoClipStartedAt,
-      0,
-      Math.max(0,video.duration - .001)
-    );
-
-  /*
-    DO NOT seek every frame.
-
-    That was the source of the old:
-      - looping
-      - glitching
-      - first 0.2 second
-      - stuttering
-    behaviour.
-
-    We only correct genuine drift.
-  */
+function resumeActiveVideo(){
 
   if(
-    Math.abs(
-      video.currentTime - expected
-    ) > .5
+    !activeVideo ||
+    paused ||
+    !playing
   ){
-
-    try{
-      video.currentTime = expected;
-    }catch(e){}
-  }
-
-  /*
-    If the video somehow stopped before its natural end,
-    resume it.
-
-    But NEVER restart it once the clip has moved on.
-  */
-
-  if(
-    video.paused &&
-    playing &&
-    !paused &&
-    expected < video.duration - .08
-  ){
-
-    video.play().catch(()=>{});
-  }
-}
-
-
-/* =========================================================
-   VIDEO TIMELINE SYNC
-========================================================= */
-
-function syncVideoToTimeline(
-  video,
-  index,
-  timelineTime
-){
-
-  /*
-    New video:
-      stop old
-      reset new to 0
-      play new
-
-    Same video:
-      do NOTHING except occasional drift correction
-  */
-
-  if(
-    activeVideo !== video ||
-    activeVideoIndex !== index
-  ){
-
-    startCurrentVideo(
-      video,
-      index,
-      timelineTime
-    );
-
     return;
   }
 
-  keepVideoInSync(
-    video,
-    timelineTime
-  );
+  if(
+    activeVideo.ended
+  ){
+    return;
+  }
+
+  activeVideo
+    .play()
+    .catch(()=>{});
 }
 
 
 /* =========================================================
-   RENDER FRAME
+   RENDER
 ========================================================= */
 
 function renderFrame(time){
@@ -1810,7 +1979,42 @@ function renderFrame(time){
   const found =
     findClip(time);
 
+  /*
+    At exact end there is no lingering final video.
+  */
+
   if(!found){
+
+    /*
+      If we've just passed the final clip,
+      keep the last useful frame only for
+      an extremely tiny visual endpoint.
+    */
+
+    if(sequence.length){
+
+      const last =
+        sequence[sequence.length-1];
+
+      if(
+        last.type === "photo" &&
+        last.source
+      ){
+
+        ctx.save();
+
+        ctx.translate(
+          canvas.width/2,
+          canvas.height/2
+        );
+
+        drawCover(last.source);
+
+        ctx.restore();
+
+        return;
+      }
+    }
 
     drawPlaceholder();
 
@@ -1840,7 +2044,9 @@ function renderFrame(time){
   );
 
   /*
+    ========================================================
     VIDEO
+    ========================================================
   */
 
   if(clip.type === "video"){
@@ -1850,19 +2056,25 @@ function renderFrame(time){
 
     ctx.save();
 
-    applyVideoShake(
+    applyVideoPhysics(
       localTime,
       beatStrength
     );
 
-    drawVideoCover(video);
+    /*
+      drawCover guarantees full-screen 9:16.
+    */
+
+    drawCover(video);
 
     ctx.restore();
 
   }
 
   /*
+    ========================================================
     PHOTO
+    ========================================================
   */
 
   else{
@@ -1872,13 +2084,7 @@ function renderFrame(time){
 
     ctx.save();
 
-    /*
-      IMPORTANT:
-      Photo shake is only applied here.
-      Video physics never touch it.
-    */
-
-    applyShake(
+    applyPhotoPhysics(
       localTime,
       beatStrength,
       index
@@ -1893,10 +2099,12 @@ function renderFrame(time){
     Beat flash.
   */
 
-  if(beatStrength > .72){
+  if(
+    beatStrength > .72
+  ){
 
     const alpha =
-      (beatStrength - .72) * .25;
+      (beatStrength-.72) * .25;
 
     ctx.fillStyle =
       `rgba(255,255,255,${alpha})`;
@@ -1909,92 +2117,150 @@ function renderFrame(time){
     );
   }
 
-  /*
-    Labels.
-  */
-
-  if(clip.type === "video"){
+  if(
+    clip.type === "video"
+  ){
 
     clipLabel.textContent =
-      "VIDEO " +
-      (clip.sourceIndex + 1) +
-      " / " +
-      videos.length;
+      `VIDEO ${
+        clip.sourceIndex+1
+      } / ${
+        videos.length
+      }`;
 
   }else{
 
     clipLabel.textContent =
-      "PHOTO " +
-      (clip.sourceIndex + 1) +
-      " / " +
-      photos.length;
+      `PHOTO ${
+        clip.sourceIndex+1
+      } / ${
+        photos.length
+      }`;
   }
 }
 
 
 /* =========================================================
-   MASTER ANIMATION LOOP
+   CLIP TRANSITION
 ========================================================= */
 
-function animationLoop(){
+function enterClip(
+  found,
+  time
+){
 
-  if(!playing) return;
+  if(!found){
+    return;
+  }
 
-  if(paused){
-
-    animationFrame =
-      requestAnimationFrame(animationLoop);
+  if(
+    found.index ===
+    currentClipIndex
+  ){
 
     return;
   }
 
+  currentClipIndex =
+    found.index;
+
+  const clip =
+    found.clip;
+
   /*
-    AUDIO is the master clock when it is running.
+    VIDEO → VIDEO
 
-    During export the audio is also running.
-
-    For video-only overflow, performance time is used
-    after audio reaches its end.
+    Old video is killed.
+    New video starts at exactly 0.
   */
 
-  let time;
-
   if(
-    audio &&
-    Number.isFinite(audio.currentTime)
+    clip.type === "video"
   ){
 
-    time = audio.currentTime;
-
-    /*
-      If audio has ended but the final video is longer,
-      continue the timeline.
-    */
-
-    if(
-      audio.ended &&
-      totalDuration > audio.duration
-    ){
-
-      time =
-        Math.min(
-          totalDuration,
-          playStartTime +
-          (performance.now() - playStartTime) / 1000
-        );
-    }
+    startVideo(
+      clip.source,
+      clip.sourceIndex,
+      time
+    );
 
   }else{
 
-    time =
-      (performance.now() -
-       playStartTime) / 1000;
+    /*
+      VIDEO → PHOTO
+
+      THIS IS THE HARD HANDOFF.
+
+      The moment the timeline enters the photo:
+      all videos are paused and removed.
+    */
+
+    stopAllVideos();
+  }
+}
+
+
+/* =========================================================
+   MASTER PLAYBACK LOOP
+========================================================= */
+
+function playbackLoop(){
+
+  if(!playing){
+    return;
   }
 
-  currentTime = time;
+  if(paused){
+
+    animationFrame =
+      requestAnimationFrame(
+        playbackLoop
+      );
+
+    return;
+  }
+
+  let time =
+    audio
+      ? audio.currentTime
+      : currentTime;
 
   /*
-    END.
+    If audio is shorter than the video sequence,
+    continue using elapsed wall time after audio ends.
+
+    This keeps every video complete.
+  */
+
+  if(
+    audio &&
+    audio.ended &&
+    totalDuration > audio.duration
+  ){
+
+    /*
+      The audio has ended, but the video timeline
+      still has time remaining.
+
+      Calculate from the actual audio duration
+      rather than restarting the clock.
+    */
+
+    time =
+      Math.max(
+        currentTime,
+        audio.duration
+      );
+
+    time +=
+      1 / 60;
+  }
+
+  currentTime =
+    time;
+
+  /*
+    Finish.
   */
 
   if(
@@ -2004,9 +2270,27 @@ function animationLoop(){
     currentTime =
       totalDuration;
 
-    renderFrame(currentTime);
+    playing = false;
+    paused = false;
 
-    stopPlayback();
+    if(audio){
+      audio.pause();
+    }
+
+    stopAllVideos();
+
+    progress.style.width =
+      "100%";
+
+    timeLabel.textContent =
+      formatTime(totalDuration);
+
+    pauseIcon.textContent =
+      "▶";
+
+    pauseOverlay.classList.add(
+      "show"
+    );
 
     return;
   }
@@ -2016,123 +2300,95 @@ function animationLoop(){
 
   if(found){
 
-    /*
-      Detect actual clip transitions.
+    enterClip(
+      found,
+      currentTime
+    );
 
-      This is what gives us:
-
-        VIDEO 1
-           ↓
-        VIDEO 2
-           ↓
-        VIDEO 3
-           ↓
-        PHOTO
-
-      with no artificial gap.
-    */
-
-    if(found.index !== currentClipIndex){
-
-      currentClipIndex =
-        found.index;
-
-      if(found.clip.type === "video"){
-
-        syncVideoToTimeline(
-          found.clip.source,
-          found.clip.sourceIndex,
-          currentTime
-        );
-
-      }else{
-
-        /*
-          THE INSTANT WE HIT THE PHOTO:
-
-          kill every video.
-
-          This prevents the final video's last frame
-          from hanging around over the photo.
-        */
-
-        stopAllVideos();
-      }
-    }
-
-    /*
-      Keep active video alive without restarting it.
-    */
-
-    if(found.clip.type === "video"){
-
-      syncVideoToTimeline(
-        found.clip.source,
-        found.clip.sourceIndex,
-        currentTime
-      );
-    }
   }
 
-  renderFrame(currentTime);
-
-  const pct =
-    totalDuration > 0
-      ? currentTime / totalDuration
-      : 0;
+  renderFrame(
+    currentTime
+  );
 
   progress.style.width =
-    clamp(pct * 100,0,100) + "%";
+    clamp(
+      currentTime /
+      Math.max(totalDuration,.001) *
+      100,
+      0,
+      100
+    ) + "%";
 
   timeLabel.textContent =
     formatTime(currentTime);
 
   animationFrame =
-    requestAnimationFrame(animationLoop);
+    requestAnimationFrame(
+      playbackLoop
+    );
 }
 
 
 /* =========================================================
-   START PLAYBACK
+   START
 ========================================================= */
 
 async function startPlayback(){
 
-  if(!audio || !generated) return;
-
-  cancelAnimationFrame(animationFrame);
-
-  stopAllVideos();
-
-  paused = false;
-  playing = true;
-
-  currentClipIndex = -1;
-  currentTime = 0;
-
-  audio.currentTime = 0;
+  if(
+    !generated ||
+    !audio
+  ){
+    return;
+  }
 
   /*
-    Audio graph.
+    If we're at the end, restart.
+  */
+
+  if(
+    currentTime >=
+    totalDuration
+  ){
+
+    currentTime = 0;
+
+    currentClipIndex = -1;
+
+    if(audio){
+      audio.currentTime = 0;
+    }
+  }
+
+  /*
+    Create audio graph once.
   */
 
   if(!audioContext){
 
+    const AC =
+      window.AudioContext ||
+      window.webkitAudioContext;
+
     audioContext =
-      new (
-        window.AudioContext ||
-        window.webkitAudioContext
-      )();
+      new AC();
   }
 
-  if(audioContext.state === "suspended"){
+  if(
+    audioContext.state ===
+    "suspended"
+  ){
+
     await audioContext.resume();
   }
 
   if(!audioGraphConnected){
 
     audioSource =
-      audioContext.createMediaElementSource(audio);
+      audioContext.createMediaElementSource(
+        audio
+      );
 
     audioDestination =
       audioContext.createMediaStreamDestination();
@@ -2145,52 +2401,30 @@ async function startPlayback(){
       audioDestination
     );
 
-    audioGraphConnected = true;
+    audioGraphConnected =
+      true;
   }
 
-  playStartTime =
-    performance.now();
+  playing = true;
+  paused = false;
 
-  pauseOverlay.classList.remove("show");
-  pauseIcon.textContent = "Ⅱ";
+  pauseOverlay.classList.remove(
+    "show"
+  );
+
+  pauseIcon.textContent =
+    "Ⅱ";
 
   await audio.play();
 
+  cancelAnimationFrame(
+    animationFrame
+  );
+
   animationFrame =
-    requestAnimationFrame(animationLoop);
-}
-
-
-/* =========================================================
-   STOP PLAYBACK
-========================================================= */
-
-function stopPlayback(){
-
-  playing = false;
-  paused = false;
-
-  cancelAnimationFrame(animationFrame);
-
-  stopAllVideos();
-
-  if(audio){
-
-    try{
-      audio.pause();
-    }catch(e){}
-  }
-
-  pauseOverlay.classList.remove("show");
-  pauseIcon.textContent = "▶";
-
-  if(currentTime >= totalDuration){
-
-    progress.style.width = "100%";
-
-    timeLabel.textContent =
-      formatTime(totalDuration);
-  }
+    requestAnimationFrame(
+      playbackLoop
+    );
 }
 
 
@@ -2200,11 +2434,16 @@ function stopPlayback(){
 
 async function togglePlayback(){
 
-  if(!generated) return;
+  if(
+    !generated ||
+    generating ||
+    exporting
+  ){
+    return;
+  }
 
   /*
-    Not currently running:
-    start it.
+    Not playing → play.
   */
 
   if(!playing){
@@ -2215,7 +2454,7 @@ async function togglePlayback(){
   }
 
   /*
-    PAUSE
+    PLAYING → PAUSED
   */
 
   if(!paused){
@@ -2226,71 +2465,63 @@ async function togglePlayback(){
       audio.pause();
     }
 
-    for(const item of videos){
+    for(
+      const item of videos
+    ){
 
       try{
         item.video.pause();
       }catch(e){}
     }
 
-    pauseIcon.textContent = "▶";
+    pauseIcon.textContent =
+      "▶";
 
-    pauseOverlay.classList.add("show");
+    pauseOverlay.classList.add(
+      "show"
+    );
 
     return;
   }
 
   /*
-    PLAY AGAIN
+    PAUSED → PLAYING
   */
 
   paused = false;
 
-  if(audioContext &&
-     audioContext.state === "suspended"){
+  if(
+    audioContext &&
+    audioContext.state === "suspended"
+  ){
 
     await audioContext.resume();
   }
 
   if(audio){
-
     await audio.play();
   }
 
-  if(activeVideo){
+  resumeActiveVideo();
 
-    activeVideo.play().catch(()=>{});
-  }
+  pauseIcon.textContent =
+    "Ⅱ";
 
-  pauseIcon.textContent = "Ⅱ";
-
-  pauseOverlay.classList.remove("show");
+  pauseOverlay.classList.remove(
+    "show"
+  );
 }
 
 
 /*
-  CLICK/TAP PREVIEW
+  RESTORED:
 
-  This was accidentally lost before.
+  Tap/click preview = pause/play.
 */
 
 previewWrap.addEventListener(
   "click",
-  async ()=>{
-    await togglePlayback();
-  }
-);
-
-
-/*
-  Prevent double triggering on touch devices.
-*/
-
-previewWrap.addEventListener(
-  "dblclick",
-  e=>{
-    e.preventDefault();
-  }
+  togglePlayback
 );
 
 
@@ -2302,40 +2533,39 @@ generateButton.addEventListener(
   "click",
   async ()=>{
 
-    if(generating) return;
+    if(generating){
+      return;
+    }
 
     generating = true;
 
     updateButtons();
 
-    stopPlayback();
+    playing = false;
+    paused = false;
+
+    cancelAnimationFrame(
+      animationFrame
+    );
+
+    stopAllVideos();
 
     try{
 
       if(!audio){
-
         throw new Error(
           "Add music first."
         );
       }
 
-      setMessage(
-        "Detecting beats... this thing is listening 👂"
-      );
-
       await detectBeats();
-
-      /*
-        IMPORTANT:
-        Build sequence AFTER beat detection.
-      */
 
       buildSequence();
 
       if(!sequence.length){
 
         throw new Error(
-          "Couldn't create a timeline."
+          "No usable clips were found."
         );
       }
 
@@ -2349,23 +2579,25 @@ generateButton.addEventListener(
 
       renderFrame(0);
 
-      progress.style.width = "0%";
+      progress.style.width =
+        "0%";
 
-      timeLabel.textContent = "00:00";
+      timeLabel.textContent =
+        "00:00";
 
       setMessage(
         "EDIT GENERATED. Tap the preview to play/pause. 🔥"
       );
 
-    }catch(err){
+    }catch(error){
 
-      console.error(err);
+      console.error(error);
 
       generated = false;
 
       setMessage(
         "Generation failed: " +
-        (err.message || err)
+        error.message
       );
 
     }finally{
@@ -2379,7 +2611,7 @@ generateButton.addEventListener(
 
 
 /* =========================================================
-   EXPORT WEBM
+   EXPORT
 ========================================================= */
 
 exportButton.addEventListener(
@@ -2399,45 +2631,47 @@ exportButton.addEventListener(
     updateButtons();
 
     setMessage(
-      "Exporting WebM... DO NOT CLOSE THIS TAB 🎬"
+      "Exporting WebM... 🎬"
     );
 
-    stopPlayback();
+    playing = false;
+    paused = false;
 
-    /*
-      Reset everything.
-    */
+    cancelAnimationFrame(
+      animationFrame
+    );
 
     stopAllVideos();
 
-    currentClipIndex = -1;
-
     currentTime = 0;
+    currentClipIndex = -1;
 
     audio.currentTime = 0;
 
     /*
-      Canvas video stream.
+      Canvas stream.
     */
 
     const canvasStream =
       canvas.captureStream(60);
 
     /*
-      Audio stream.
+      Audio graph.
     */
 
     if(!audioContext){
 
+      const AC =
+        window.AudioContext ||
+        window.webkitAudioContext;
+
       audioContext =
-        new (
-          window.AudioContext ||
-          window.webkitAudioContext
-        )();
+        new AC();
     }
 
     if(
-      audioContext.state === "suspended"
+      audioContext.state ===
+      "suspended"
     ){
 
       await audioContext.resume();
@@ -2461,48 +2695,62 @@ exportButton.addEventListener(
         audioDestination
       );
 
-      audioGraphConnected = true;
+      audioGraphConnected =
+        true;
     }
 
-    const combined =
+    const stream =
       new MediaStream();
 
-    for(const track of canvasStream.getVideoTracks()){
+    for(
+      const track of
+      canvasStream.getVideoTracks()
+    ){
 
-      combined.addTrack(track);
+      stream.addTrack(track);
     }
 
-    for(const track of audioDestination.getAudioTracks()){
+    for(
+      const track of
+      audioDestination.getAudioTracks()
+    ){
 
-      combined.addTrack(track);
+      stream.addTrack(track);
     }
 
-    let mimeType = "";
+    let mime = "";
 
-    const options = [
+    const mimeTypes = [
+
       "video/webm;codecs=vp9,opus",
+
       "video/webm;codecs=vp8,opus",
+
       "video/webm"
+
     ];
 
-    for(const type of options){
+    for(
+      const type of mimeTypes
+    ){
 
       if(
         MediaRecorder.isTypeSupported(type)
       ){
 
-        mimeType = type;
+        mime = type;
         break;
       }
     }
 
-    if(!mimeType){
+    if(!mime){
 
       setMessage(
-        "Your browser doesn't support WebM recording."
+        "WebM recording is not supported in this browser."
       );
 
       exporting = false;
+
       updateButtons();
 
       return;
@@ -2510,61 +2758,52 @@ exportButton.addEventListener(
 
     const recorder =
       new MediaRecorder(
-        combined,
+        stream,
         {
-          mimeType,
-          videoBitsPerSecond:8_000_000,
-          audioBitsPerSecond:192_000
+          mimeType:mime,
+          videoBitsPerSecond:8000000,
+          audioBitsPerSecond:192000
         }
       );
 
     const chunks = [];
 
-    recorder.ondataavailable = e=>{
+    recorder.ondataavailable =
+      e=>{
 
-      if(e.data && e.data.size){
-        chunks.push(e.data);
-      }
-    };
+        if(
+          e.data &&
+          e.data.size
+        ){
 
-    const finished =
+          chunks.push(e.data);
+        }
+      };
+
+    const stopped =
       new Promise(resolve=>{
 
-        recorder.onstop = resolve;
+        recorder.onstop =
+          resolve;
 
       });
 
     recorder.start(250);
 
     /*
-      Start audio.
+      Export starts at timeline zero.
     */
 
-    paused = false;
     playing = true;
-
-    currentTime = 0;
-
-    currentClipIndex = -1;
-
-    playStartTime =
-      performance.now();
 
     await audio.play();
 
-    /*
-      Dedicated export loop.
-
-      Same timeline logic as preview,
-      but export cannot depend on the browser
-      animation loop's pause state.
-    */
-
     await new Promise(resolve=>{
 
-      let last = performance.now();
+      let lastWall =
+        performance.now();
 
-      function exportFrame(){
+      function exportLoop(){
 
         if(!exporting){
 
@@ -2576,15 +2815,18 @@ exportButton.addEventListener(
           performance.now();
 
         /*
-          Audio is the clock.
+          Normal case:
+          audio is the master clock.
         */
 
         let time =
           audio.currentTime;
 
         /*
-          If video is longer than audio,
-          continue until final video end.
+          Video-only tail:
+          continue after audio has ended.
+
+          This uses a monotonic accumulated clock.
         */
 
         if(
@@ -2593,95 +2835,80 @@ exportButton.addEventListener(
         ){
 
           time =
-            Math.min(
-              totalDuration,
-              audio.duration +
-              (now - last) / 1000
+            Math.max(
+              currentTime,
+              audio.duration
             );
+
+          time +=
+            (now-lastWall)/1000;
         }
 
-        currentTime = time;
+        lastWall =
+          now;
 
-        const found =
-          findClip(time);
+        currentTime =
+          time;
 
-        if(found){
+        /*
+          End.
+        */
 
-          if(
-            found.index !== currentClipIndex
-          ){
-
-            currentClipIndex =
-              found.index;
-
-            if(
-              found.clip.type === "video"
-            ){
-
-              syncVideoToTimeline(
-                found.clip.source,
-                found.clip.sourceIndex,
-                time
-              );
-
-            }else{
-
-              /*
-                FINAL VIDEO → PHOTO
-                happens immediately here.
-              */
-
-              stopAllVideos();
-            }
-          }
-
-          if(
-            found.clip.type === "video"
-          ){
-
-            syncVideoToTimeline(
-              found.clip.source,
-              found.clip.sourceIndex,
-              time
-            );
-          }
-        }
-
-        renderFrame(time);
-
-        const pct =
-          totalDuration > 0
-            ? time / totalDuration
-            : 0;
-
-        progress.style.width =
-          clamp(pct * 100,0,100) + "%";
-
-        timeLabel.textContent =
-          formatTime(time);
-
-        if(time >= totalDuration){
+        if(
+          currentTime >=
+          totalDuration
+        ){
 
           currentTime =
             totalDuration;
-
-          renderFrame(totalDuration);
 
           resolve();
 
           return;
         }
 
-        last = now;
+        const found =
+          findClip(currentTime);
 
-        requestAnimationFrame(exportFrame);
+        if(found){
+
+          enterClip(
+            found,
+            currentTime
+          );
+        }
+
+        renderFrame(
+          currentTime
+        );
+
+        progress.style.width =
+          clamp(
+            currentTime /
+            Math.max(
+              totalDuration,
+              .001
+            ) *
+            100,
+            0,
+            100
+          ) + "%";
+
+        timeLabel.textContent =
+          formatTime(currentTime);
+
+        requestAnimationFrame(
+          exportLoop
+        );
       }
 
-      requestAnimationFrame(exportFrame);
+      requestAnimationFrame(
+        exportLoop
+      );
     });
 
     /*
-      Stop audio and videos.
+      Finish.
     */
 
     try{
@@ -2690,48 +2917,58 @@ exportButton.addEventListener(
 
     stopAllVideos();
 
-    /*
-      Let the final frame enter the MediaRecorder.
-    */
-
-    await sleep(120);
+    await new Promise(
+      resolve =>
+        setTimeout(resolve,120)
+    );
 
     recorder.stop();
 
-    await finished;
+    await stopped;
 
     const blob =
       new Blob(
         chunks,
         {
-          type:mimeType
+          type:mime
         }
       );
 
     const url =
       URL.createObjectURL(blob);
 
-    const a =
+    const link =
       document.createElement("a");
 
-    a.href = url;
+    link.href =
+      url;
 
-    a.download =
+    link.download =
       "john-banana-auto-edit.webm";
 
-    document.body.appendChild(a);
+    document.body.appendChild(link);
 
-    a.click();
+    link.click();
 
-    a.remove();
+    link.remove();
 
-    setTimeout(()=>{
-      URL.revokeObjectURL(url);
-    },5000);
+    setTimeout(
+      ()=>{
+        URL.revokeObjectURL(url);
+      },
+      5000
+    );
 
     exporting = false;
     playing = false;
     paused = false;
+
+    pauseIcon.textContent =
+      "▶";
+
+    pauseOverlay.classList.add(
+      "show"
+    );
 
     updateButtons();
 
@@ -2743,7 +2980,7 @@ exportButton.addEventListener(
 
 
 /* =========================================================
-   INITIAL FRAME
+   INITIALISE
 ========================================================= */
 
 drawPlaceholder();
